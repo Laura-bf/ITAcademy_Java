@@ -1,3 +1,5 @@
+/*Crea una aplicació que dibuixi una escala de nombres, sent cada línia nombres començant en un i acabant en el nombre de la línia.*/
+
 package N2;
 
 import java.util.Scanner;

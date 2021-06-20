@@ -1,8 +1,8 @@
-/*En aquest exercici es proposa un exercici complex de comprovacions i bucles per crear un cronòmetre  digital que vagi mostrant el temps transcorregut en format rellotge hh:mm:ss amb un segon d'espera.
- *Només necessites 3 variables int (hour, minutes, seconds)  
- *El cronòmetre ha de tenir 6 dígits en tot moment i ha d'iniciar a 00:00:00  
- *L’aplicació no ha de finalitzar mai. 
- *Per que el rellotge trigui un segon has d’implementar: Thread.sleep(1000);
+/*En aquest exercici es proposa un exercici complex de comprovacions i bucles per crear un cronÃ²metre  digital que vagi mostrant el temps transcorregut en format rellotge hh:mm:ss amb un segon d'espera.
+ *NomÃ©s necessites 3 variables int (hour, minutes, seconds)  
+ *El cronÃ²metre ha de tenir 6 dÃ­gits en tot moment i ha d'iniciar a 00:00:00  
+ *Lâ€™aplicaciÃ³ no ha de finalitzar mai. 
+ *Per que el rellotge trigui un segon has dâ€™implementar: Thread.sleep(1000);
  */
 
 package N3;
@@ -19,7 +19,7 @@ public class Cronometro {
 				for(minutes = 0; minutes <= 59; minutes++) {
 					for(seconds = 0; seconds <= 59; seconds++) {
 						try {
-							Thread.sleep(10);
+							Thread.sleep(1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

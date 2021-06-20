@@ -19,7 +19,7 @@ public class Cronometro {
 				for(minutes = 0; minutes <= 59; minutes++) {
 					for(seconds = 0; seconds <= 59; seconds++) {
 						try {
-							Thread.sleep(10);
+							Thread.sleep(1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

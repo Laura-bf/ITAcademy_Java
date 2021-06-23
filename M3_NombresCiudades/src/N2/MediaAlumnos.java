@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class MediaAlumnos {
 
 	public static void main(String[] args) {
-		int[][] notasClase = new int[3][5];
+		//Se crea un array para almacenar las notas de los alumnos (5 alumnos, con 3 notas cada uno)
+		int[][] notasClase = new int[3][5]; //hubiera sido mejor int[alumnos][notas] porque cada alumno tiene tres notas, lo suyo es que las filas sean los alumnos
 		Scanner sc = new Scanner(System.in);
 				
 		//Se introducen las notas de cada alumno

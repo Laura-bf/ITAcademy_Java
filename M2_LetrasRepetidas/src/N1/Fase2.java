@@ -48,4 +48,10 @@ public class Fase2 {
 		}
 		return isNumber;
 	}
+	/*Existe un método para determinar si un valor char es un dígito:
+	*	SINTAXIS: boolean isDigit(char ch)
+	*En este ejercicio:
+	*	if(Character.isDigit(nombre.get(i)){
+	*		System.out.println(nombre.get(i) +"?Los nombres no contienen números")
+	*/
 }

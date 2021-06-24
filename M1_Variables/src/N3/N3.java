@@ -16,7 +16,9 @@ public class N3 {
 			System.out.print(auxiliar);
 			
 		}
-
+		//Así se muestran los valores del revés pero no se cambian de posición los elementos dentro del array
+		//Hay varias formas de invertir un array:
+		//https://www.baeldung.com/java-invert-array
 	}
 
 }

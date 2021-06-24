@@ -14,7 +14,9 @@ public class Fase2 {
 		for(int i = leapYear; i <= birthYear; i+=4) {
 			System.out.print(i +" ");
 		}
-		
+		//http://lineadecodigo.com/java/ano-bisiesto-en-java/
+		//Existen fórmulas para calcular el año bisiesto
+		//También se puede usar la clase GregorianCalendar
 	}
 
 }

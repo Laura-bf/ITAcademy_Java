@@ -23,6 +23,9 @@ public class MediaAlumnos {
 				do {
 					System.out.println("Introduce la nota "+ (j+1) +" para el alumno "+ (i+1));
 					nota = sc.nextInt();
+					if(nota < 0 || nota > 10) {
+						System.out.println("La nota debe estar entre 0 y 10");
+					}
 				} while (nota < 0 || nota >10);
 				notasClase[j][i] = nota;
 			}

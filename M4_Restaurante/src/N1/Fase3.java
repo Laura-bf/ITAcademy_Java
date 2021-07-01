@@ -93,7 +93,6 @@ public class Fase3 {
 	public static void dishExists(ArrayList<String> orderList, String[] dishes) {
 		String noDishes = "", message = "";
 		int counter = 0;
-		//for(String orderDish : orderList) {
 		ListIterator<String> lt = orderList.listIterator();
 		while(lt.hasNext()) {
 			String orderDish = lt.next();

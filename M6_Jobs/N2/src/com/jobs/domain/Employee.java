@@ -12,12 +12,11 @@ public class Employee extends AbsStaffMember {
 			throw new Exception();
 		
 		this.salaryPerMonth = salaryPerMonth;
-		
 	}
 
 	@Override
-	public void pay() throws Exception {
-		super.totalPaid = paymentRate.pay(salaryPerMonth);
+	public void pay() {
+		totalPaid = paymentRate.pay(salaryPerMonth);
 	}
 
 	@Override

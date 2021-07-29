@@ -5,15 +5,16 @@ public class Senior extends Employee {
 	public Senior(String name, String address, String phone, double salaryPerMonth, IPaymentRate paymentRate)
 			throws Exception {
 		super(name, address, phone, salaryPerMonth);
-		
 		this.paymentRate = paymentRate;
+		
+		pay();
+		if(super.totalPaid < 2700 || totalPaid > 4000)
+			throw new Exception("Senior salary must be between 2700€ and 4000€, both included");
 	}
 
 	@Override
-	public void pay() throws Exception{
+	public void pay(){
 		super.pay();
-		if(super.totalPaid < 2700 || totalPaid > 4000)
-			throw new Exception("Senior salary must be between 2700€ and 4000€, both included");
 	}
 	
 	@Override

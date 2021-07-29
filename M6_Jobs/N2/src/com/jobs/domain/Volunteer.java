@@ -7,14 +7,14 @@ public class Volunteer extends AbsStaffMember {
 	public Volunteer(String name, String address, String phone, String description) throws Exception {
 		super(name, address, phone);
 		this.description = description;
-
+		pay();
+		if (super.totalPaid != 0)
+			throw new Exception("VOLUNTEERS DO NOT HAVE SALARY");
 	}
 
 	@Override
-	public void pay() throws Exception {
+	public void pay() {
 		super.totalPaid = 0;
-		if (super.totalPaid != 0)
-			throw new Exception("VOLUNTEERS DO NOT HAVE SALARY");
 	}
 
 	@Override

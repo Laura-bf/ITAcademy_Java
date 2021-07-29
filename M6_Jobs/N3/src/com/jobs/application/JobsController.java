@@ -22,7 +22,7 @@ public class JobsController {
 	}
 	
 	//para poder activar el bono del 10% para los empleados desde el main
-	public static void setBonus(String option) throws Exception {
+	public void setBonus(String option) throws Exception {
 		if(option.equalsIgnoreCase("on")) {
 			Employee.setBonus(true);
 		}else if(option.equalsIgnoreCase("off")) {

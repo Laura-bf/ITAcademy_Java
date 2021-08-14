@@ -20,10 +20,10 @@ public class Car extends Vehicle {
 		Wheel rightWheel = wheels.get(0);
 		Wheel leftWheel = wheels.get(1);
 
-		/*equals() cuando compara objetos verifica que tengan la misma dirección,
-		 * podría haber sobreescrito wheel right con wheel left después de comprobar que son iguales al pedir los datos en Car.twoWheels()
-		 * en vez de cambiar esta excepción y añadir aquí toString(),
-		 * pero entonces estaría haciendo dos veces la misma comprobación*/ 
+		/*equals() cuando compara objetos verifica que tengan la misma direcciÃ³n,
+		 * podrÃ­a haber sobreescrito wheel right con wheel left despuÃ©s de comprobar que son iguales al pedir los datos en Car.twoWheels()
+		 * en vez de cambiar esta excepciÃ³n y aÃ±adir aquÃ­ toString(),
+		 * pero entonces estarÃ­a haciendo dos veces la misma comprobaciÃ³n*/ 
 		
 		if (!(rightWheel.toString()).equals(leftWheel.toString()))
 			throw new Exception();
@@ -34,7 +34,7 @@ public class Car extends Vehicle {
 
 	@Override
 	public String toString() {
-		return "Car:\nplate=" + plate + ", brand=" + brand + ", color=" + color + "\nFront" + wheels.get(0) + "\nBack" + wheels.get(2);
+		return "Car:\nplate=" + plate + ", brand=" + brand + ", color=" + color + "\nWheels= " + wheels;
 	}
 
 

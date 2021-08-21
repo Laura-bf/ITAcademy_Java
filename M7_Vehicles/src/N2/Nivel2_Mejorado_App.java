@@ -2,16 +2,13 @@ package N2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-/**
- * @author laura
- * Para esta mejora he tenido que crear getters y setters en vehicle, 
- * constructores por defecto en Vehicle y sus subclases,
- * la comprobación de matrícula ahora es un método de la clase Vehicle.
- * También he puesto como abstracto el método addTwhoWheels(wheels) en Vehicle.
- */
+
 public class Nivel2_Mejorado_App {
 
 	public static void main(String[] args) {
+		//Se registra el titular del vehículo
+		Owner owner = createOwner();
+		
 		//Menú para elegir tipo vehículo
 		int type = chooseType();
 		//Se crea registro según tipo de vehículo con los datos necesarios
@@ -40,6 +37,61 @@ public class Nivel2_Mejorado_App {
 			
 		}
 
+	}
+	//para registrar titular del vehículo
+	public static Owner createOwner() {
+		ArrayList infoOwner = infoPerson();
+		infoOwner.add(infoOwner());
+		Owner owner = new Owner((String) infoOwner.get(0), (String) infoOwner.get(1), (Date) infoOwner.get(2), (boolean) infoOwner.get(3), (boolean) infoOwner.get(4)));		
+	}
+	//para introducir datos de una persona
+	public static ArrayList infoPerson(){
+		ArrayList infoPerson = new ArrayList();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Nombre?");
+		String name = sc.nextLine();
+		infoPerson.add(name);
+		
+		System.out.println("Apellido?");
+		String surname = sc.nextLine();
+		infoPerson.add(surname);
+		
+		System.out.println("Fecha de Nacimiento?");
+		String birthDateString = sc.nextLine();
+//FALTA FORMATEAR FECHA
+//HAY QUE CAMBIARLO PARA AÑADIR LA FECHA FORMATEADA		
+		infoPerson.add(birthDateString);
+		
+		infoLicense();
+		System.out.println("Nº del carnet de conducir?");
+		String licenseId = sc.nextLine();
+//FALTA PEDIR LICENCIA CONDUCIR (a ver cómo, si pidiendo cualquier dato o qué)		
+		
+		
+
+		
+		return infoPerson;
+	}
+	//para introducir info específica titulares
+	public static ArrayList<Boolean> infoOwner(){
+		ArrayList<Boolean> infoOwner = new ArrayList<Boolean>();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("¿Tiene seguro?\n1 - Sí\n2 - No");
+		int insurance = sc.nextInt();
+		sc.nextLine();
+		if(insurance == 1) {
+			infoOwner.add(true);
+		}else {
+			infoOwner.add(false);
+		}
+		System.out.println("¿Tiene garaje propio?\n1 - Sí\n2 - No");
+		int garage = sc.nextInt();
+		sc.nextLine();
+		if(garage == 1) {
+			infoOwner.add(true);
+		}else {
+			infoOwner.add(false);
+		}
 	}
 	//para elegir tipo vehículo
 	public static int chooseType() {

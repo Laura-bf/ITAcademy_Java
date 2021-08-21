@@ -9,6 +9,11 @@ public class Bike extends Vehicle {
 	private final static char LICENSE = 'A';
 	
 	/**
+	 * Constructor por defecto
+	 */
+	public Bike() {
+	}
+	/**
 	 * Constructor con 3 parámetros
 	 * @param plate
 	 * @param brand

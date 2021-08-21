@@ -23,6 +23,11 @@ public abstract class Vehicle {
 	protected List<Wheel> wheels = new ArrayList<Wheel>();
 	
 	/**
+	 * Constructor por defecto
+	 */
+	public Vehicle() {
+	}
+	/**
 	 * Constructor con 3 parámetros
 	 * @param plate
 	 * @param brand
@@ -40,7 +45,13 @@ public abstract class Vehicle {
 	public String getBrand() {
 		return brand;
 	}
-	
+	/**
+	 * Modifica la marca de un vehículo
+	 * @param brand
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
 	/**
 	 * Devuelve el color de un vehículo
 	 * @return color
@@ -48,15 +59,13 @@ public abstract class Vehicle {
 	public String getColor() {
 		return color;
 	}
-	
 	/**
-	 * Devuelve la lista con las ruedas que tiene un vehículo
-	 * @return List<Wheel>
+	 * Modifica el color de un vehículo
+	 * @param color
 	 */
-	public List<Wheel> getWheels() {
-		return wheels;
+	public void setColor(String color) {
+		this.color = color;
 	}
-
 	/**
 	 * Devuelve la matrícula de un vehículo
 	 * @return plate
@@ -64,7 +73,53 @@ public abstract class Vehicle {
 	public String getPlate() {
 		return plate;
 	}
+	/**
+	 * Modifica la matrícula de un vehículo
+	 * @param plate
+	 */
+	public void setPlate(String plate) {
+		if(checkPlate(plate)) {
+			this.plate = plate;
+		}
+	}
+	/**
+	 * Devuelve la lista con las ruedas que tiene un vehículo
+	 * @return List<Wheel>
+	 */
+	public List<Wheel> getWheels() {
+		return wheels;
+	}
 	
+	/**
+	 * Método para comprobar que la matrícula es válida
+	 * @param plate
+	 */
+	public boolean checkPlate(String plate) {
+		boolean validPlate = true;
+		if(plate.length()>7) {
+			System.err.println("Mátricula no válida. Supera el máximo de 7 carateres");
+			validPlate = false;
+		} else {
+			for(int i=0; i<4; i++) {
+				if(!Character.isDigit(plate.charAt(i))) {
+					System.err.println("Mátricula no válida. Obligatorio: 4 números + 2 ó 3 letras");
+					i=4;
+					validPlate = false;
+				} 
+			}
+			if(validPlate) {
+				String plateLetters = plate.substring(4);
+				for(int i=plateLetters.length()-1; i>=0; i--) {
+					if(Character.isDigit(plateLetters.charAt(i))){
+						System.err.println("Mátricula no válida. Obligatorio: 4 números + 2 ó 3 letras");
+						i=0;
+						validPlate = false;
+					}		
+				}
+			}
+		}
+		return validPlate;
+	}
 	/**
 	 * Método abstracto para añadir un par de ruedas según tipo vehículo
 	 * @param wheels (par de ruedas según tipo vehículo)

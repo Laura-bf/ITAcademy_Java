@@ -9,6 +9,11 @@ public class Truck extends Vehicle {
 	private final static char LICENSE = 'C';
 	
 	/**
+	 * Constructor por defecto
+	 */
+	public Truck() {
+	}
+	/**
 	 * Constructor con 3 parámetros
 	 * @param plate
 	 * @param brand

@@ -108,10 +108,10 @@ public class WorkshopApp {
 	//para comprobar que la matrícula es correcta
 	public static boolean checkPlate(String plate)  {
 		boolean validPlate = true;
-		if (plate.length()>7) {
+		if (plate.length()>7 || plate.length()<6) {
 			validPlate = false;
 			JOptionPane.showMessageDialog(null, "MÁTRICULA NO VÁLIDA", "ERROR", 0);
-			JOptionPane.showMessageDialog(null, "Máxima longitud matrícula = 7 caracteres", "ERROR", 0);
+			JOptionPane.showMessageDialog(null, "Máxima longitud matrícula = 7 ó 6 caracteres", "ERROR", 0);
 		}
 		if (validPlate) {
 			for(int i = 0; i < 4; i++) {
@@ -186,8 +186,8 @@ public class WorkshopApp {
 		}
 
 	//para pedir info rueda coche
-	public static ArrayList infoWheel(String axle, String side){
-		ArrayList infoWheel = new ArrayList<>();
+	public static ArrayList<Object> infoWheel(String axle, String side){
+		ArrayList<Object> infoWheel = new ArrayList<Object>();
 		String diameterString = "";
 		double diameter = 0d;
 		boolean fin = false;
@@ -220,7 +220,7 @@ public class WorkshopApp {
 	
 	//para pedir crear una rueda coche
 	public static Wheel createWheel(String axle, String side){
-		List infoWheel = infoWheel(axle, side);
+		List<Object> infoWheel = infoWheel(axle, side);
 		Wheel wheel;
 		if(!infoWheel.isEmpty()) {
 			wheel = new Wheel((String) infoWheel.get(0), (double) infoWheel.get(1));

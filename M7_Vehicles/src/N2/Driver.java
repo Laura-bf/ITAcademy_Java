@@ -13,6 +13,17 @@ public class Driver extends Person {
 	 */
 	public Driver() {
 	}
+	/**
+	 * Constructor con 3 parámetros
+	 * @param name
+	 * @param surname
+	 * @param birthDate
+	 */
+	public Driver(String name, String surname, Date birthDate) {
+		this.name = name;
+		this.surname = surname;
+		this.birthDate = birthDate;
+	}
 	
 	/**
 	 * Constructor con todos los parámetros (4)
@@ -31,6 +42,18 @@ public class Driver extends Person {
 	
 	
 	/**
+	 * @return the license
+	 */
+	public License getLicense() {
+		return license;
+	}
+	/**
+	 * @param license the license to set
+	 */
+	public void setLicense(License license) {
+		this.license = license;
+	}
+	/**
 	 * @return
 	 * @see N2.License#getLicenseId()
 	 */
@@ -48,14 +71,14 @@ public class Driver extends Person {
 	 * @return
 	 * @see N2.License#getLicenseType()
 	 */
-	public char getLicenseType() {
+	public int getLicenseType() {
 		return license.getLicenseType();
 	}
 	/**
 	 * @param licenseType
-	 * @see N2.License#setLicenseType(char)
+	 * @see N2.License#setLicenseType(int)
 	 */
-	public void setLicenseType(char licenseType) {
+	public void setLicenseType(int licenseType) {
 		license.setLicenseType(licenseType);
 	}
 	/**
@@ -98,8 +121,8 @@ public class Driver extends Person {
 	
 	@Override
 	public String toString() {
-		return "Driver\nLicense: " + license + ", Name:" + name + ", Surname: " 
-				+ surname + ", BirthDate: " + birthDate;
+		return "Name:" + name + ", Surname: " 
+				+ surname + ", BirthDate: " + birthDate +"\n"+ license.toString();
 	}
 	
 	

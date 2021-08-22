@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Bike extends Vehicle {
 	/**
-	 * Constante tipo de carnet de conducir que requiere
+	 * Constante tipo de carnet de conducir que requiere 1=A
 	 */
-	private final static char LICENSE = 'A';
+	private final static int LICENSE = 1;
 	
 	/**
 	 * Constructor por defecto
@@ -27,7 +27,7 @@ public class Bike extends Vehicle {
 	 * Devuelve el tipo de licencia para moto
 	 * @return carnet de conducir A
 	 */
-	public static char getLicense() {
+	public static int getLicense() {
 		return LICENSE;
 	}
 	
@@ -51,6 +51,6 @@ public class Bike extends Vehicle {
 	
 	@Override
 	public String toString() {
-		return "Bike:\nplate=" + plate + ", brand=" + brand + ", color=" + color + "\nWheels= " + wheels;
+		return "Bike:\nplate=" + plate + ", brand=" + brand + ", color=" + color + "\nWheels= " + wheels + "\nOwner:\n"+ owner + "\nDriver:\n" + driver;
 	}
 }

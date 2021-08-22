@@ -21,6 +21,14 @@ public abstract class Vehicle {
 	 * Ruedas del vehículo
 	 */
 	protected List<Wheel> wheels = new ArrayList<Wheel>();
+	/**
+	 * Titular del vehículo
+	 */
+	protected Owner owner;
+	/**
+	 * Conductor del vehículo
+	 */
+	protected Driver driver;
 	
 	/**
 	 * Constructor por defecto
@@ -91,13 +99,37 @@ public abstract class Vehicle {
 	}
 	
 	/**
+	 * @return the owner
+	 */
+	public Owner getOwner() {
+		return owner;
+	}
+	/**
+	 * @param owner the owner to set
+	 */
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+	/**
+	 * @return the driver
+	 */
+	public Driver getDriver() {
+		return driver;
+	}
+	/**
+	 * @param driver the driver to set
+	 */
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+	/**
 	 * Método para comprobar que la matrícula es válida
 	 * @param plate
 	 */
 	public boolean checkPlate(String plate) {
 		boolean validPlate = true;
-		if(plate.length()>7) {
-			System.err.println("Mátricula no válida. Supera el máximo de 7 carateres");
+		if(plate.length()>7 || plate.length()<6) {
+			System.err.println("Mátricula no válida. Obligatorio: 6 ó 7 caracteres");
 			validPlate = false;
 		} else {
 			for(int i=0; i<4; i++) {

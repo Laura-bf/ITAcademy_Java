@@ -22,6 +22,17 @@ public class Owner extends Person {
 	public Owner() {
 	}
 	/**
+	 * Constructor con 3 parámetros 
+	 * @param name
+	 * @param surname
+	 * @param birthDate
+	 */
+	public Owner(String name, String surname, Date birthDate) {
+		this.name = name;
+		this.surname = surname;
+		this.birthDate = birthDate;
+	}
+	/**
 	 * Constructor con 4 parámetros 
 	 * @param name
 	 * @param surname
@@ -56,6 +67,18 @@ public class Owner extends Person {
 
 	
 	/**
+	 * @return the license
+	 */
+	public License getLicense() {
+		return license;
+	}
+	/**
+	 * @param license the license to set
+	 */
+	public void setLicense(License license) {
+		this.license = license;
+	}
+	/**
 	 * @return
 	 * @see N2.License#getLicenseId()
 	 */
@@ -73,14 +96,14 @@ public class Owner extends Person {
 	 * @return
 	 * @see N2.License#getLicenseType()
 	 */
-	public char getLicenseType() {
+	public int getLicenseType() {
 		return license.getLicenseType();
 	}
 	/**
 	 * @param licenseType
-	 * @see N2.License#setLicenseType(char)
+	 * @see N2.License#setLicenseType(int)
 	 */
-	public void setLicenseType(char licenseType) {
+	public void setLicenseType(int licenseType) {
 		license.setLicenseType(licenseType);
 	}
 	/**
@@ -96,6 +119,9 @@ public class Owner extends Person {
 	 */
 	public void setFullName(String fullName) {
 		license.setFullName(fullName);
+	}
+	public void setFullName(String name, String surname) {
+		license.setFullName(name.concat(surname));
 	}
 	/**
 	 * @return
@@ -144,13 +170,11 @@ public class Owner extends Person {
 	public void setHasGarage(boolean hasGarage) {
 		this.hasGarage = hasGarage;
 	}
+
 	@Override
 	public String toString() {
-		return "Owner\nLicense: " + license + ", Name: " + name + ", Surname: " + surname 
-					+ ", BirthDate: " + birthDate+ ", Insurance?: " + hasInsurance + ", Garage?: " + hasGarage;
+		return "Name: " + name + ", Surname: " + surname 
+					+ ", BirthDate: " + birthDate+ ", Insurance?: " + hasInsurance + ", Garage?: " + hasGarage + "\n" + license.toString();
 	}
-	
-	
-	
 
 }

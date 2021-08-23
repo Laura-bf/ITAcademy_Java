@@ -6,7 +6,7 @@ public class Owner extends Person {
 	/**
 	 * licencia de conducir
 	 */
-	protected License license;
+	protected License license = new License();
 	/**
 	 * si tiene o no tiene seguro
 	 */
@@ -39,12 +39,26 @@ public class Owner extends Person {
 	 * @param birthDate
 	 * @param license
 	 */
+	
+	
 	public Owner(String name, String surname, Date birthDate, String licenseId) {
 		this.name = name;
 		this.surname = surname;
 		this.birthDate = birthDate;
 		this.license.setLicenseId(licenseId);
 		this.license.setFullName(name.concat(surname));
+	}
+	/**
+	 * @param name
+	 * @param surname
+	 * @param birthDate
+	 * @param license
+	 */
+	public Owner(String name, String surname, Date birthDate, License license) {
+		this.name = name;
+		this.surname = surname;
+		this.birthDate = birthDate;
+		this.license = license;
 	}
 	/**
 	 * Constructor con todos los parámetros (6)

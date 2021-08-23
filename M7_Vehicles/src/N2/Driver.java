@@ -6,7 +6,7 @@ public class Driver extends Person {
 	/**
 	 * licencia de conducir
 	 */
-	protected License license;
+	protected License license = new License();
 	
 	/**
 	 * Constructor por defecto
@@ -23,6 +23,19 @@ public class Driver extends Person {
 		this.name = name;
 		this.surname = surname;
 		this.birthDate = birthDate;
+	}
+	
+	/**
+	 * @param name
+	 * @param surname
+	 * @param birthDate
+	 * @param license
+	 */
+	public Driver(String name, String surname, Date birthDate, License license) {
+		this.name = name;
+		this.surname = surname;
+		this.birthDate = birthDate;
+		this.license = license;
 	}
 	
 	/**

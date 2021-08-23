@@ -9,6 +9,7 @@ public class License {
 	protected String fullName;
 	protected Date expiryDate;
 	
+	public License() {};
 	public License(String licenseId, int licenseType, Date expiryDate) {
 		if(checkLicenseId(licenseId)) {
 			this.licenseId = licenseId;

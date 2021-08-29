@@ -84,6 +84,7 @@ public class Nivel2_WhorkshopApp {
 
 	//para crear titular del vehículo
 	public static Owner createOwner() {
+		System.out.println("Introduce los datos del titular del vehículo");
 		ArrayList<Object> infoOwner = infoPerson();
 		Owner owner = new Owner((String) infoOwner.get(0), (String) infoOwner.get(1), (Date) infoOwner.get(2));
 		askOwner(owner);
@@ -111,6 +112,7 @@ public class Nivel2_WhorkshopApp {
 				throw new Exception("Carnet no válido para este tipo de vehículo");
 			}	
 		}
+		
 		return driver;
 	}
 	
@@ -129,6 +131,7 @@ public class Nivel2_WhorkshopApp {
 		System.out.println("Fecha de Nacimiento?");
 		Date birthDate = infoDate();
 		infoPerson.add(birthDate);
+		
 	
 		return infoPerson;
 	}

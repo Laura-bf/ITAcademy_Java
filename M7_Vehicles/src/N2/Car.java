@@ -3,50 +3,21 @@ package N2;
 import java.util.List;
 
 public class Car extends Vehicle {
-	/**
-	 * Constante tipo de carnet de conducir que requiere 2=B
-	 */
+	
 	private final static int LICENSE = 2;
 	
-	/**
-	 * Constructor por defecto
-	 */
 	public Car() {
 	}
-	/**
-	 * Constructor con 3 parámetros
-	 * @param plate
-	 * @param brand
-	 * @param color
-	 */
-	public Car(String plate, String brand, String color) {
-		super(plate, brand, color);
-	}
 	
-	/**
-	 * Devuelve el tipo de licencia para coche
-	 * @return carnet de conducir B
-	 */
 	public static int getLicense() {
 		return LICENSE;
 	}
 	
-	/**
-	 * Añade al registro coche dos pares de ruedas: delanteras y traseras
-	 * @param frontWheels (ruedas delanteras derecha e izquierda)
-	 * @param backWheels (ruedas traseras derecha e izquierda)
-	 */
 	public void addWheels(List<Wheel> frontWheels, List<Wheel> backWheels){
 		addTwoWheels(frontWheels);
 		addTwoWheels(backWheels);
 	}
 	
-	/**
-	 * Crea un par de ruedas para luego añadirlo al registro del coche
-	 * Comprueba que sean dos ruedas por cada eje
-	 * Comprueba que sean las dos ruedas iguales
-	 * @param wheels
-	 */
 	public void addTwoWheels(List<Wheel> wheels){
 		if (wheels.size() != 2)
 			System.err.println("Máximo: 2 ruedas por eje");

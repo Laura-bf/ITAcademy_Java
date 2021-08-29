@@ -1,7 +1,6 @@
 package N1;
 
 import java.util.List;
-
 import javax.swing.JOptionPane;
 
 public class Car extends Vehicle {
@@ -22,9 +21,11 @@ public class Car extends Vehicle {
 		Wheel rightWheel = wheels.get(0);
 		Wheel leftWheel = wheels.get(1);
 
-		if (!(rightWheel.toString()).equals(leftWheel.toString()))
+		if (!(rightWheel.toString()).equals(leftWheel.toString())) {
 			JOptionPane.showMessageDialog(null, "Las ruedas de un mismo eje, delantero o trasero, deben ser iguales", "ERROR", 0);
-
+			rightWheel = null;
+			leftWheel = null;
+		}
 		this.wheels.add(leftWheel);
 		this.wheels.add(rightWheel);
 	}
@@ -33,8 +34,4 @@ public class Car extends Vehicle {
 	public String toString() {
 		return "Car:\nplate=" + plate + ", brand=" + brand + ", color=" + color + "\nWheels= " + wheels;
 	}
-
-
-		
-
 }

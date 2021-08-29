@@ -1,7 +1,5 @@
 package N1;
 
-
-
 public class Bike extends Vehicle {
 
 	public Bike(String plate, String brand, String color) {
@@ -16,5 +14,4 @@ public class Bike extends Vehicle {
 	public String toString() {
 		return "Bike:\nplate=" + plate + ", brand=" + brand + ", color=" + color + "\nWheels= " + wheels;
 	}
-
 }

@@ -1,7 +1,5 @@
 package N1;
 
-import javax.swing.JOptionPane;
-
 public class Wheel {
 	private String brand;
 	private double diameter;
@@ -13,10 +11,8 @@ public class Wheel {
 		} 
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Wheel: brand=" + brand + ", diameter=" + diameter;
 	}
-	
 }

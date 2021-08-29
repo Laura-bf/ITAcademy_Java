@@ -1,14 +1,13 @@
 package N1;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Vehicle {
 
 	protected String plate;
 	protected String brand;
 	protected String color;
-	protected List<Wheel> wheels = new ArrayList<Wheel>();
+	protected ArrayList<Wheel> wheels = new ArrayList<Wheel>();
 
 	public Vehicle(String plate, String brand, String color) {
 		this.plate = plate;

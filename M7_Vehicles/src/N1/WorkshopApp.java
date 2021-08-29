@@ -8,55 +8,63 @@ public class WorkshopApp {
 
 	public static void main(String[] args) {
 		//Se elige entre coche o moto
-		int type = chooseType();
+		int	type = chooseType();	
+			if(type==2) {
+				JOptionPane.showMessageDialog(null, "REGISTRO CANCELADO", "AVISO", 2);
+			}
 		boolean fin = false;
 		while(!fin) {
+			if(type!=2) {
 			// Se piden datos del vehículo y se crea un registro de vehículo nuevo
-			ArrayList<String> infoVehicle = infoVehicle();
-			if (!infoVehicle.isEmpty()) {
-				switch (type) {
-					case 0:
-						Car car = new Car(infoVehicle.get(0), infoVehicle.get(1), infoVehicle.get(2));
-						List<Wheel> frontWheels = twoWheels("delanteras");
-						List<Wheel> backWheels = new ArrayList<Wheel>();
-						if(!frontWheels.isEmpty()) {
-							backWheels = twoWheels("traseras");
-						} else {
-							fin = true;
-						}
-						if(!backWheels.isEmpty()) {
-							car.addWheels(frontWheels, backWheels);
-						} else {
-							fin = true;
-						}
-						System.out.println(car.toString());
-						break;
-					case 1:
-						Bike bike = new Bike(infoVehicle.get(0), infoVehicle.get(1), infoVehicle.get(2));
-						ArrayList infoWheel = infoWheel("delantera");
-						if(!infoWheel.isEmpty()) {
-							Wheel frontWheel = createWheel(infoWheel);
-							bike.addWheels(frontWheel);
-							infoWheel = infoWheel("trasera");
+				ArrayList<String> infoVehicle = infoVehicle();
+				if (!infoVehicle.isEmpty()) {
+					switch (type) {
+						case 0:
+							Car car = new Car(infoVehicle.get(0), infoVehicle.get(1), infoVehicle.get(2));
+							List<Wheel> frontWheels = twoWheels("delanteras");
+							List<Wheel> backWheels = new ArrayList<Wheel>();
+							if(!frontWheels.isEmpty()) {
+								backWheels = twoWheels("traseras");
+							} else{
+								fin = true;
+							}
+							if(backWheels.get(0)==null) {
+								backWheels.clear();
+								frontWheels.clear();
+							}
+							if(!backWheels.isEmpty()) {
+								car.addWheels(frontWheels, backWheels);
+								if(frontWheels.get(0)==null || backWheels.get(0)==null) {
+									car.wheels.clear();
+								}
+							} else {
+								fin = true;
+							}
+							System.out.println(car.toString());
+							break;
+						case 1:
+							Bike bike = new Bike(infoVehicle.get(0), infoVehicle.get(1), infoVehicle.get(2));
+							ArrayList<Object> infoWheel = infoWheel("delantera");
 							if(!infoWheel.isEmpty()) {
-								Wheel backWheel = createWheel(infoWheel);
-								bike.addWheels(backWheel);
+								Wheel frontWheel = createWheel(infoWheel);
+								bike.addWheels(frontWheel);
+								infoWheel = infoWheel("trasera");
+								if(!infoWheel.isEmpty()) {
+									Wheel backWheel = createWheel(infoWheel);
+									bike.addWheels(backWheel);
+								}else {
+									fin = true;
+									bike.wheels.clear();
+								}
 							}else {
 								fin = true;
-								bike.wheels.clear();
 							}
-						}else {
-							fin = true;
-						}
-						System.out.println(bike.toString());
-						break;
-					case 2:
-						JOptionPane.showMessageDialog(null, "REGISTRO CANCELADO", "AVISO", 2);
-						fin = true;
-						break;
+							System.out.println(bike.toString());
+							break;
+					}
+				}else {
+					fin = true;
 				}
-			}else {
-				fin = true;
 			}
 		}
 	}
@@ -135,7 +143,6 @@ public class WorkshopApp {
 						JOptionPane.showMessageDialog(null, "Una matrícula tiene 4 números y 2 ó 3 letras", "ERROR", 0);
 						i = 0;
 					}
-					
 				}
 			}
 		}
@@ -143,8 +150,8 @@ public class WorkshopApp {
 	}
 	
 	//para pedir info rueda moto
-	public static ArrayList infoWheel(String axle){
-		ArrayList infoWheel = new ArrayList<>();
+	public static ArrayList<Object> infoWheel(String axle){
+		ArrayList<Object> infoWheel = new ArrayList<Object>();
 		String diameterString = null;
 		double diameter = 0d;
 		boolean fin = false;
@@ -173,11 +180,10 @@ public class WorkshopApp {
 				infoWheel.clear();
 			}
 		}
-
 		return infoWheel;
 	}
 	//para crear rueda moto
-		public static Wheel createWheel(ArrayList infoWheel){
+		public static Wheel createWheel(ArrayList<Object> infoWheel){
 			String brand = (String) infoWheel.get(0);
 			double diameter = (double) infoWheel.get(1);
 			Wheel wheel = new Wheel(brand, diameter);
@@ -218,7 +224,7 @@ public class WorkshopApp {
 		return infoWheel;
 	}
 	
-	//para pedir crear una rueda coche
+	//para crear una rueda coche
 	public static Wheel createWheel(String axle, String side){
 		List<Object> infoWheel = infoWheel(axle, side);
 		Wheel wheel;
@@ -229,17 +235,7 @@ public class WorkshopApp {
 		}
 		return wheel;
 	}	
-//		JOptionPane.showMessageDialog(null, "Ruedas "+axle+" - "+side);
-//		String brand = JOptionPane.showInputDialog("Ruedas "+axle+" - "+side, "MARCA");
-//		double diameter = Double.parseDouble(JOptionPane.showInputDialog("Ruedas "+axle+" - "+side, "DIÁMETRO"));
-//		if(diameter<0.4 || diameter>4){
-//			JOptionPane.showMessageDialog(null, "Diámetro rueda debe estar entre 0.4 y 4", "ERROR", 0);
-//			createWheel(axle, side);
-//		}	
-//		Wheel wheel = new Wheel(brand, diameter);
-//	
-//		return wheel;
-//	}
+
 	// para crear par de ruedas
 	public static List<Wheel> twoWheels(String axle) {
 		JOptionPane.showMessageDialog(null, "Ruedas "+axle);
@@ -253,7 +249,7 @@ public class WorkshopApp {
 			if(wheel == null) {
 				twoWheels.clear();	
 			}else {
-				twoWheels.add(createWheel(axle, "IZQUIERDA"));
+				twoWheels.add(wheel);
 			}
 		}
 		return twoWheels;

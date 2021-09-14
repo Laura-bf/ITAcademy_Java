@@ -1,4 +1,4 @@
-package com.video.model.persistance;
+package com.video.model.DTO;
 
 import com.video.model.domain.User;
 

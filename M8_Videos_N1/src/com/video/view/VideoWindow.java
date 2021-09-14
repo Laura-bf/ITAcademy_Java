@@ -25,7 +25,7 @@ public class VideoWindow {
 	// Menu inicio sesión - opciones video
 	public int startSesion(String name) {
 		int sesionOption = JOptionPane.showOptionDialog(null, "¿Qué hacemos " + name.toUpperCase() + "?", "¡¡HOLA!!",
-				JOptionPane.YES_NO_CANCEL_OPTION, 0, null, new Object[] { "Ver Vídeos", "Crear Nuevo Vídeo", "Salir" },
+				JOptionPane.YES_NO_CANCEL_OPTION, 3, null, new Object[] { "Ver Vídeos", "Crear Nuevo Vídeo", "Salir" },
 				null);
 		return sesionOption;
 	}
@@ -45,7 +45,7 @@ public class VideoWindow {
 
 	// Videos: volver atrás o salir de aplicacion
 	public int optMenuVideo() {
-		int option = JOptionPane.showOptionDialog(null, "¿Y ahora qué?", null, JOptionPane.YES_NO_OPTION, 0, null,
+		int option = JOptionPane.showOptionDialog(null, "¿Y ahora qué?", null, JOptionPane.YES_NO_OPTION, 3, null,
 				new Object[] { "Opciones de Video", "Salir" }, null);
 		return option;
 	}
@@ -100,7 +100,7 @@ public class VideoWindow {
 	}
 
 	public boolean askForTags() {
-		if (JOptionPane.showOptionDialog(null, "¿Añadimos etiquetas al vídeo?", null, JOptionPane.YES_NO_OPTION, 0,
+		if (JOptionPane.showOptionDialog(null, "¿Añadimos etiquetas al vídeo?", null, JOptionPane.YES_NO_OPTION, 3,
 				null, null, null) == 0) {
 			return true;
 		} else {
@@ -110,7 +110,7 @@ public class VideoWindow {
 
 	public boolean askMoreTags() {
 		if (JOptionPane.showOptionDialog(null, "¿Quieres añadir más etiquetas al vídeo?", null,
-				JOptionPane.YES_NO_OPTION, 0, null, null, null) == 0) {
+				JOptionPane.YES_NO_OPTION, 3, null, null, null) == 0) {
 			return true;
 		} else {
 			return false;
@@ -122,7 +122,7 @@ public class VideoWindow {
 		boolean infoTag = false;
 		String videoTag = null;
 		while(error) {
-			videoTag = JOptionPane.showInputDialog(null, "Nueva Etiqueta", "ETIQUETAS VÍDEO", 0);
+			videoTag = JOptionPane.showInputDialog(null, "Nueva Etiqueta", "ETIQUETAS VÍDEO", 3);
 			if (videoTag != null) {
 				try {
 					DataValidation.checkData(videoTag);

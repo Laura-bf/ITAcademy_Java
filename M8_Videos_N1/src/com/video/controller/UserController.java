@@ -1,7 +1,7 @@
 package com.video.controller;
 
+import com.video.model.DTO.UserDTO;
 import com.video.model.domain.User;
-import com.video.model.persistance.UserDTO;
 import com.video.model.persistance.UserRepository;
 
 public class UserController {

@@ -23,7 +23,7 @@ public class UserWindow {
 	// Menú inicio
 	public int startMenu() {
 		int startOption = JOptionPane.showOptionDialog(null, "Bienvenid@! ¿Qué quieres hacer?", "INICIO",
-				JOptionPane.YES_NO_OPTION, 0, null,
+				JOptionPane.YES_NO_OPTION, -1, null,
 				new Object[] { "Soy nuev@ - REGISTRARME", "Ya nos conocemos! - INICIAR SESIÓN" }, null);
 		return startOption;
 	}
@@ -82,14 +82,14 @@ public class UserWindow {
 	// Informa de usuario NO registrado
 	public int noRegUser() {
 		int noReg = JOptionPane.showOptionDialog(null, "No te encontramos por aquí", "UPSS!!",
-				JOptionPane.YES_NO_CANCEL_OPTION, 0, null, new Object[] { "Intentarlo de nuevo", "Registrarme" }, null);
+				JOptionPane.YES_NO_CANCEL_OPTION, 2, null, new Object[] { "Intentarlo de nuevo", "Registrarme" }, null);
 		return noReg;
 	}
 
 	// Confirma datos nuevo registro
 	public boolean checkInfoUser(String infoUser) {
 		int checkInfo = JOptionPane.showOptionDialog(null, infoUser, "Confirma tus datos de registro",
-				JOptionPane.YES_NO_OPTION, 0, null, new Object[] { "OK!", "Volver al Inicio" }, null);
+				JOptionPane.YES_NO_OPTION, 3, null, new Object[] { "OK!", "Volver al Inicio" }, null);
 		if (checkInfo == 0)
 			return true;
 		else
@@ -105,7 +105,7 @@ public class UserWindow {
 	// Pregunta si quiere iniciar sesion
 	public int askStartSesion(String name) {
 		return JOptionPane.showOptionDialog(null, "¿Iniciamos sesión con tus datos?", null, JOptionPane.YES_NO_OPTION,
-				0, null, new Object[] { "OK!", "Salir" }, null);
+				3, null, new Object[] { "OK!", "Salir" }, null);
 	}
 
 	// Informa de que se cierra la aplicación

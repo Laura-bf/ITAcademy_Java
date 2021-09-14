@@ -31,6 +31,7 @@ public class Video {
 		return videoId;
 	}
 
+	//para que no cuente nuevo videoId si al final no se confirma la creación del vídeo
 	public void updateCounterId() {
 		counterId--;
 	}

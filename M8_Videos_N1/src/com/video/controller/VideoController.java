@@ -9,7 +9,7 @@ public class VideoController {
 
 	public static String showPostedVideos(int userId) {
 		List<Video> postedVideos = UserController.searchUserById(userId).getPostedVideos();
-		String allVideos = "Tus vídeos publicados:";
+		String allVideos = "Tus vídeos publicados:\n\n";
 		for (Video v : postedVideos) {
 			allVideos += v.toString() + "\n";
 		}

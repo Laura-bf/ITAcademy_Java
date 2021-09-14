@@ -29,7 +29,7 @@ public class VideosApp {
 
 			// busca en repositorio usuarios para comprobar si ya existe este registro
 			int idExists = UserController.searchUser();
-			/* TEST */ System.out.println(idExists != 0);
+/* TEST */ 	System.out.println(idExists != 0);
 
 			// registra o inicia sesión según corresponda
 			switch (startOpt) {
@@ -42,7 +42,7 @@ public class VideosApp {
 					window.regUserExist(UserController.getActiveUSer().getName());
 					userId = idExists;
 				}
-				/* TEST */ System.out.println(UserController.getUserRep().getAllUsers().toString());
+/* TEST */ 		System.out.println(UserController.getUserRep().getAllUsers().toString());
 				sesionOpt = window.askStartSesion(UserController.getActiveUSer().getName());
 				if (sesionOpt == 0) {
 					sesionOpt = videoWindow.startSesion(UserController.getActiveUSer().getName());
@@ -55,6 +55,7 @@ public class VideosApp {
 					int noReg = window.noRegUser();
 					if (noReg == 0) {
 						end = false;
+						end2 = true;
 					} else if (noReg == 1) {
 						if (window.checkInfoUser(UserController.infoActiveUser())) {
 							window.setPassword();
@@ -63,7 +64,7 @@ public class VideosApp {
 							sesionOpt = videoWindow.startSesion(UserController.getActiveUSer().getName());
 							userId = UserController.getUserId();
 							end = true;
-							/* TEST */ System.out.println(UserController.getUserRep().getAllUsers().toString());
+/* TEST */ 				System.out.println(UserController.getUserRep().getAllUsers().toString());
 						} else {
 							end = false;
 						}
@@ -75,7 +76,7 @@ public class VideosApp {
 				break;
 			}
 
-			do {
+			while(!end2) {
 				switch (sesionOpt) {
 				case 0:
 					videoWindow.showVideos(userId);
@@ -102,7 +103,7 @@ public class VideosApp {
 						}
 					}
 					sesionOpt = videoWindow.startSesion(UserController.getActiveUSer().getName());
-					/* TEST */ System.out.println(VideoController.showPostedVideos(userId));
+/* TEST */ 			System.out.println(VideoController.showPostedVideos(userId));
 					break;
 				case 2:
 					window.closeApp();
@@ -110,7 +111,7 @@ public class VideosApp {
 					end = true;
 					break;
 				}
-			} while (!end2);
+			}
 		} while (!end);
 	}
 

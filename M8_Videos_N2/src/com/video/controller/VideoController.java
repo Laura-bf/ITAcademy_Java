@@ -9,12 +9,12 @@ public class VideoController {
 
 	public static String showPostedVideos(int userId) {
 		List<Video> postedVideos = UserController.searchUserById(userId).getPostedVideos();
-		String allVideos = "Tus vídeos publicados:\n\n";
+		StringBuilder allVideos = new StringBuilder("Tus vídeos publicados:\n\n"); 
 		for (Video v : postedVideos) {
-			allVideos += v.toString() + "\n" ;
+			allVideos.append(v.toString() + "\n");
 		}
-		allVideos += "TOTAL VIDEOS = " + postedVideos.size();
-		return allVideos;
+		allVideos.append("TOTAL VIDEOS = " + postedVideos.size());
+		return allVideos.toString();
 	}
 
 	public static int createNewVideo(String url, String title, int userId) {

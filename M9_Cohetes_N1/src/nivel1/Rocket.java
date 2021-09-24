@@ -8,9 +8,8 @@ public class Rocket {
 		this.code = code;
 		this.propellers = new Propeller[maxPowers.length];
 		for(int i=0; i<maxPowers.length; i++) {
-			Propeller prop = new Propeller();
+			Propeller prop = new Propeller(maxPowers[i]);
 			propellers[i] = prop;
-			prop.setMaxPower(maxPowers[i]);
 		}
 	}
 	
@@ -24,8 +23,8 @@ public class Rocket {
 	
 	public String getMaxPowers() {
 		String maxPowers = "";
-		for(int i=0; i<propellers.length; i++) {
-			maxPowers += propellers[i].getMaxPower() + " ";
+		for(Propeller p : propellers) {
+			maxPowers += p.getMaxPower() + " ";
 		}
 		return maxPowers;
 	}

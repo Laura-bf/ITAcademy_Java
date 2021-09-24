@@ -4,8 +4,8 @@ public class Propeller {
 	
 	private int maxPower;
 	
-	public Propeller() {
-		
+	public Propeller(int maxPower) {
+		this.maxPower = maxPower;
 	}
 	
 	public int getMaxPower() {

@@ -16,12 +16,22 @@ public class VideoPlayerWindow extends JFrame{
 	  
 	private PlayVideoTimer videoTimer;
     private Object source;
+    
+    private boolean windowActive;
 
     public VideoPlayerWindow(int videoId, int userId) {
         initComponents();
         videoTimer = new PlayVideoTimer(this, videoId, userId);
+        windowActive = true;
     }
-
+    
+    public void setWindowActive(boolean windowActive) {
+    	this.windowActive = windowActive;
+    }
+    
+    public boolean isWindowActive() {
+    	return windowActive;
+    }
  
     private void initComponents() {
 
@@ -34,7 +44,15 @@ public class VideoPlayerWindow extends JFrame{
         jPanel2 = new JPanel();
         display = new JLabel();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //para configurar qué ocurre al cerrar la ventana
+        addWindowListener(new WindowAdapter() {
+        	@Override
+        	public void windowClosing(WindowEvent e) {
+        		JOptionPane.showMessageDialog(null, "Saliendo del reproductor de vídeo...");
+        		setWindowActive(false);
+        	}
+        });
+        
         setTitle("Video Player");
         setBackground(new Color(255, 255, 255));
 

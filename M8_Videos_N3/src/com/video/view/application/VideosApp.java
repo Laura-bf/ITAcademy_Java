@@ -97,16 +97,13 @@ public class VideosApp {
 							videoPlayer = new VideoPlayerWindow(videoId, userId);
 							videoPlayer.setVisible(true);
 							videoPlayer.setLocationRelativeTo(null);
-						
-//							try {
-//								Thread.currentThread().join();
-//							} catch (InterruptedException e) {
-//								// TODO Auto-generated catch block
-//								e.printStackTrace();
-//							}
+							
+							while(videoPlayer.isWindowActive()) {
+							}
+							
 //							sesionOpt = videoWindow.startSesion(UserController.getActiveUSer().getName());	
 					}
-					if(videoPlayer == null)
+//					if(videoPlayer == null)
 						sesionOpt = videoWindow.startSesion(UserController.getActiveUSer().getName());	
 					break;
 				case 2:// Crear nuevo video

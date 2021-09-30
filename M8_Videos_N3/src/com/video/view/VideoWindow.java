@@ -59,11 +59,18 @@ public class VideoWindow {
 			if(idOption!=null) {
 				try {
 					DataValidation.checkData(idOption);
-					error = false;
+					int videoId = Integer.parseInt(idOption);
+					if(VideoController.searchVideoById(videoId, userId)!=null)
+						error = false;
+					else {
+						videoNoExists();
+						error = true;
+					}
 				}catch (NullPointerException wrongId) {
 					wrongId();
 					error = true;
 				}
+				
 			}else {
 				error = false;
 				JOptionPane.showMessageDialog(null, "Saliendo del reproductor de vídeo...");
@@ -76,9 +83,6 @@ public class VideoWindow {
 		return JOptionPane.showOptionDialog(null, null, null, JOptionPane.DEFAULT_OPTION,
 				3, null, new Object[] { "PLAY", "PAUSE", "STOP"  }, null);
 	}
-//	public void openVideoPlayer(int videoId, int userId) {
-//		String runningVideo = "Reproduciendo "+ VideoController.searchVideoById(videoId, userId).getTitle() + "\nTiempo transcurrido: "
-//	}
 
 	// Videos: volver atrás o salir de aplicacion
 	public int optMenuVideo() {
@@ -185,5 +189,9 @@ public class VideoWindow {
 	
 	public void wrongId() {
 		JOptionPane.showInternalMessageDialog(null, "No indicaste ningún ID");
+	}
+	
+	public void videoNoExists() {
+		JOptionPane.showInternalMessageDialog(null, "No tienes ningún video con ese ID");
 	}
 }

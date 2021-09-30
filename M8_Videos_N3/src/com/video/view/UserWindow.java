@@ -111,6 +111,7 @@ public class UserWindow {
 	// Informa de que se cierra la aplicación
 	public void closeApp() {
 		JOptionPane.showMessageDialog(null, "Saliendo de la aplicación...");
+		System.exit(0);
 
 	}
 }

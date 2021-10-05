@@ -30,6 +30,10 @@ public class Rocket {
 	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
+
+	public double calculateCurrentSpeed() {
+		return speed + (100*Math.sqrt(this.getTotalCurrentPower()));
+	}
 	
 	public double getTargetSpeed() {
 		return targetSpeed;

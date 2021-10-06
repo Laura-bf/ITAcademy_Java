@@ -74,6 +74,7 @@ public class Propeller implements Runnable {
 	public int powerUp() {
 		if(currentPower < targetPower)
 			currentPower++;
+			currentLabel.setText(currentPower+"");
 		return currentPower;
 	}
 	
@@ -81,6 +82,7 @@ public class Propeller implements Runnable {
 	public int powerDown() {
 		if(currentPower > 0)
 			currentPower--;
+			currentLabel.setText(currentPower+"");
 		return currentPower;
 	}
 	

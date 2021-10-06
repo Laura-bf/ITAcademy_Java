@@ -87,6 +87,7 @@ public class Rocket {
 	public void rocketOFF() {
 		if (this.propellers != null) {
 			for (Propeller p : this.propellers) {
+				p.getCurrentLabel().setText("OFF");
 				p.setStoppedProp(true);
 			}
 		}

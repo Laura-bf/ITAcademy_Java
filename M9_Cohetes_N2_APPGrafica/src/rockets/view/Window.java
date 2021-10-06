@@ -16,7 +16,7 @@ public class Window extends JFrame{
 		setBounds(100,100,1100,750);
 		setTitle("ROCKETS SPEED CONTROLLER");
 		setLayout(null);
-		setResizable(false);
+//		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		

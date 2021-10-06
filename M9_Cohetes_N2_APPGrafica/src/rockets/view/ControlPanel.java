@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import rockets.domain.Rocket;
+import rockets.domain.*;
 
 public class ControlPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -69,7 +69,7 @@ public class ControlPanel extends JPanel{
 				rocket.rocketON();
 				isON = true;
 				startButton.setText("STOP");
-				JOptionPane.showMessageDialog(startButton,"Cohete "+rocket.getCode()+ " ACTIVADO!!",null,2,null);
+//				JOptionPane.showMessageDialog(startButton,"Cohete "+rocket.getCode()+ " ACTIVADO!!",null,2,null);
 				speedUp.setEnabled(true);
 			} else {
 				rocket.rocketOFF();

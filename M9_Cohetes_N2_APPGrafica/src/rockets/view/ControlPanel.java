@@ -22,7 +22,7 @@ public class ControlPanel extends JPanel{
 		setLayout(null);
 		setVisible(true);
 		setSize(550,150);
-		setBackground(Color.RED);
+		setBackground(Color.LIGHT_GRAY);
 		
 		startButton.setBounds(30,50,80,50);
 		startButton.setBackground(Color.ORANGE);
@@ -68,7 +68,7 @@ public class ControlPanel extends JPanel{
 			if(!isON) {
 				rocket.rocketON();
 				isON = true;
-				startButton.setText("STOP");
+				startButton.setText("PAUSE");
 //				JOptionPane.showMessageDialog(startButton,"Cohete "+rocket.getCode()+ " ACTIVADO!!",null,2,null);
 				speedUp.setEnabled(true);
 			} else {
@@ -79,9 +79,7 @@ public class ControlPanel extends JPanel{
 				speedUp.setEnabled(false);
 				speedDown.setEnabled(false);
 			}
-		}
-		
-		if(e.getSource().equals(speedUp)) {
+		} else if(e.getSource().equals(speedUp)) {
 			rocket.powerUp();
 		} else {
 			rocket.powerDown();

@@ -5,9 +5,7 @@ import java.util.Map;
 
 import com.nivel2.controller.Controller;
 import com.nivel2.controller.ExitToFloristMenuController;
-import com.nivel2.controller.addProdMenu.*;
 import com.nivel2.view.Menu;
-import com.nivel2.view.addProdMenu.*;
 import com.nivel2.view.removeProdMenu.*;
 import com.nivel2.view.utils.Command;
 import com.nivel2.view.utils.ExitToFloristMenuCommand;

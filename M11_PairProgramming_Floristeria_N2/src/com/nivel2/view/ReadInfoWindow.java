@@ -1,6 +1,8 @@
 package com.nivel2.view;
 
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class ReadInfoWindow {
@@ -46,6 +48,31 @@ public class ReadInfoWindow {
 			}
 		} while (!end);
 
+		return input;
+	}
+	
+	public static int readIdProduct(MessageView messageView, List<Integer> list) {
+		int input = 0;
+		boolean end = false;
+		String inputString = "";
+		do {
+			inputString = readString(messageView);
+			if(inputString == null) {
+				end = true;
+			}else {
+				try {
+				input = Integer.parseInt(inputString);
+				if(!list.contains(input)) {
+					ShowInfoWindow.showInfo("ERROR. ID INEXISTENTE.");
+					input = 0;
+					} else {
+						end = true;
+					}
+				}catch (Exception e) {
+					ShowInfoWindow.showInfo("ERROR. INTRODUCE UN VALOR NUMERICO.");
+				}
+			}
+		}while(!end);
 		return input;
 	}
 

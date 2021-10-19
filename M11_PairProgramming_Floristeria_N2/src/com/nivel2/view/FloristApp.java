@@ -1,8 +1,11 @@
 package com.nivel2.view;
 
 import com.nivel2.controller.*;
+import com.nivel2.controller.addProdMenu.AddMenuController;
 import com.nivel2.controller.floristMenu.FloristMenuController;
 import com.nivel2.controller.mainMenu.MainMenuController;
+import com.nivel2.controller.removeProdMenu.RemoveMenuController;
+import com.nivel2.controller.stockMenu.StockMenuController;
 import com.nivel2.view.utils.Session;
 import com.nivel2.view.utils.StateValue;
 
@@ -19,7 +22,10 @@ public class FloristApp {
 		this.controllers = new HashMap<StateValue, Controller>();
 		this.controllers.put(StateValue.MAIN_MENU, new MainMenuController(this.session));
 		this.controllers.put(StateValue.FLORIST_MENU, new FloristMenuController(this.session));
-		this.controllers.put(StateValue.EXIT_MENU, null);
+		this.controllers.put(StateValue.ADD_MENU, new AddMenuController(this.session));
+		this.controllers.put(StateValue.REMOVE_MENU, new RemoveMenuController(this.session));
+		this.controllers.put(StateValue.STOCK_MENU, new StockMenuController(this.session));
+		this.controllers.put(StateValue.EXIT_APP, null);
 	}
 	
 	private void execute() {

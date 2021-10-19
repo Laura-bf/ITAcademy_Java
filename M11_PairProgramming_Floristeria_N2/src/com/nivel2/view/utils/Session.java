@@ -15,19 +15,27 @@ public class Session {
 	public void setStateValue(StateValue stateValue) {
 		this.stateValue = stateValue;
 	}
-	
-	public void nextMenu() {
-		 this.stateValue = StateValue.values()[this.stateValue.ordinal()+1];
-	}
-	
-	public void previousMenu() {
-		 this.stateValue = StateValue.values()[this.stateValue.ordinal()-1];
+
+	public void mainMenu() {
+		this.stateValue = StateValue.MAIN_MENU;
 	}
 	public void floristMenu() {
 		this.stateValue = StateValue.FLORIST_MENU;
 	}
 	
+	public void addMenu() {
+		this.stateValue = StateValue.ADD_MENU;
+	}
+	
+	public void removeMenu() {
+		this.stateValue = StateValue.REMOVE_MENU;
+	}
+	
+	public void stockMenu() {
+		this.stateValue = StateValue.STOCK_MENU;
+	}
+	
 	 public void exit() {
-	        this.stateValue = StateValue.EXIT_MENU;
+	        this.stateValue = StateValue.EXIT_APP;
 	}
 }

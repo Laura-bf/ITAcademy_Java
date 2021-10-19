@@ -1,5 +1,9 @@
 package com.nivel2.view.floristMenu;
 
-public class AddProductCommand {
+import com.nivel2.view.utils.Command;
 
+public class AddProductCommand extends Command{
+	public AddProductCommand() {
+		super("AÑADIR PRODUCTOS");
+	}
 }

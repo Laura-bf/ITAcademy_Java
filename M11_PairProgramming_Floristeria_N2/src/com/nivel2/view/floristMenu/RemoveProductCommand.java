@@ -1,5 +1,9 @@
 package com.nivel2.view.floristMenu;
 
-public class RemoveProductCommand {
+import com.nivel2.view.utils.Command;
 
+public class RemoveProductCommand extends Command{
+	public RemoveProductCommand() {
+		super("ELIMINAR PRODUCTOS");
+	}
 }

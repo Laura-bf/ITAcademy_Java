@@ -8,8 +8,9 @@ public enum MessageView {
     PRICE_PRODUCT("Introduce el precio del producto", "CREAR PRODUCTO"),
     HEIGHT_TREE("Introduce la altura del árbol", "CREAR ARBOL"),
     COLOR_FLOWER("Introduce el color de la flor", "CREAR FLOR"),
-    MATERIAL_DECORATION("Introduce el material de la decoración (MADERA o PLASTICO)", "CREAR DECORACION");
-
+    MATERIAL_DECORATION("Introduce el material de la decoración (MADERA o PLASTICO)", "CREAR DECORACION"),
+	CHOOSE_PRODUCT("Introduce el ID del producto", "SELECCIONAR PRODUCTO");
+	
     private String message;
     private String title;
 

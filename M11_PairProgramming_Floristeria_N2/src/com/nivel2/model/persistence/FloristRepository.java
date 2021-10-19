@@ -30,6 +30,13 @@ public class FloristRepository {
     	this.getFloristById(id).add(product);
     }
     
+    public void remove(Product product, int id) {
+    	this.getFloristById(id).getProducts().remove(product);
+    }
+    
+    public Product getProductById(int activeFloristId, int productId) {
+    	return this.getFloristById(activeFloristId).getProduct(productId);
+    }
     public List<Product> getProducts(int activeId){
     	return this.getFloristById(activeId).getProducts();
     }

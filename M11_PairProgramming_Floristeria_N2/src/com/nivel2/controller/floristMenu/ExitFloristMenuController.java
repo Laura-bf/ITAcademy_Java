@@ -13,7 +13,7 @@ public class ExitFloristMenuController extends Controller {
 	
 	public void control() {
 		ShowInfoWindow.showInfo("VOLVIENDO AL MENU PRINCIPAL...");
-		this.session.previousMenu();
+		this.session.mainMenu();
 	}
 
 }

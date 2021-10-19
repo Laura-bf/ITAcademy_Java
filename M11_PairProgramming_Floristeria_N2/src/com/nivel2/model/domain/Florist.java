@@ -34,9 +34,21 @@ public class Florist {
         return this.products;
     }
 
+    public Product getProduct(int id) {
+    	Product product = null;
+    	for(Product p : products) {
+    		if(p.getId()==id) {
+    			product = p;
+    		}
+    	}
+    	return product;
+    }
+    
     public void add(Product product) {
         this.products.add(product);
     }
+    
+   
 
 	@Override
 	public String toString() {

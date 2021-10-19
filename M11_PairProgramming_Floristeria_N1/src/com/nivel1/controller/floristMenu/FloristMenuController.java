@@ -42,7 +42,7 @@ public class FloristMenuController extends Controller{
 		this.showProductsCommand = new ShowProductsCommand();
 		
 		this.chooseFloristController = new ChooseFloristController(this.session);
-		this.chooseFloristCommand = new ChooseFloristCommand("ELEGIR OTRA FLORISTERIA");
+		this.chooseFloristCommand = new ChooseFloristCommand("SELECCIONAR OTRA FLORISTERIA");
 		this.exitFloristMenuController = new ExitFloristMenuController(this.session);
 		this.exitFloristMenuCommand = new ExitFloristMenuCommand();
 		

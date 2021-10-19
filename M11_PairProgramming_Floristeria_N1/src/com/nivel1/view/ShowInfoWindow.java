@@ -27,6 +27,6 @@ public class ShowInfoWindow {
 		JScrollPane scrollPane = new JScrollPane(msg);
 
 		JOptionPane.showMessageDialog(null, scrollPane);
-
+	
 	}
 }

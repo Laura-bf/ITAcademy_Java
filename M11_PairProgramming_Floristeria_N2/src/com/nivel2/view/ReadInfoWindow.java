@@ -63,7 +63,7 @@ public class ReadInfoWindow {
 				try {
 				input = Integer.parseInt(inputString);
 				if(!list.contains(input)) {
-					ShowInfoWindow.showInfo("ERROR. ID INEXISTENTE.");
+					ShowInfoWindow.showInfo("ERROR. ID INEXISTENTE EN ESTE STOCK.");
 					input = 0;
 					} else {
 						end = true;

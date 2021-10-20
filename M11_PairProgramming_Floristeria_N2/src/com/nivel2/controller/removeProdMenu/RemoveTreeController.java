@@ -1,5 +1,6 @@
 package com.nivel2.controller.removeProdMenu;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.nivel2.controller.Controller;
@@ -29,15 +30,16 @@ public class RemoveTreeController extends Controller{
 		Product product = floristRepository.getProductById(activeFloristId, this.getProdId());
 		if(product instanceof Tree) {
 			this.floristRepository.remove(product, activeFloristId);
-			ShowInfoWindow.showInfo("ARBOL ELIMINADA");
-		}else {
-			ShowInfoWindow.showInfo("ERROR - ESTE ID NO ES DE UN ARBOL");
+			ShowInfoWindow.showInfo("ARBOL ELIMINADO");
 		}
 		
 	}
-	
 	private int getProdId() {
-		return ReadInfoWindow.readId(MessageView.CHOOSE_PRODUCT, ActiveFlorist.instance().getProducts().size());
+		return ReadInfoWindow.readIdProduct(MessageView.CHOOSE_PRODUCT, this.getIdList());
 	}
-
+	
+	private List<Integer> getIdList() {
+		int activeFloristId = ActiveFlorist.instance().getId();
+		return this.floristRepository.getProducts(activeFloristId).stream().filter(s-> s instanceof Tree).map(s -> s.getId()).collect(Collectors.toList());
+	}
 }

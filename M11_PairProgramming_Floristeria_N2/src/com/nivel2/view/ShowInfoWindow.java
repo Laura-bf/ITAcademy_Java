@@ -13,17 +13,13 @@ public class ShowInfoWindow {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
-////*******ESTO LO CAMBIARÍA PARA USAR STRINGBUILDER, que me suena que el Joan dijo que era mejor
-//	public static void showFloristList(List<String> list) {
-//		StringBuilder listString = new StringBu
-//	}
 	public static void showInfo(List<String> list) {
-		String listString = "";
+		StringBuilder listString = new StringBuilder();
 
 		for (String s : list) {
-			listString += s.toString() + "\n";
+			listString.append(s.toString() + "\n");
 		}
-		JTextArea msg = new JTextArea(listString);
+		JTextArea msg = new JTextArea(listString.toString());
 		msg.setLineWrap(true);
 		msg.setWrapStyleWord(true);
 		msg.setRows(list.size()+2);

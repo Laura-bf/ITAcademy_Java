@@ -31,12 +31,13 @@ public class ShowInfoWindow {
 
 	}
 
-	public static void showInfoStocks(String msg, List<String> list) {
+	public static void showInfoStocks(String msg, List<String> list, double totalValue) {
 		StringBuilder listString = new StringBuilder("Stock de " + msg + ":\n");
 		for(String s : list) {
 			listString.append(s.toString() +"\n");
 		}
-		listString.append("\nTOTAL "+ msg +" = " + list.size());
+		listString.append("\nCANTIDAD TOTAL "+ msg +" = " + list.size());
+		listString.append("\nVALOR TOTAL STOCK "+ msg +" = " + totalValue + "€");
 		JTextArea string = new JTextArea(listString.toString());
 		string.setLineWrap(true);
 		string.setWrapStyleWord(true);

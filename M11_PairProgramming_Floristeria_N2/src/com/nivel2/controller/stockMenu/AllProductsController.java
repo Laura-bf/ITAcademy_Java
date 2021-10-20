@@ -19,6 +19,13 @@ public class AllProductsController extends Controller {
 	public void control() {
 		int id = ActiveFlorist.instance().getId();
 		ShowInfoWindow.showInfoStocks("PRODUCTOS", floristRepository.getProducts(id)
-				.stream().map(l -> l.toString()).collect(Collectors.toList()));
+				.stream().map(l -> l.toString()).collect(Collectors.toList()), this.getValueStock());
+	}
+	
+	private double getValueStock() {
+		int id = ActiveFlorist.instance().getId();
+		return this.floristRepository.getProducts(id)
+				.stream().map(p -> p.getPrice()).mapToDouble(Double::doubleValue).sum();
+		
 	}
 }

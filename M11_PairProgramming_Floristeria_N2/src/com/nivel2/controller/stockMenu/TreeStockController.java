@@ -11,7 +11,7 @@ import com.nivel2.view.utils.Session;
 
 public class TreeStockController extends Controller{
 	FloristRepository floristRepository;
-
+	
 	public TreeStockController(Session session) {
 		super(session);
 		this.floristRepository = FloristRepository.instance();
@@ -21,6 +21,13 @@ public class TreeStockController extends Controller{
 
 		int id = ActiveFlorist.instance().getId();
 		ShowInfoWindow.showInfoStocks("ARBOLES", floristRepository.getProducts(id)
-				.stream().filter(s -> s instanceof Tree).map(l -> l.toString()).collect(Collectors.toList()));
+				.stream().filter(s -> s instanceof Tree).map(l -> l.toString()).collect(Collectors.toList()), this.getValueStock());
+	}
+	
+	private double getValueStock() {
+		int id = ActiveFlorist.instance().getId();
+		return this.floristRepository.getProducts(id)
+				.stream().filter(t -> t instanceof Tree).map(t -> t.getPrice()).mapToDouble(Double::doubleValue).sum();
+		
 	}
 }

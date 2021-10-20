@@ -11,6 +11,6 @@ public class Decoration extends Product{
 
     @Override
     public String toString() {
-        return "DECO\tId=" + super.getId() + "\tNombre: "+ super.getName() + "\tMat: "+ material + "\tPrecio: " + super.getId() + "€";
+        return "DECO\tId=" + super.getId() + "\tNombre: "+ super.getName() + "\tMat: "+ material + "\tPrecio: " + super.getPrice() + "€";
     }
 }

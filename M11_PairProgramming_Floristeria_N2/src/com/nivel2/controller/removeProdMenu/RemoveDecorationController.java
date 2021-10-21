@@ -24,16 +24,18 @@ public class RemoveDecorationController extends Controller{
 	
 	public void control() {
 		int activeFloristId = ActiveFlorist.instance().getId();
-		ShowInfoWindow.showInfo(floristRepository.getProducts(activeFloristId)
-				.stream().filter(s -> s instanceof Decoration).map(l -> l.toString()).collect(Collectors.toList()));
-		
-		
-		Product product = floristRepository.getProductById(activeFloristId, this.getProdId());
-		if(product instanceof Decoration) {
-			this.floristRepository.remove(product, activeFloristId);
-			ShowInfoWindow.showInfo("DECORACION ELIMINADA");
+		List<String> decorationStock = floristRepository.getProducts(activeFloristId).stream()
+				.filter(s -> s instanceof Decoration).map(l -> l.toString()).collect(Collectors.toList());
+		ShowInfoWindow.showInfo(decorationStock);
+		if (decorationStock.isEmpty()) {
+			ShowInfoWindow.showInfo("NO HAY PRODUCTOS PARA RETIRAR DE ESTE STOCK");
+		} else {
+			Product product = floristRepository.getProductById(activeFloristId, this.getProdId());
+			if (product instanceof Decoration) {
+				this.floristRepository.remove(product, activeFloristId);
+				ShowInfoWindow.showInfo("DECORACION ELIMINADA");
+			}
 		}
-		
 	}
 	
 	private int getProdId() {

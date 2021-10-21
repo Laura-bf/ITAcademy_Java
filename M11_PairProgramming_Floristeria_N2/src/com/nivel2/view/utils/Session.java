@@ -11,10 +11,6 @@ public class Session {
 	public StateValue getStateValue() {
 		return this.stateValue;
 	}
-	
-	public void setStateValue(StateValue stateValue) {
-		this.stateValue = stateValue;
-	}
 
 	public void mainMenu() {
 		this.stateValue = StateValue.MAIN_MENU;

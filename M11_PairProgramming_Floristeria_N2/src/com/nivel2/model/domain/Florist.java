@@ -26,10 +26,6 @@ public class Florist {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Product> getProducts() {
         return this.products;
     }
@@ -48,8 +44,6 @@ public class Florist {
         this.products.add(product);
     }
     
-   
-
 	@Override
 	public String toString() {
 		return "ID=" + id + "\tNombre: " + name;

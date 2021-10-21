@@ -10,10 +10,6 @@ public class ActiveFlorist {
 	private ActiveFlorist() {
 	}
 	
-	public static boolean isActiveFlorist() {
-		return activeFlorist!=null;
-	}
-	
 	public static void setActiveFlorist(Florist florist) {
 		activeFlorist = florist;
 	}

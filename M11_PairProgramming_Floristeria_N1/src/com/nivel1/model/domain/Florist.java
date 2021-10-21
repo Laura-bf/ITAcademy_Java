@@ -20,14 +20,9 @@ public class Florist {
     public int getId() {
     	return id;
     }
-    
-
+   
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Product> getProducts() {

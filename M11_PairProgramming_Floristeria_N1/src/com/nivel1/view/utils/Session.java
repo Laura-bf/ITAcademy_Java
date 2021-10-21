@@ -12,14 +12,6 @@ public class Session {
 		return this.stateValue;
 	}
 	
-	public void setStateValue(StateValue stateValue) {
-		this.stateValue = stateValue;
-	}
-	
-	public void nextMenu() {
-		 this.stateValue = StateValue.values()[this.stateValue.ordinal()+1];
-	}
-	
 	public void previousMenu() {
 		 this.stateValue = StateValue.values()[this.stateValue.ordinal()-1];
 	}

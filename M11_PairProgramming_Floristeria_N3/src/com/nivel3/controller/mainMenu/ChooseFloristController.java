@@ -9,6 +9,7 @@ import com.nivel3.view.MessageView;
 import com.nivel3.view.ReadInfoWindow;
 import com.nivel3.view.ShowInfoWindow;
 import com.nivel3.view.utils.Session;
+import com.nivel3.view.utils.StateValue;
 
 public class ChooseFloristController extends Controller {
 	
@@ -25,7 +26,10 @@ public class ChooseFloristController extends Controller {
 		if (id != 0){
 			ActiveFlorist.setActiveFlorist(this.floristRepository.getFloristById(id));
 			ShowInfoWindow.showInfo("FLORISTERIA "+ ActiveFlorist.instance().getName() +" SELECCIONADA");
-			this.session.floristMenu();
+			if(this.session.getStateValue()==StateValue.MAIN_MENU)
+				this.session.floristMenu();
+			if(this.session.getStateValue()==StateValue.SHOP_MENU)
+				this.session.shopMenu();
 		}
 	}
 	

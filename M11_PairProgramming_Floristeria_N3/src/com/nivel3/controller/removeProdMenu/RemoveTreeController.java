@@ -23,16 +23,18 @@ public class RemoveTreeController extends Controller{
 	
 	public void control() {
 		int activeFloristId = ActiveFlorist.instance().getId();
-		ShowInfoWindow.showInfo(floristRepository.getProducts(activeFloristId)
-				.stream().filter(s -> s instanceof Tree).map(l -> l.toString()).collect(Collectors.toList()));
-		
-		
-		Product product = floristRepository.getProductById(activeFloristId, this.getProdId());
-		if(product instanceof Tree) {
-			this.floristRepository.remove(product, activeFloristId);
-			ShowInfoWindow.showInfo("ARBOL ELIMINADO");
+		List<String> treeStock = floristRepository.getProducts(activeFloristId).stream()
+				.filter(s -> s instanceof Tree).map(l -> l.toString()).collect(Collectors.toList());
+		ShowInfoWindow.showInfo(treeStock);
+		if (treeStock.isEmpty()) {
+			ShowInfoWindow.showInfo("NO HAY PRODUCTOS PARA RETIRAR DE ESTE STOCK");
+		} else {
+			Product product = floristRepository.getProductById(activeFloristId, this.getProdId());
+			if (product instanceof Tree) {
+				this.floristRepository.remove(product, activeFloristId);
+				ShowInfoWindow.showInfo("ARBOL ELIMINADO");
+			}
 		}
-		
 	}
 	private int getProdId() {
 		return ReadInfoWindow.readIdProduct(MessageView.CHOOSE_PRODUCT, this.getIdList());

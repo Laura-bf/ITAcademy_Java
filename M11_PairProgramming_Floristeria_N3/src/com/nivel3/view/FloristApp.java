@@ -4,7 +4,9 @@ import com.nivel3.controller.*;
 import com.nivel3.controller.addProdMenu.AddMenuController;
 import com.nivel3.controller.floristMenu.FloristMenuController;
 import com.nivel3.controller.mainMenu.MainMenuController;
+import com.nivel3.controller.purchaseMenu.PurchaseMenuController;
 import com.nivel3.controller.removeProdMenu.RemoveMenuController;
+import com.nivel3.controller.shopMenu.ShopMenuController;
 import com.nivel3.controller.stockMenu.StockMenuController;
 import com.nivel3.view.utils.Session;
 import com.nivel3.view.utils.StateValue;
@@ -25,6 +27,8 @@ public class FloristApp {
 		this.controllers.put(StateValue.ADD_MENU, new AddMenuController(this.session));
 		this.controllers.put(StateValue.REMOVE_MENU, new RemoveMenuController(this.session));
 		this.controllers.put(StateValue.STOCK_MENU, new StockMenuController(this.session));
+		this.controllers.put(StateValue.SHOP_MENU, new ShopMenuController(this.session));
+		this.controllers.put(StateValue.PURCHASE_MENU, new PurchaseMenuController(this.session));
 		this.controllers.put(StateValue.EXIT_APP, null);
 	}
 	
@@ -37,8 +41,7 @@ public class FloristApp {
 			}
 		}while(controller!=null);
 	}
-	
-	
+
     public static void main(String[] args) {
 		
     	new FloristApp().execute();

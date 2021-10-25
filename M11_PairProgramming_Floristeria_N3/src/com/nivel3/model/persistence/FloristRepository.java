@@ -3,11 +3,7 @@ package com.nivel3.model.persistence;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nivel3.model.domain.Decoration;
-import com.nivel3.model.domain.Florist;
-import com.nivel3.model.domain.Flower;
-import com.nivel3.model.domain.Product;
-import com.nivel3.model.domain.Tree;
+import com.nivel3.model.domain.*;
 
 public class FloristRepository {
 
@@ -32,6 +28,8 @@ public class FloristRepository {
     public void add(Product product, int id) {
     	this.getFloristById(id).add(product);
     }
+
+    public void add(Ticket ticket, int id) { this.getFloristById(id).add(ticket);}
     
     public void remove(Product product, int id) {
     	this.getFloristById(id).getProducts().remove(product);
@@ -42,6 +40,10 @@ public class FloristRepository {
     }
     public List<Product> getProducts(int activeId){
     	return this.getFloristById(activeId).getProducts();
+    }
+    
+    public List<Ticket> getTickets(int activeId){
+    	return this.getFloristById(activeId).getTickets();
     }
     
     public int getSizeFlorist() {

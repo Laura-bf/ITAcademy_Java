@@ -6,5 +6,7 @@ public enum StateValue {
 	ADD_MENU,
 	REMOVE_MENU,
 	STOCK_MENU,
+	SHOP_MENU,
+	PURCHASE_MENU,
 	EXIT_APP
 }

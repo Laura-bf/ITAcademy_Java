@@ -24,14 +24,12 @@ public class RemoveFlowerController extends Controller {
 
 	public void control() {
 		int activeFloristId = ActiveFlorist.instance().getId();
-	//**************************HE PUESTO ESTO PARA AVISAR DE QUE EL STOCK ESTÁ VACÍO*************
 		List<String> flowerStock = floristRepository.getProducts(activeFloristId).stream()
 				.filter(s -> s instanceof Flower).map(l -> l.toString()).collect(Collectors.toList());
 		ShowInfoWindow.showInfo(flowerStock);
 		if (flowerStock.isEmpty()) {
 			ShowInfoWindow.showInfo("NO HAY PRODUCTOS PARA RETIRAR DE ESTE STOCK");
 		} else {
-	//**************HASTA AQUÍ ES NUEVO**********
 			Product product = floristRepository.getProductById(activeFloristId, this.getProdId());
 			if (product instanceof Flower) {
 				this.floristRepository.remove(product, activeFloristId);

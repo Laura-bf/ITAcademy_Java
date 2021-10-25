@@ -9,12 +9,14 @@ public class Florist {
 	private int id;
     private String name;
     private List<Product> products;
+    private List<Ticket> tickets;
 
     public Florist(String name){
     	this.id = countId;
     	countId++;
         this.name = name;
         this.products = new ArrayList<Product>();
+        this.tickets = new ArrayList<Ticket>();
     }
     
     public int getId() {
@@ -26,13 +28,11 @@ public class Florist {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Product> getProducts() {
         return this.products;
     }
+
+    public List<Ticket> getTickets() { return this.tickets; }
 
     public Product getProduct(int id) {
     	Product product = null;
@@ -47,6 +47,10 @@ public class Florist {
     public void add(Product product) {
         this.products.add(product);
     }
+
+    public void add(Ticket ticket) {
+        this.tickets.add(ticket);
+    }
  // PRUEBAS: para a�adir registros al inicio del repository
  	public static Florist createTestFlorist(String name) {
  		Florist testFlorist = new Florist(name);
@@ -58,7 +62,6 @@ public class Florist {
 	public String toString() {
 		return "ID=" + id + "\tNombre: " + name;
 	}
-
 
    
 }

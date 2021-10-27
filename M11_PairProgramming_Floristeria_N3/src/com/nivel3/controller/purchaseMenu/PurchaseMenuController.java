@@ -1,22 +1,11 @@
 package com.nivel3.controller.purchaseMenu;
 
 import com.nivel3.controller.Controller;
-import com.nivel3.controller.mainMenu.ChooseFloristController;
-import com.nivel3.controller.shopMenu.ExitShopController;
-import com.nivel3.controller.shopMenu.PurchaseController;
-import com.nivel3.controller.shopMenu.ShowGainsController;
-import com.nivel3.controller.shopMenu.ShowTicketsController;
-import com.nivel3.model.domain.ActiveTicket;
 import com.nivel3.view.Menu;
-import com.nivel3.view.mainMenu.ChooseFloristCommand;
 import com.nivel3.view.purchaseMenu.AddProductCommand;
 import com.nivel3.view.purchaseMenu.CancelPurchaseCommand;
 import com.nivel3.view.purchaseMenu.ExitPurchaseCommand;
 import com.nivel3.view.purchaseMenu.PayPurchaseCommand;
-import com.nivel3.view.shopMenu.ExitShopCommand;
-import com.nivel3.view.shopMenu.PurchaseCommand;
-import com.nivel3.view.shopMenu.ShowGainsCommand;
-import com.nivel3.view.shopMenu.ShowTicketsCommand;
 import com.nivel3.view.utils.Command;
 import com.nivel3.view.utils.Session;
 

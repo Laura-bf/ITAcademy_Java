@@ -26,6 +26,7 @@ public class CreateTreeController extends Controller {
 			ShowInfoWindow.showInfo("ARBOL AÑADIDO AL STOCK");
 		}
 	}
+
 	
 	private Tree createTree() {
 		Tree tree = null;
@@ -43,5 +44,5 @@ public class CreateTreeController extends Controller {
 		}
 		return tree;
 	}
-	
 }
+

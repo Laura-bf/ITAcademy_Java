@@ -26,6 +26,7 @@ public class CreateDecorationController extends Controller {
 		}
 	}
 
+
 	private Decoration createDecoration() {
 		Decoration decoration = null;
 		String name = ReadInfoWindow.readString(MessageView.NAME_PRODUCT);

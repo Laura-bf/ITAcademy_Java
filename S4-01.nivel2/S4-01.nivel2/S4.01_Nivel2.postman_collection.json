@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "5938b6fc-6722-4797-b58e-dda834deb956",
+		"name": "S4.01_Nivel2",
+		"description": "## NIVEL 2\nGenera un projecte Spring intentant que sigui el més semblant possible del projecte “springBootInitialDemo” usat en el milestone anterior  amb les següents configuracións. -- - Projecte Gradle \n- Java 11 \n- Última versió estable de spring boot. \n- Les dependències del build.gradle).\n- Prova que el projecte executa i t é la mateixa funcionalitat GET amb el “Hello, <NOM>”  \n\n***\n*No se han copiado todas las clases del proyecto inicial, únicamente las necesarias para los GET requeridos*",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Nivel2/helloWorld",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						""
+					]
+				},
+				"description": "Prova que el projecte executa i t é la mateixa funcionalitat GET "
+			},
+			"response": [
+				{
+					"name": "Nivel2/helloWorld",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 03 Nov 2021 16:46:52 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "HELLO WORLD!"
+				}
+			]
+		},
+		{
+			"name": "Nivel2/helloName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/Laura",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"Laura"
+					]
+				},
+				"description": "Prova que el projecte executa i t é la mateixa funcionalitat GET "
+			},
+			"response": [
+				{
+					"name": "Nivel2/helloName",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/Laura",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"Laura"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "13"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 03 Nov 2021 16:48:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "Hello, Laura!"
+				}
+			]
+		},
+		{
+			"name": "Nivel2/local",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{IP}}:{{port}}/v1/",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"v1",
+						""
+					]
+				},
+				"description": "Prova que el projecte executa i t é la mateixa funcionalitat GET "
+			},
+			"response": [
+				{
+					"name": "Nivel2/local",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{IP}}:{{port}}/v1/",
+							"host": [
+								"{{IP}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 03 Nov 2021 16:49:48 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "HELLO WORLD!"
+				}
+			]
+		}
+	]
+}

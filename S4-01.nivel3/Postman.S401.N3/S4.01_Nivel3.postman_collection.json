@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "dc31bfab-a94e-4ac1-9770-4baa2c68a258",
+		"name": "S4.01_Nivel3",
+		"description": "## Nivel 3\nAccedeix a la web https://start.spring.io/ . Genera un projecte Spring intentant que sigui el més semblant possible del projecte “springBootInitialDemo” usat en el milestone anterior  amb les següents configuracións.\n- Projecte Maven \n- Java 11 \n- Última versió estable de spring boot. \n- Les dependències del build.gradle. \n***\n- Prova que el projecte executa i té la mateixa funcionalitat GET amb el \"Hello, \".\n- També investiga com funciona el fitxer de configuració de Maven, busca els símils amb gradle.\n***\n**Unicamente se ha creado la clase controller, el resto de packages del proyecto inicial no son necesarios para la funcionalidad requerida**",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Nivel3/helloWorld",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						""
+					]
+				},
+				"description": "- Prova que el projecte executa i té la mateixa funcionalitat GET amb el \"Hello, \".\n- També investiga com funciona el fitxer de configuració de Maven, busca els símils amb gradle."
+			},
+			"response": [
+				{
+					"name": "Nivel3/helloWorld",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/v1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Nov 2021 09:25:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "HELLO WORLD!"
+				}
+			]
+		},
+		{
+			"name": "Nivel3/helloName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/Laura",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"Laura"
+					]
+				},
+				"description": "- Prova que el projecte executa i té la mateixa funcionalitat GET amb el \"Hello, \". \n- També investiga com funciona el fitxer de configuració de Maven, busca els símils amb gradle."
+			},
+			"response": []
+		},
+		{
+			"name": "Nivel3/local",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{IP}}:{{port}}/v1/",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"v1",
+						""
+					]
+				},
+				"description": "- Prova que el projecte executa i té la mateixa funcionalitat GET amb el \"Hello, \". \n- També investiga com funciona el fitxer de configuració de Maven, busca els símils amb gradle."
+			},
+			"response": [
+				{
+					"name": "Nivel3/local",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{IP}}:{{port}}/v1/",
+							"host": [
+								"{{IP}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Nov 2021 09:28:24 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "HELLO WORLD!"
+				}
+			]
+		}
+	]
+}

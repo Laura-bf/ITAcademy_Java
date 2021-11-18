@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">					
+<head>
+<th:block th:include="Fragments/head :: head"></th:block>
+</head>
+<body>
+	<div class="container">
+		
+		<div th:insert="Fragments/BodyHeader::div"></div>
+
+		<form th:object="${EmployeeDTOFilter}" method="post"
+			th:action="@{/Empleados/Filtros}">
+			<div class="form-group">
+				<button type="submit" class="btn btn-outline-dark">Filtrar por puesto</button>
+				<select th:name="filtroJob">
+					<option value="ALL">Ver Todos</option>
+					<option value="CLERK">Clerk</option>
+					<option value="BOSS">Boss</option>
+					<option value="MANAGER">Manager</option>
+				</select>
+				<br>
+			</div>
+		</form>
+		
+		<div><a class="btn btn-outline-primary" th:href="@{/Empleados/Nuevos}"
+			role="Button">Crear Nuevo Empleado</a>
+		</div>
+		<br>
+		<div class="cloud-table-scroll">
+		<br>
+			<table class="table table-stripped">
+			
+				<thead>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Puesto</th>
+					<th>Salario</th>
+					<th colspan="3"></th>
+				</thead>
+				<tbody>
+					<tr th:each="employee:${EmployeeDTOList}">
+						<td th:text="${employee.pk_ID}"></td>
+						<td th:text="${employee.name}"></td>
+						<td th:text="${employee.job}"></td>
+						<td th:text="${employee.salary}"></td>
+						<td><a class="btn btn-outline-info"
+							th:href="@{/Empleados/__${employee.pk_ID}__}"
+							role="button">Ver Info</a></td>
+						<td><a class="btn btn-outline-warning"
+							th:href="@{/Empleados/Edicion/__${employee.pk_ID}__}"
+							role="button">Editar</a></td>
+						<td><a class="btn btn-outline-danger"
+							th:href="@{/Empleados/Bajas/__${employee.pk_ID}__}"
+							role="button"
+							onclick="return confirm('Confirme borrar empleado')">Eliminar</a></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+		<br>
+		<br>
+	</div>
+</body>
+</html>

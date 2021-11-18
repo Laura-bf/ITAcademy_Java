@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<th:block th:include="Fragments/head :: head"></th:block>
+</head>
+<body>
+	<div class="container">
+		<div th:insert="Fragments/BodyHeader :: div"></div>
+		
+		<h3>Detalles Empleado</h3>
+		<form th:object="${EmployeeDTOInfo}" method="get"
+			th:action="@{/Empleados}">
+			
+			<input type="hidden" th:field="*{pk_ID}">
+			<input type="hidden" th:field="*{photo}">
+			
+			<div class="form-group">
+				<label class="cloud-label">Nombre</label><input type="text"
+					th:field="*{name}" disabled>
+				<br>
+				<label class="cloud-label">Puesto</label><input type="text"
+					th:field="*{job}" disabled>
+				<br>
+				<label class="cloud-label">Salario</label><input type="text"
+					th:field="*{salary}" disabled>
+				<br>
+				<img th:src="*{photo}">
+				<a  class="btn btn-outline-dark" th:href="@{/Empleados/__*{pk_ID}__/Downloads}" role="button">Descargar foto</a>
+			</div>
+			<button type="submit" class="btn btn-outline-dark">Volver</button>
+			<a class="btn btn-outline-warning"
+				th:href="@{/Empleados/Edicion/__*{pk_ID}__}"
+				role="button">Editar</a>
+		</form>
+	</div>
+</body>
+</html>

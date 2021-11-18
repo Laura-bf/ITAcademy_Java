@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Descargar ficheros</title>
+</head>
+<body>
+	<h1>Las descargas se almacenarán en tu carpeta personal en Downloads </h1>
+	<form th:object="${EmployeeDTOInfo}" method="post"
+			th:action="@{/Empleados/Downloads}" >
+			<input type="hidden" th:name="photo" th:field="*{photo}">
+			<input type="hidden" th:field="*{pk_ID}">
+		<p>
+			Indica el nombre de tu directorio personal
+			<input type="text" size="15" th:name="folder" />
+			Nombre para guardar el archivo descargado:
+			<input type="text" size="5" th:value="*{pk_ID}" th:name="fileName" />.jpg
+			<input type="submit" value="download" /> 
+			<input type="reset" value="Reset" />
+		</p>
+	</form>
+
+</body>
+</html>

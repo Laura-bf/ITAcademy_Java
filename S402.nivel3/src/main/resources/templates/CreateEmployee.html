@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<th:block th:include="Fragments/head :: head"></th:block>
+</head>
+<body>
+	<div class="container">
+		<div th:insert="Fragments/BodyHeader :: div"></div>
+		
+		<h3>Editar Empleados</h3>
+		
+		<form th:object="${EmployeeDTOForm}" method="post"
+			th:action="@{/Empleados/Updates}">
+			
+			<div class="form-group">
+				<label class="cloud-label">Nombre</label><input type="text"
+				th:field="*{name}">
+				<br>
+				<label class="cloud-label">Puesto</label>
+				<select th:field="*{job}">
+					<option value="CLERK">Clerk</option>
+					<option value="BOSS">Boss</option>
+					<option value="MANAGER">Manager</option>
+				</select>
+				<br>
+			<label class="btn-outline-primary">Confirme crear empleado para poder añadirle fotos desde el menú EDITAR</label>
+			</div>
+			
+			<br>
+			<button type="submit" onclick="return confirm('Confirme crear nuevo empleado')">Crear</button>
+			<a class="btn btn-outline-danger" th:href="@{/Empleados}" role="button">Descartar cambios</a>
+			<br>
+			
+		</form>
+</body>
+</html>

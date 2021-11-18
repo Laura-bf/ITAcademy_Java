@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<th:block th:include="Fragments/head :: head"></th:block>
+</head>
+<body>
+	<div class="container">
+		<div th:insert="Fragments/BodyHeader :: div"></div>
+		
+		<h3>Editar Empleados</h3>
+		<form th:object="${EmployeeDTOForm}" method="post"
+			th:action="@{/Empleados/Updates}">
+			
+			<input type="hidden" id="id" th:field="*{pk_ID}">
+			
+			<div class="form-group">
+				<label class="cloud-label">Nombre</label><input type="text"
+				th:field="*{name}">
+				<br>
+				<label class="cloud-label">Puesto</label>
+				<select th:field="*{job}">
+					<option value="CLERK">Clerk</option>
+					<option value="BOSS">Boss</option>
+					<option value="MANAGER">Manager</option>
+				</select>
+			</div>
+			<div>
+				<img th:src="*{photo}" alt="foto empleado"/>
+				<a class="btn btn-outline-danger" th:href="@{/Empleados/Edicion/__*{pk_ID}__/Uploads}" role="button">Subir/Cambiar foto</a>
+			</div>	
+			<br>
+			<button type="submit" onclick="return confirm('Confirme guardar cambios')">Guardar</button>
+			<a class="btn btn-outline-danger" th:href="@{/Empleados}" role="button">Descartar cambios</a>
+			
+		</form>
+	</div>
+
+</body>
+</html>

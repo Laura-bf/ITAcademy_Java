@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Subir ficheros</title>
+</head>
+<body>
+
+	<h1>Seleccionar foto perfil empleado</h1>
+	<form th:object="${EmployeeDTOForm}" method="post"
+			th:action="@{/Empleados/Fotos}" enctype="multipart/form-data">
+		<p>
+			Foto
+			<input type="hidden" name="id" th:field="*{pk_ID}">
+			<input type="file" name="file" /> 
+			<input type="submit" value="upload" /> 
+			<input type="reset" value="Reset" />
+		</p>
+	</form>
+
+</body>
+</html>

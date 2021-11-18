@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Error</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Se ha producido un error</h1>
+		<br>
+		<div th:each="error:${ErrorsMap}">
+			<p th:text="${error.key + '      ' + error.value}" />
+		</div>
+		<br>
+		<a href="/">Volver al inicio</a>
+	</div>
+</body>
+</html>

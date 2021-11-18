@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Error</title>
+</head>
+<body>
+	<div class="container">
+		<form th:object="${EmployeeDTOForm}" method="get" th:action="@{/Empleados/Edicion/__*{pk_ID}__/Uploads}">
+			<h1>FORMATO NO ACEPTADO - Debe ser: .jpg / .jpeg</h1>
+			<br>
+			<button type="submit">Seleccionar otro archivo</button>
+		</form>
+	</div>
+</body>
+</html>

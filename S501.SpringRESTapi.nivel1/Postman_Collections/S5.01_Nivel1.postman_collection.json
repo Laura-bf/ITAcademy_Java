@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "161f556f-b52e-41cd-8b65-6273cc8d40b9",
+		"name": "S5.01_Nivel1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ListadoTiendas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\n  \n        \"pictureName\": \"cuadro2\",\n        \"author\": \"anonymous\",\n   \n    }",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/shops",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops"
+					]
+				},
+				"description": "Devuelve el listado de todas las tiendas con sus datos:\n- id\n- nombre\n- capacidad máxima\n- listado de cuadros"
+			},
+			"response": [
+				{
+					"name": "ListadoTiendas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\n  \n        \"pictureName\": \"cuadro2\",\n        \"author\": \"anonymous\",\n   \n    }",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/shops",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shops"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 Nov 2021 19:35:15 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Tienda 1\",\n        \"maxCapacity\": 7,\n        \"pictures\": []\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Tienda 2\",\n        \"maxCapacity\": 8,\n        \"pictures\": []\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Tienda 3\",\n        \"maxCapacity\": 9,\n        \"pictures\": []\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Tienda 4\",\n        \"maxCapacity\": 10,\n        \"pictures\": []\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "CrearTiendaNueva",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\n  \n        \"pictureName\": \"cuadro2\",\n        \"author\": \"anonymous\",\n   \n    }",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/shops?name=tienda nueva&max=20",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "tienda nueva"
+						},
+						{
+							"key": "max",
+							"value": "20"
+						}
+					]
+				},
+				"description": "Crea una nueva tienda y la añade al repositorio\nParámetros necesarios:\n- nombre\n- capacidad máxima"
+			},
+			"response": [
+				{
+					"name": "CrearTiendaNueva",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\n  \n        \"pictureName\": \"cuadro2\",\n        \"author\": \"anonymous\",\n   \n    }",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/shops?name=tienda nueva&max=20",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shops"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "tienda nueva"
+								},
+								{
+									"key": "max",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 Nov 2021 19:40:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "ListadoCuadrosTienda",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops/1/pictures",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops",
+						"1",
+						"pictures"
+					]
+				},
+				"description": "Devuelve los cuadros de una tienda seleccionada por id\n"
+			},
+			"response": [
+				{
+					"name": "ListadoCuadrosTienda",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/shops/1/pictures",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shops",
+								"1",
+								"pictures"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 Nov 2021 19:47:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "AñadirCuadroATienda",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops/1/pictures?name=nombreCuadro&author=autor",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops",
+						"1",
+						"pictures"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "nombreCuadro"
+						},
+						{
+							"key": "author",
+							"value": "autor"
+						}
+					]
+				},
+				"description": "Añade un cuadro al listado de los de una tienda seleccionada por id\nParámetros requeridos:\n- Nombre cuadro\n- Autor"
+			},
+			"response": [
+				{
+					"name": "AñadirCuadroATienda",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/shops/1/pictures?name=nombreCuadro&author=autor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shops",
+								"1",
+								"pictures"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "nombreCuadro"
+								},
+								{
+									"key": "author",
+									"value": "autor"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 Nov 2021 19:50:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "BorrarCuadrosTienda",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/shops/1/pictures",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shops",
+						"1",
+						"pictures"
+					]
+				},
+				"description": "Borra todos los cuadros de una tienda seleccionada por id"
+			},
+			"response": [
+				{
+					"name": "BorrarCuadrosTienda",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/shops/1/pictures",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shops",
+								"1",
+								"pictures"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 Nov 2021 19:56:15 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

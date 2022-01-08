@@ -1,0 +1,87 @@
+[
+{
+  "_id": "G-001",
+  "brand": "Nisu",
+  "graduation": {
+    "left": 1.25,
+    "right": 1
+  },
+  "glass_color": {
+    "left": "none",
+    "right": "none"
+  },
+  "frame": {
+    "color": "black",
+    "type": "metal"
+  },
+  "price": 100,
+  "client_id": "C-001",
+  "vendor": "UnVendedor"
+},
+{
+  "_id": "G-002",
+  "brand": "Adudas",
+  "graduation": {
+    "left": 0.25,
+    "right": 0.5
+  },
+  "glass_color": {
+    "left": "none",
+    "right": "none"
+  },
+  "frame": {
+    "color": "red",
+    "type": "float"
+  },
+  "price": 95,
+  "client_id": "C-003",
+  "vendor": "otroVendedor"
+},
+{
+  "_id": "G-003",
+  "brand": "Conversa",
+  "graduation": {
+    "left": 0.25,
+    "right": 0.5
+  },
+  "glass_color": {
+    "left": "none",
+    "right": "none"
+  },
+  "frame": {
+    "color": "blue",
+    "type": "paste"
+  },
+  "price": 98
+},
+{
+  "_id": "G-004",
+  "brand": "Daigual",
+  "graduation": {
+    "left": 2.25,
+    "right": 2
+  },
+  "frame": {
+    "color": "black",
+    "type": "float"
+  },
+  "price": 108,
+  "client_id": "C-002",
+  "vendor": "UnVendedor"
+},
+{
+  "_id": "G-005",
+  "brand": "Nologo",
+  "graduation": {
+    "left": 2.25,
+    "right": 2
+  },
+  "frame": {
+    "color": "black",
+    "type": "float"
+  },
+  "price": 118,
+  "client_id": "C-002",
+  "vendor": "alguien"
+}
+]

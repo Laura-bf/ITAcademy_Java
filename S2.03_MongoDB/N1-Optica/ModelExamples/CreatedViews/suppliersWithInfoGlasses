@@ -1,0 +1,134 @@
+[{
+  "_id": "P-001",
+  "name": "UnProveedor",
+  "nif": "11111111X",
+  "phone": "931111111",
+  "fax": "931111111",
+  "address": {
+    "cp": "08001",
+    "city": "Barcelona"
+  },
+  "brands": [
+    "Nisu",
+    "Nologo"
+  ],
+  "glasses": [
+    {
+      "_id": "G-001",
+      "brand": "Nisu",
+      "graduation": {
+        "left": 1.25,
+        "right": 1
+      },
+      "glass_color": {
+        "left": "none",
+        "right": "none"
+      },
+      "frame": {
+        "color": "black",
+        "type": "metal"
+      },
+      "price": 100,
+      "client_id": "C-001",
+      "vendor": "UnVendedor"
+    },
+    {
+      "_id": "G-005",
+      "brand": "Nologo",
+      "graduation": {
+        "left": 2.25,
+        "right": 2
+      },
+      "frame": {
+        "color": "black",
+        "type": "float"
+      },
+      "price": 118,
+      "client_id": "C-002",
+      "vendor": "alguien"
+    }
+  ]
+},{
+  "_id": "P-002",
+  "name": "OtroProveedor",
+  "nif": "22222222Y",
+  "phone": "932222222",
+  "fax": "932222222",
+  "address": {
+    "cp": "08002",
+    "city": "Barcelona"
+  },
+  "brands": [
+    "Adudas",
+    "Conversa"
+  ],
+  "glasses": [
+    {
+      "_id": "G-002",
+      "brand": "Adudas",
+      "graduation": {
+        "left": 0.25,
+        "right": 0.5
+      },
+      "glass_color": {
+        "left": "none",
+        "right": "none"
+      },
+      "frame": {
+        "color": "red",
+        "type": "float"
+      },
+      "price": 95,
+      "client_id": "C-003",
+      "vendor": "otroVendedor"
+    },
+    {
+      "_id": "G-003",
+      "brand": "Conversa",
+      "graduation": {
+        "left": 0.25,
+        "right": 0.5
+      },
+      "glass_color": {
+        "left": "none",
+        "right": "none"
+      },
+      "frame": {
+        "color": "blue",
+        "type": "paste"
+      },
+      "price": 98
+    }
+  ]
+},{
+  "_id": "P-003",
+  "name": "TercerProveedor",
+  "nif": "33333333Z",
+  "phone": "913333333",
+  "fax": "913333333",
+  "address": {
+    "street": "unaCalle",
+    "cp": "28003",
+    "city": "Madrid"
+  },
+  "brands": [
+    "Daigual"
+  ],
+  "glasses": [
+    {
+      "_id": "G-004",
+      "brand": "Daigual",
+      "graduation": {
+        "left": 2.25,
+        "right": 2
+      },
+      "frame": {
+        "color": "black",
+        "type": "float"
+      },
+      "price": 108,
+      "client_id": "C-002",
+      "vendor": "UnVendedor"
+    }
+  ]
+}]

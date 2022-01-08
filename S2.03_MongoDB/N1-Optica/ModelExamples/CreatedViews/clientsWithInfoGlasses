@@ -1,0 +1,119 @@
+[
+{
+  "_id": "C-001",
+  "name": "UnCliente",
+  "phone": "666666666",
+  "mail": "mail@cliente.com",
+  "address": {
+    "street": "calle",
+    "number": "5",
+    "floor": "3",
+    "cp": "08001"
+  },
+  "reg_date": "2017-05-01",
+  "glasses": [
+    {
+      "_id": "G-001",
+      "brand": "Nisu",
+      "graduation": {
+        "left": 1.25,
+        "right": 1
+      },
+      "glass_color": {
+        "left": "none",
+        "right": "none"
+      },
+      "frame": {
+        "color": "black",
+        "type": "metal"
+      },
+      "price": 100,
+      "client_id": "C-001",
+      "vendor": "UnVendedor"
+    }
+  ]
+},
+{
+  "_id": "C-002",
+  "name": "OtroCliente",
+  "phone": "777777777",
+  "mail": "mail@otrocliente.com",
+  "address": {
+    "street": "alguna",
+    "number": "2",
+    "floor": "1",
+    "door": "1",
+    "cp": "08011",
+    "city": "Barcelona"
+  },
+  "reg_date": "2017-05-15",
+  "recommendedBy": "C-001",
+  "glasses": [
+    {
+      "_id": "G-004",
+      "brand": "Daigual",
+      "graduation": {
+        "left": 2.25,
+        "right": 2
+      },
+      "frame": {
+        "color": "black",
+        "type": "float"
+      },
+      "price": 108,
+      "client_id": "C-002",
+      "vendor": "UnVendedor"
+    },
+    {
+      "_id": "G-005",
+      "brand": "Nologo",
+      "graduation": {
+        "left": 2.25,
+        "right": 2
+      },
+      "frame": {
+        "color": "black",
+        "type": "float"
+      },
+      "price": 118,
+      "client_id": "C-002",
+      "vendor": "alguien"
+    }
+  ]
+},
+{
+  "_id": "C-003",
+  "name": "Alguno",
+  "phone": "888888888",
+  "mail": "mail@alguncliente.com",
+  "address": {
+    "street": "nosesabe",
+    "number": "22",
+    "floor": "1",
+    "cp": "08021"
+  },
+  "reg_date": "2017-05-21",
+  "recommendedBy": "C-001",
+  "glasses": [
+    {
+      "_id": "G-002",
+      "brand": "Adudas",
+      "graduation": {
+        "left": 0.25,
+        "right": 0.5
+      },
+      "glass_color": {
+        "left": "none",
+        "right": "none"
+      },
+      "frame": {
+        "color": "red",
+        "type": "float"
+      },
+      "price": 95,
+      "client_id": "C-003",
+      "vendor": "otroVendedor"
+    }
+  ]
+}
+]

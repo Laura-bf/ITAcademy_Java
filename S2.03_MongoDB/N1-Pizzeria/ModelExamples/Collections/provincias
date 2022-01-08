@@ -1,0 +1,32 @@
+[{
+  "_id": "p-01",
+  "nombre": "Barcelona",
+  "localidades": [
+    {
+      "_id": "l-01",
+      "nombre": "Barcelona"
+    },
+    {
+      "_id": "l-02",
+      "nombre": "Badalona"
+    }
+  ]
+},{
+  "_id": "p-02",
+  "nombre": "Madrid",
+  "localidades": [
+    {
+      "_id": "l-03",
+      "nombre": "Madrid"
+    }
+  ]
+},{
+  "_id": "p-03",
+  "nombre": "Almeria",
+  "localidades": [
+    {
+      "_id": "l-04",
+      "nombre": "Almería"
+    }
+  ]
+}]

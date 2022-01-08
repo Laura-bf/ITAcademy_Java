@@ -1,0 +1,56 @@
+[{
+  "_id": "P-001",
+  "nombre": "Carbonara",
+  "tipo": "pizza",
+  "descripcion": "aqui los ingredientes",
+  "foto": "/S2.03_MongoDB/N1-Pizzeria/images/pizza.png",
+  "categoria": {
+    "_id": "pizCat001",
+    "nombre": "clásicas"
+  },
+  "precio": 7.5
+},{
+  "_id": "P-002",
+  "nombre": "Margarita",
+  "tipo": "pizza",
+  "descripcion": "aqui los ingredientes",
+  "foto": "/S2.03_MongoDB/N1-Pizzeria/images/pizza.png",
+  "categoria": {
+    "_id": "pizCat001",
+    "nombre": "clásicas"
+  },
+  "precio": 6.5
+},{
+  "_id": "P-003",
+  "nombre": "De la Casa",
+  "tipo": "pizza",
+  "descripcion": "aqui los ingredientes",
+  "foto": "/S2.03_MongoDB/N1-Pizzeria/images/pizza.png",
+  "categoria": {
+    "_id": "pizCat002",
+    "nombre": "especiales"
+  },
+  "precio": 8.5
+},{
+  "_id": "P-004",
+  "nombre": "Sencilla",
+  "tipo": "hamburguesa",
+  "descripcion": "aqui los ingredientes",
+  "precio": 3.5
+},{
+  "_id": "P-005",
+  "nombre": "Con Queso",
+  "tipo": "hamburguesa",
+  "descripcion": "aqui los ingredientes",
+  "precio": 4.5
+},{
+  "_id": "P-006",
+  "nombre": "Cerveza",
+  "tipo": "bebida",
+  "precio": 2
+},{
+  "_id": "P-007",
+  "nombre": "Agua",
+  "tipo": "bebida",
+  "precio": 1.5
+}]

@@ -1,0 +1,137 @@
+[{
+  "_id": "T-001",
+  "direccion": "C/direccionTienda,1",
+  "cp": "08001",
+  "provincia": {
+    "_id": "p-01",
+    "nombre": "Barcelona"
+  },
+  "localidad": {
+    "_id": "l-01",
+    "nombre": "Barcelona"
+  },
+  "empleados": [
+    {
+      "_id": "E-001",
+      "nombre": "nombreEmpleado",
+      "apellidos": "apellidosEmpleado",
+      "telefono": "666666666",
+      "categoria": "repartidor"
+    },
+    {
+      "_id": "E-002",
+      "nombre": "otroEmpleado",
+      "apellidos": "apellidosOtro",
+      "telefono": "777777777",
+      "categoria": "cocinero"
+    }
+  ],
+  "ventas": [
+    {
+      "_id": "001",
+      "fechaHora": {
+        "$date": "2022-01-08T15:10:09.431Z"
+      },
+      "entrega": "domicilio",
+      "productos": [
+        "P-001",
+        "P-005",
+        "P-007",
+        "P-006"
+      ],
+      "precioTotal": 15.5,
+      "entregaDomicilio": {
+        "repartidor": "E-001",
+        "horaEntrega": "20:23"
+      }
+    },
+    {
+      "_id": "003",
+      "fechaHora": {
+        "$date": "2022-01-08T15:10:09.431Z"
+      },
+      "entrega": "tienda",
+      "productos": [
+        "P-004",
+        "P-005",
+        "P-006",
+        "P-006"
+      ],
+      "precioTotal": 12
+    }
+  ]
+},{
+  "_id": "T-002",
+  "direccion": "C/direccionOtraTienda,1",
+  "cp": "28001",
+  "provincia": {
+    "_id": "p-02",
+    "nombre": "Madrid"
+  },
+  "localidad": {
+    "_id": "l-02",
+    "nombre": "Madrid"
+  },
+  "empleados": [
+    {
+      "_id": "E-003",
+      "nombre": "nombEmpl",
+      "apellidos": "apellEmpl",
+      "telefono": "888888888",
+      "categoria": "cocinero"
+    },
+    {
+      "_id": "E-004",
+      "nombre": "otroEmpl",
+      "apellidos": "apelOtro",
+      "telefono": "999999999",
+      "categoria": "repartidor"
+    }
+  ],
+  "ventas": [
+    {
+      "_id": "002",
+      "fechaHora": {
+        "$date": "2022-01-08T15:10:09.431Z"
+      },
+      "entrega": "tienda",
+      "productos": [
+        "P-002",
+        "P-006"
+      ],
+      "precioTotal": 8.5
+    },
+    {
+      "_id": "004",
+      "fechaHora": {
+        "$date": "2022-01-08T15:10:09.431Z"
+      },
+      "entrega": "domicilio",
+      "productos": [
+        "P-001",
+        "P-002",
+        "P-003",
+        "P-006",
+        "P-006",
+        "P-006"
+      ],
+      "precioTotal": 28.5,
+      "entregaDomicilio": {
+        "repartidor": "E-004",
+        "horaEntrega": "21:03"
+      }
+    },
+    {
+      "_id": "005",
+      "fechaHora": {
+        "$date": "2022-01-08T15:10:09.431Z"
+      },
+      "entrega": "tienda",
+      "productos": [
+        "P-005",
+        "P-006"
+      ],
+      "precioTotal": 5.5
+    }
+  ]
+}]

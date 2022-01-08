@@ -1,0 +1,57 @@
+[{
+  "_id": "T-001",
+  "direccion": "C/direccionTienda,1",
+  "cp": "08001",
+  "provincia": {
+    "_id": "p-01",
+    "nombre": "Barcelona"
+  },
+  "localidad": {
+    "_id": "l-01",
+    "nombre": "Barcelona"
+  },
+  "empleados": [
+    {
+      "_id": "E-001",
+      "nombre": "nombreEmpleado",
+      "apellidos": "apellidosEmpleado",
+      "telefono": "666666666",
+      "categoria": "repartidor"
+    },
+    {
+      "_id": "E-002",
+      "nombre": "otroEmpleado",
+      "apellidos": "apellidosOtro",
+      "telefono": "777777777",
+      "categoria": "cocinero"
+    }
+  ]
+},{
+  "_id": "T-002",
+  "direccion": "C/direccionOtraTienda,1",
+  "cp": "28001",
+  "provincia": {
+    "_id": "p-02",
+    "nombre": "Madrid"
+  },
+  "localidad": {
+    "_id": "l-02",
+    "nombre": "Madrid"
+  },
+  "empleados": [
+    {
+      "_id": "E-003",
+      "nombre": "nombEmpl",
+      "apellidos": "apellEmpl",
+      "telefono": "888888888",
+      "categoria": "cocinero"
+    },
+    {
+      "_id": "E-004",
+      "nombre": "otroEmpl",
+      "apellidos": "apelOtro",
+      "telefono": "999999999",
+      "categoria": "repartidor"
+    }
+  ]
+}]

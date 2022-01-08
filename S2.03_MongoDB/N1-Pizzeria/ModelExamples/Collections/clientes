@@ -1,0 +1,57 @@
+[{
+  "_id": "C-001",
+  "nombre": "nombreCliente",
+  "apellidos": "apellidosCliente",
+  "telefono": "666666666",
+  "direccion": "C/Calle,1,1,1",
+  "cp": "08001",
+  "provincia": {
+    "_id": "p-01",
+    "nombre": "Barcelona"
+  },
+  "localidad": {
+    "_id": "l-01",
+    "nombre": "Barcelona"
+  },
+  "pedidos": [
+    "001",
+    "005"
+  ]
+},{
+  "_id": "C-002",
+  "nombre": "otroCliente",
+  "apellidos": "apellidosOtroCliente",
+  "telefono": "777777777",
+  "direccion": "C/OtraCalle,22,2ª,2ª",
+  "cp": "28001",
+  "provincia": {
+    "_id": "p-02",
+    "nombre": "Madrid"
+  },
+  "localidad": {
+    "_id": "l-02",
+    "nombre": "Madrid"
+  },
+  "pedidos": [
+    "P-002",
+    "004"
+  ]
+},{
+  "_id": "C-003",
+  "nombre": "ultimoCliente",
+  "apellidos": "apellidosUltimoCliente",
+  "telefono": "888888888",
+  "direccion": "C/Yunamas,5",
+  "cp": "04001",
+  "provincia": {
+    "_id": "p-03",
+    "nombre": "Almería"
+  },
+  "localidad": {
+    "_id": "l-03",
+    "nombre": "Almería"
+  },
+  "pedidos": [
+    "003"
+  ]
+}]

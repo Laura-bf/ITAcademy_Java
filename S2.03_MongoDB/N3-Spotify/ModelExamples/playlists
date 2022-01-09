@@ -1,0 +1,96 @@
+[{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a2"
+  },
+  "list_id": 1,
+  "user_id": 1,
+  "title": "playlistSoloActiva",
+  "created": {
+    "$date": "2022-01-09T20:23:37.132Z"
+  },
+  "status": "active",
+  "shared": false,
+  "songs": [
+    {
+      "song_id": 1
+    },
+    {
+      "song_id": 11
+    },
+    {
+      "song_id": 6
+    }
+  ],
+  "totalSongs": null
+},{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a3"
+  },
+  "list_id": 2,
+  "user_id": 2,
+  "title": "playlistCompartida",
+  "created": {
+    "$date": "2022-01-09T20:23:37.135Z"
+  },
+  "status": "active",
+  "shared": true,
+  "songs": [
+    {
+      "song_id": 7,
+      "addedBy": 2,
+      "date": {
+        "$date": "2022-01-09T20:23:37.135Z"
+      }
+    },
+    {
+      "song_id": 13,
+      "addedBy": 3,
+      "date": {
+        "$date": "2022-01-09T20:23:37.135Z"
+      }
+    },
+    {
+      "song_id": 2,
+      "addedBy": 1,
+      "date": {
+        "$date": "2022-01-09T20:23:37.135Z"
+      }
+    }
+  ],
+  "totalSongs": null
+},{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a4"
+  },
+  "list_id": 3,
+  "user_id": 1,
+  "title": "playlistEliminada",
+  "created": {
+    "$date": "2022-01-09T20:23:37.138Z"
+  },
+  "status": "deleted",
+  "songs": [
+    {
+      "song_id": 9,
+      "addedBy": 1,
+      "date": {
+        "$date": "2022-01-09T20:23:37.138Z"
+      }
+    },
+    {
+      "song_id": 10,
+      "addedBy": 2,
+      "date": {
+        "$date": "2022-01-09T20:23:37.138Z"
+      }
+    },
+    {
+      "song_id": 3,
+      "addedBy": 3,
+      "date": {
+        "$date": "2022-01-09T20:23:37.138Z"
+      }
+    }
+  ],
+  "PRUEBAgetId": null
+}]

@@ -1,0 +1,28 @@
+[{
+  "_id": "user_id",
+  "counter_value": 3
+},{
+  "_id": "subs_id",
+  "counter_value": 2
+},{
+  "_id": "paypal_id",
+  "counter_value": 1
+},{
+  "_id": "order_id",
+  "counter_value": 2
+},{
+  "_id": "cc_id",
+  "counter_value": 1
+},{
+  "_id": "list_id",
+  "counter_value": 3
+},{
+  "_id": "album_id",
+  "counter_value": 2
+},{
+  "_id": "song_id",
+  "counter_value": 12
+},{
+  "_id": "artist_id",
+  "counter_value": 3
+}]

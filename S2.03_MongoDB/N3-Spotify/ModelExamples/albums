@@ -1,0 +1,95 @@
+[{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a5"
+  },
+  "album_id": 1,
+  "title": "tituloAlbum",
+  "year": "1970",
+  "image": "/path_img_portada.png",
+  "artist": 1,
+  "songs": [
+    {
+      "song_id": 1,
+      "title": "tituloCancion",
+      "duration": 2,
+      "reproducciones": 22
+    },
+    {
+      "song_id": 2,
+      "title": "otraCancion",
+      "duration": 3,
+      "reproducciones": 10
+    },
+    {
+      "song_id": 3,
+      "title": "unaCancion",
+      "duration": 4,
+      "reproducciones": 15
+    },
+    {
+      "song_id": 4,
+      "title": "songssongssongs",
+      "duration": 5,
+      "reproducciones": 8
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a6"
+  },
+  "album_id": 2,
+  "title": "otroAlbum",
+  "year": "1981",
+  "image": "/path_img_portada.png",
+  "artist": 3,
+  "songs": [
+    {
+      "song_id": 5,
+      "title": "otraCancion",
+      "duration": 2,
+      "reproducciones": 22
+    },
+    {
+      "song_id": 6,
+      "title": "tituloCancion",
+      "duration": 3,
+      "reproducciones": 10
+    },
+    {
+      "song_id": 7,
+      "title": "unaCancion",
+      "duration": 4,
+      "reproducciones": 15
+    },
+    {
+      "song_id": 8,
+      "title": "aSong",
+      "duration": 5,
+      "reproducciones": 8
+    },
+    {
+      "song_id": 9,
+      "title": "otraCancion",
+      "duration": 2,
+      "reproducciones": 22
+    },
+    {
+      "song_id": 10,
+      "title": "tituloCancion",
+      "duration": 3,
+      "reproducciones": 10
+    },
+    {
+      "song_id": 11,
+      "title": "unaCancion",
+      "duration": 4,
+      "reproducciones": 15
+    },
+    {
+      "song_id": 12,
+      "title": "aSong",
+      "duration": 5,
+      "reproducciones": 8
+    }
+  ]
+}]

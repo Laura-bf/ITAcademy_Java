@@ -1,0 +1,153 @@
+[{
+  "_id": {
+    "$oid": "61db44492f176671e0df389f"
+  },
+  "user_id": 1,
+  "email": "email@usuario.com",
+  "password": "012345678",
+  "name": "nombreUsuario",
+  "birthDate": {
+    "$date": "1981-05-20T00:00:00Z"
+  },
+  "sex": "M",
+  "country": "España",
+  "cp": "08001",
+  "subscriber": "free",
+  "playlists": [
+    {
+      "list_id": 1
+    },
+    {
+      "list_id": 3
+    }
+  ],
+  "favourites": [
+    {
+      "song_id": 12
+    },
+    {
+      "album_id": 2
+    },
+    {
+      "song_id": 10
+    }
+  ],
+  "follows": [
+    {
+      "artist_id": 1
+    },
+    {
+      "artist_id": 3
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a0"
+  },
+  "user_id": 2,
+  "email": "email@otroUsuario.com",
+  "password": "00000000",
+  "name": "otroUsuario",
+  "birthDate": {
+    "$date": "1991-12-20T00:00:00Z"
+  },
+  "sex": "M",
+  "country": "España",
+  "cp": "08035",
+  "subscriber": "premium",
+  "subscription": {
+    "subs_id": 1,
+    "regDate": {
+      "$date": "2022-01-09T20:23:37.096Z"
+    },
+    "renewDate": {
+      "$date": "2023-01-09T00:00:00Z"
+    },
+    "payment_mode": {
+      "paypal_id": 1,
+      "paypal": "nombreDeUsuarioEnPayPal"
+    },
+    "payments": {
+      "order_id": 1,
+      "date": {
+        "$date": "2022-01-09T20:23:37.100Z"
+      },
+      "amount": 20
+    }
+  },
+  "playlists": [
+    {
+      "list_id": 2
+    }
+  ],
+  "favourites": [
+    {
+      "album_id": 1
+    },
+    {
+      "song_id": 1
+    },
+    {
+      "album_id": 2
+    },
+    {
+      "song_id": 10
+    }
+  ],
+  "follows": [
+    {
+      "artist_id": 1
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a1"
+  },
+  "user_id": 3,
+  "email": "email@tercerUsuario.com",
+  "password": "11111111",
+  "name": "tercerUsuario",
+  "birthDate": {
+    "$date": "1987-02-05T00:00:00Z"
+  },
+  "sex": "H",
+  "country": "España",
+  "cp": "08004",
+  "subscriber": "premium",
+  "subscription": {
+    "subs_id": 2,
+    "regDate": {
+      "$date": "2022-01-09T20:23:37.104Z"
+    },
+    "renewDate": {
+      "$date": "2023-01-09T00:00:00Z"
+    },
+    "payment_mode": {
+      "cc_id": 1,
+      "IBAN": "ES000000000000000000000",
+      "month": "01",
+      "year": "2020",
+      "cv": "000"
+    },
+    "payments": {
+      "order_id": 2,
+      "date": {
+        "$date": "2022-01-09T20:23:37.108Z"
+      },
+      "amount": 20
+    }
+  },
+  "playlists": [],
+  "favourites": [],
+  "follows": [
+    {
+      "artist_id": 1
+    },
+    {
+      "artist_id": 2
+    },
+    {
+      "artist_id": 3
+    }
+  ]
+}]

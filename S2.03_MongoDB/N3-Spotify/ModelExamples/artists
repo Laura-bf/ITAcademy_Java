@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a7"
+  },
+  "artist_id": 1,
+  "name": "nombreDelArtista",
+  "photo": "/path_img_artista.png",
+  "relatedArtists": [
+    {
+      "artist_id": 2
+    }
+  ],
+  "albums": [
+    {
+      "album_id": 1
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a8"
+  },
+  "artist_id": 2,
+  "name": "otroArtista",
+  "photo": "/path_img_artista.png",
+  "relatedArtists": [
+    {
+      "artist_id": 1
+    },
+    {
+      "artist_id": 3
+    }
+  ],
+  "albums": [
+    {
+      "album_id": 3
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61db44492f176671e0df38a9"
+  },
+  "artist_id": 3,
+  "name": "artistaDeLaVida",
+  "photo": "/path_img_artista.png",
+  "relatedArtists": [
+    {
+      "artist_id": 2
+    }
+  ],
+  "albums": [
+    {
+      "album_id": 2
+    }
+  ]
+}]

@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "61daf9af6d769e17d1c7a4b2"
+  },
+  "videoLikes": [
+    {
+      "_id": {
+        "$oid": "61daf7bb2f176671e0df37d7"
+      },
+      "totalLikes": 1
+    },
+    {
+      "_id": {
+        "$oid": "61daf7bb2f176671e0df37d8"
+      },
+      "totalLikes": 2
+    },
+    {
+      "_id": {
+        "$oid": "61daf7bb2f176671e0df37d9"
+      },
+      "totalLikes": 1
+    }
+  ],
+  "videoDislikes": [
+    {
+      "_id": {
+        "$oid": "61daf7bb2f176671e0df37d7"
+      },
+      "totalDislikes": 1
+    },
+    {
+      "_id": {
+        "$oid": "61daf7bb2f176671e0df37d8"
+      },
+      "totalDislikes": 2
+    },
+    {
+      "_id": {
+        "$oid": "61daf7bb2f176671e0df37d9"
+      },
+      "totalDislikes": 1
+    }
+  ]
+}]

@@ -1,0 +1,243 @@
+[{
+  "_id": {
+    "$oid": "61daf7bb2f176671e0df37d7"
+  },
+  "emailUsuario": "email@usuario.com",
+  "publicado": {
+    "$date": "2022-01-09T14:56:59.734Z"
+  },
+  "titulo": "tituloVideo",
+  "descripcion": "aquí descripción video",
+  "size": 1000,
+  "archivo": "nombreArchivoVideo",
+  "duracion": 120,
+  "thumbnail": "ruta a thumbnail",
+  "reproducciones": 10,
+  "estado": "publico",
+  "likes": [
+    {
+      "email": "email@usuario.com",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      }
+    }
+  ],
+  "dislikes": [
+    {
+      "email": "email@otroUsuario.com",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      }
+    }
+  ],
+  "tags": [
+    {
+      "tag_id": {
+        "$oid": "61daf7bb2f176671e0df37cd"
+      },
+      "tag": "etiqueta1"
+    },
+    {
+      "tag_id": {
+        "$oid": "61daf7bb2f176671e0df37ce"
+      },
+      "tag": "etiqueta2"
+    }
+  ],
+  "comentarios": [
+    {
+      "comment_id": {
+        "$oid": "61daf7bb2f176671e0df37cf"
+      },
+      "emailUsuario": "email@otroUsuario.com",
+      "texto": "aquí un comentario de otroUsuario",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      },
+      "likes": [
+        {
+          "email": "email@usuario.com",
+          "date": {
+            "$date": "2022-01-09T14:56:59.734Z"
+          }
+        }
+      ],
+      "dislikes": [
+        {
+          "email": "email@tercerUsuario.com",
+          "date": {
+            "$date": "2022-01-09T14:56:59.734Z"
+          }
+        }
+      ]
+    },
+    {
+      "comment_id": {
+        "$oid": "61daf7bb2f176671e0df37d0"
+      },
+      "emailUsuario": "email@usuario.com",
+      "texto": "aquí respuesta de usuario",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      },
+      "likes": [
+        {
+          "email": "email@otroUsuario",
+          "date": {
+            "$date": "2022-01-09T14:56:59.734Z"
+          }
+        }
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61daf7bb2f176671e0df37d8"
+  },
+  "emailUsuario": "email@tercerUsuario.com",
+  "publicado": {
+    "$date": "2022-01-09T14:56:59.734Z"
+  },
+  "titulo": "tituloOtroVideo",
+  "descripcion": "aquí descripción video",
+  "size": 840,
+  "archivo": "nombreArchivoOtroVideo",
+  "duracion": 60,
+  "thumbnail": "ruta a thumbnail",
+  "reproducciones": 8,
+  "estado": "publico",
+  "likes": [
+    {
+      "email": "email@usuario.com",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      }
+    },
+    {
+      "email": "email@otroUsuario.com",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      }
+    }
+  ],
+  "tags": [
+    {
+      "tag_id": {
+        "$oid": "61daf7bb2f176671e0df37d1"
+      },
+      "tag": "etiqueta3"
+    }
+  ],
+  "comentarios": [
+    {
+      "comment_id": {
+        "$oid": "61daf7bb2f176671e0df37d2"
+      },
+      "emailUsuario": "email@usuario.com",
+      "texto": "aquí comentario de usuario",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      },
+      "likes": [
+        {
+          "email": "email@otroUsuario",
+          "date": {
+            "$date": "2022-01-09T14:56:59.734Z"
+          }
+        }
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61daf7bb2f176671e0df37d9"
+  },
+  "emailUsuario": "email@otroUsuario.com",
+  "publicado": {
+    "$date": "2022-01-09T14:56:59.734Z"
+  },
+  "titulo": "tituloTercerVideo",
+  "descripcion": "aquí descripción video",
+  "size": 400,
+  "archivo": "nombreArchivoTercerVideo",
+  "duracion": 45,
+  "thumbnail": "ruta a thumbnail",
+  "reproducciones": 2,
+  "estado": "privado",
+  "likes": [
+    {
+      "email": "email@usuario.com",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      }
+    }
+  ],
+  "dislikes": [
+    {
+      "email": "email@tercerUsuario.com",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      }
+    }
+  ],
+  "tags": [
+    {
+      "tag_id": {
+        "$oid": "61daf7bb2f176671e0df37d3"
+      },
+      "tag": "etiqueta4"
+    },
+    {
+      "tag_id": {
+        "$oid": "61daf7bb2f176671e0df37d4"
+      },
+      "tag": "etiqueta5"
+    }
+  ],
+  "comentarios": [
+    {
+      "comment_id": {
+        "$oid": "61daf7bb2f176671e0df37d5"
+      },
+      "emailUsuario": "email@tercerUsuario.com",
+      "texto": "aquí un comentario de otroUsuario",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      },
+      "likes": [
+        {
+          "email": "email@usuario.com",
+          "date": {
+            "$date": "2022-01-09T14:56:59.734Z"
+          }
+        }
+      ],
+      "dislikes": [
+        {
+          "email": "email@otroUsuario.com",
+          "date": {
+            "$date": "2022-01-09T14:56:59.734Z"
+          }
+        }
+      ]
+    },
+    {
+      "comment_id": {
+        "$oid": "61daf7bb2f176671e0df37d6"
+      },
+      "emailUsuario": "email@usuario.com",
+      "texto": "aquí respuesta de usuario",
+      "date": {
+        "$date": "2022-01-09T14:56:59.734Z"
+      },
+      "likes": [
+        {
+          "email": "email@otroUsuario",
+          "date": {
+            "$date": "2022-01-09T14:56:59.734Z"
+          }
+        }
+      ]
+    }
+  ]
+}]

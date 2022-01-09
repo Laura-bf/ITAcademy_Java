@@ -1,0 +1,88 @@
+[{
+  "_id": {
+    "$oid": "61daf7bb2f176671e0df37ca"
+  },
+  "email": "email@usuario.com",
+  "password": "012345678",
+  "nombre": "nombreUsuario",
+  "fechaNac": {
+    "$date": "1981-05-20T00:00:00Z"
+  },
+  "sexo": "M",
+  "pais": "España",
+  "cp": "08001",
+  "videos": [
+    "tituloVideo"
+  ],
+  "playlists": [
+    {
+      "list_id": {
+        "$oid": "61daf7bb2f176671e0df37c7"
+      },
+      "email": "email@usuario.com",
+      "nombreLista": "nombrePlaylist",
+      "date": {
+        "$date": "2022-01-09T14:56:59.732Z"
+      },
+      "estado": "publica"
+    }
+  ],
+  "canales": [
+    {
+      "canal_id": {
+        "$oid": "61daf7bb2f176671e0df37c8"
+      },
+      "nombre": "nombreDelCanal",
+      "descripcion": "descripcion del canal",
+      "suscriptores": [
+        "email@OtroUsuario.com",
+        "email@tercerUsuario.com"
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "61daf7bb2f176671e0df37cb"
+  },
+  "email": "email@otroUsuario.com",
+  "password": "00000000",
+  "nombre": "otroUsuario",
+  "fechaNac": {
+    "$date": "1991-12-20T00:00:00Z"
+  },
+  "sexo": "M",
+  "pais": "España",
+  "cp": "08001",
+  "videos": [
+    "tituloTercerVideo"
+  ]
+},{
+  "_id": {
+    "$oid": "61daf7bb2f176671e0df37cc"
+  },
+  "email": "email@tercerUsuario.com",
+  "password": "11111111",
+  "nombre": "tercerUsuario",
+  "fechaNac": {
+    "$date": "1987-02-05T00:00:00Z"
+  },
+  "sexo": "H",
+  "pais": "España",
+  "cp": "08001",
+  "videos": [
+    "tituloOtroVideo"
+  ],
+  "playlists": [
+    {
+      "list_id": {
+        "$oid": "61daf7bb2f176671e0df37c9"
+      },
+      "email": "email@tercerUsuario.com",
+      "nombreLista": "nombreOtraPlaylist",
+      "date": {
+        "$date": "2022-01-09T14:56:59.732Z"
+      },
+      "estado": "privada"
+    }
+  ]
+}]

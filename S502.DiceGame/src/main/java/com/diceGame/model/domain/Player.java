@@ -41,7 +41,10 @@ public class Player {
 	}
 	
 	public Player(String name, String password) {
-		this.name = name;
+		if(!name.equals(""))
+			this.name = name;
+		else
+			throw new IllegalArgumentException("El nombre es un campo obligatorio para poder registrarse");
 		this.password = password;
 		this.registerOn = new Date();
 		this.rollList = new ArrayList<Roll>();

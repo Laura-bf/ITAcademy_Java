@@ -79,4 +79,10 @@ public class Roll {
 			this.isWon = false;
 	}
 
+	@Override
+	public String toString() {
+		return "Roll [valueDice1=" + valueDice1 + ", valueDice2="
+				+ valueDice2 + ", isWon=" + isWon + "]";
+	}
+
 }

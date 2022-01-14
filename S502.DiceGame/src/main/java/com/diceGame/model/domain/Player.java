@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="player")
-public class Player {
+public class Player implements Comparable<Player> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +35,7 @@ public class Player {
 	private Date registerOn;
 	@Column (name = "rate")
 	private Double rate;
-	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Roll> rollList;
 	
 	public Player() {
@@ -107,15 +108,31 @@ public class Player {
 		this.rollList.clear();
 	}
 	
-	public void calculateRate() {
-		double totalWins = 0;
-		double size = this.rollList.size();
-		for (Roll roll : this.rollList) {
-			if(roll.isWon())
-				totalWins+=1;
-		}
-		double result = (totalWins/size)*100;
-		this.rate = result;
-	}
+//	public void calculateRate() {
+//		double totalWins = 0;
+//		double size = this.rollList.size();
+//		for (Roll roll : this.rollList) {
+//			if(roll.isWon())
+//				totalWins+=1;
+//		}
+//		double result = (totalWins/size)*100;
+//		this.rate = result;
+//	}
 
+	@Override
+	public String toString() {
+		return playerId + "\t" + name + "\t" + rate + "%success";
+	}
+	//para ordenar los jugadores según su rate de mayor a menor
+	@Override
+    public int compareTo(Player player){
+        if(player.getRate()>this.rate){
+            return 1;
+        }else if(player.getRate()==this.rate){
+            return 0;
+        }else{
+            return -1;
+        }
+    }
+	
 }

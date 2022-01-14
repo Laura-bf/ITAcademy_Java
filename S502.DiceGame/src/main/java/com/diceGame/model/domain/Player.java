@@ -42,10 +42,15 @@ public class Player implements Comparable<Player> {
 	}
 	
 	public Player(String name, String password) {
-		if(!name.equals(""))
-			this.name = name;
-		else
-			throw new IllegalArgumentException("El nombre es un campo obligatorio para poder registrarse");
+//		if(!name.equals(""))
+//			this.name = name;
+//		else
+//			throw new IllegalArgumentException("El nombre es un campo obligatorio para poder registrarse");
+//		if(this.checkPasswordFormat(password))
+//				this.password = password;
+//		else 
+//			throw new IllegalArgumentException("Contraseña requiere:\n-Entre 8 y 15 caracteres con al menos un dígito,una mayúscula,una minúscula y un caracter especial.No admite espacios en blanco");
+		this.name = name;
 		this.password = password;
 		this.registerOn = new Date();
 		this.rollList = new ArrayList<Roll>();
@@ -135,4 +140,13 @@ public class Player implements Comparable<Player> {
         }
     }
 	
+//	private boolean checkPasswordFormat(String password) {
+//		final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,15}$";
+//
+//	    final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+//	    
+//	    Matcher matcher = pattern.matcher(password);
+//	        
+//	    return matcher.matches();
+//	}
 }

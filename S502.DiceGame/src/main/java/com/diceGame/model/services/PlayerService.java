@@ -10,8 +10,11 @@ import com.diceGame.model.domain.Roll;
 @Service
 public interface PlayerService {
 	
-	boolean checkNameExists(String name);
+//	boolean checkNameExists(String name);
+//	void checkPasswordFormat(String password);
+	
 	void addPlayer(Player player);
+	void addRegisteredPlayer(String name, String password);
 	Player getPlayerById(Integer id);
 	Player getPlayerByName(String name);
 	List<Player> getAllPlayers();

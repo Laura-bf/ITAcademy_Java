@@ -29,22 +29,76 @@ class PlayerServiceImplTest {
 	@Autowired
 	PlayerRepository playerRepository;
 	
+//	@Test
+//	final void checkNameThatExists_returnTRUE() {
+//		playerRepository.save(new Player("test", "Aa123456!"));
+//		assertTrue(playerService.checkNameExists("test"));
+//	}
+//	@Test
+//	final void checkNameThatNOTExists_returnFALSE() {
+//		playerRepository.save(new Player("test", "Aa123456!"));
+//		assertFalse(playerService.checkNameExists("noName"));
+//	}
+//	@Test
+//	final void checkEMPTYName_returnIllegalArgumentException() {
+//		playerRepository.save(new Player("test", "Aa123456!"));
+//		try {
+//			playerService.checkNameExists("");
+//			fail("Exception Expected!");
+//		} catch(IllegalArgumentException e) {
+//			assertThat(IllegalArgumentException.class.equals(e.getClass()));
+//			assertThat(e.getMessage().equals("Es necesario indicar un nombre"));
+//		}catch(Exception e) {
+//			fail("wrong exception thrown");
+//		}
+//	}
+
 	@Test
-	final void checkNameThatExists_returnTRUE() {
-		playerRepository.save(new Player("test", "pw"));
-		assertTrue(playerService.checkNameExists("test"));
+	final void addPlayer() {
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
+		int totalPlayers = 2;
+		
+		Player added = new Player("added","Aa123456!");
+		playerService.addPlayer(added);
+		long result = playerRepository.count();
+		
+		assertTrue(result==totalPlayers+1);
 	}
 	@Test
-	final void checkNameThatNOTExists_returnFALSE() {
-		playerRepository.save(new Player("test", "pw"));
-		assertFalse(playerService.checkNameExists("noName"));
+	final void addRegisteredPlayer_NameOK_PwOK() {
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
+		int totalPlayers = 2;
+
+		playerService.addRegisteredPlayer("added","Aa123456!");
+		long result = playerRepository.count();
+		
+		assertTrue(result==totalPlayers+1);
 	}
 	@Test
-	final void checkEMPTYName_returnIllegalArgumentException() {
-		playerRepository.save(new Player("test", "pw"));
+	final void addRegisteredPlayer_NameExists_throwsIllegalArgumentException() {
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
+		
 		try {
-			playerService.checkNameExists("");
-			fail("Exception Expected!");
+			playerService.addRegisteredPlayer("test","Aa!000000");
+			fail("Exception expected!");
+		} catch(IllegalArgumentException e) {
+			assertThat(IllegalArgumentException.class.equals(e.getClass()));
+			assertThat(e.getMessage().equals("Este nombre ya está registrado"));
+		}catch(Exception e) {
+			fail("wrong exception thrown");
+		}
+	}
+	@Test
+	final void addRegisteredPlayer_EmptyName_IllegalArgumentException() {
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
+		
+		try {
+			playerService.addRegisteredPlayer("","Aa123456!");
+			fail("Exception expected!");
 		} catch(IllegalArgumentException e) {
 			assertThat(IllegalArgumentException.class.equals(e.getClass()));
 			assertThat(e.getMessage().equals("Es necesario indicar un nombre"));
@@ -53,23 +107,32 @@ class PlayerServiceImplTest {
 		}
 	}
 	@Test
-	final void addPlayer() {
-		playerRepository.save(new Player("test", "pw"));
-		playerRepository.save(new Player("test2", "pw"));
-		int totalPlayers = 2;
+	final void addRegisteredPlayer_WrongFormatPW_throwsIllegalArgumentException() {
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
 		
-		Player added = new Player("added","pw");
-		playerService.addPlayer(added);
-		long result = playerRepository.count();
-		
-		assertTrue(result==totalPlayers+1);
+		try {
+			playerService.addRegisteredPlayer("test3","Aa3456!");//<8char
+			playerService.addRegisteredPlayer("test4","Aa123456789123456!");//>15char
+			playerService.addRegisteredPlayer("test5","Aaaaaaaa!");//No digit
+			playerService.addRegisteredPlayer("test6","aa123456!");//No capital letter
+			playerService.addRegisteredPlayer("test7","AA123456!");//No lowercase letter
+			playerService.addRegisteredPlayer("test8","Aa123456");//No special char
+			fail("Exception expected!");
+		} catch(IllegalArgumentException e) {
+			assertThat(IllegalArgumentException.class.equals(e.getClass()));
+			assertThat(e.getMessage().equals("Contraseña requiere:\n-Entre 8 y 15 caracteres con al menos un dígito,una mayúscula,una minúscula y un caracter especial.No admite espacios en blanco"));
+		}catch(Exception e) {
+			fail("wrong exception thrown");
+		}
 	}
+
 	@Test
 	final void getPlayerByIdThatExists_returnPlayer() {
-		playerRepository.save(new Player("test", "pw"));
-		playerRepository.save(new Player("test2", "pw"));
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
 		
-		Player test = new Player("test3","pw");
+		Player test = new Player("test3","Aa123456!");
 		playerRepository.save(test);
 		Integer id = test.getPlayerId();
 		
@@ -77,8 +140,8 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getPlayerByIdThatNOTExists_returnNoSuchElementException() {
-		playerRepository.save(new Player("test", "pw"));
-		playerRepository.save(new Player("test2", "pw"));
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
 		try {
 			playerService.getPlayerById(3);
 			fail("Exception Expected!");
@@ -91,9 +154,9 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getPlayerByNameThatExists_returnPlayer() {
-		playerRepository.save(new Player("test", "pw"));
-		playerRepository.save(new Player("test2", "pw"));
-		Player test = new Player("test3","pw");
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
+		Player test = new Player("test3","Aa123456!");
 		playerRepository.save(test);
 		String name = "test3";
 	
@@ -101,8 +164,8 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getPlayerByNameThatNOTExists_returnNoSuchElementException() {
-		playerRepository.save(new Player("test", "pw"));
-		playerRepository.save(new Player("test2", "pw"));
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
 		try {
 			playerService.getPlayerByName("noName");
 			fail("Exception Expected!");
@@ -115,8 +178,8 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getPlayerByEMPTYName_returnIllegalArgumentException() {
-		playerRepository.save(new Player("test", "pw"));
-		playerRepository.save(new Player("test2", "pw"));
+		playerRepository.save(new Player("test", "Aa123456!"));
+		playerRepository.save(new Player("test2", "Aa123456!"));
 		try {
 			playerService.getPlayerByName("");
 			fail("Exception Expected!");
@@ -129,8 +192,8 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getAllPlayers() {
-		Player test1 = new Player("test1", "pw");
-		Player test2 = new Player("test2", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
+		Player test2 = new Player("test2", "Aa123456!");
 		playerRepository.save(test1);
 		playerRepository.save(test2);
 		List<Player> expectedList = new ArrayList<Player>();
@@ -142,7 +205,7 @@ class PlayerServiceImplTest {
 	
 	@Test
 	final void setAnonymousPlayer() {
-		Player test1 = new Player("test1", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
 		playerRepository.save(test1);
 		Integer id = test1.getPlayerId();
 		String oldName = "test1";
@@ -156,11 +219,11 @@ class PlayerServiceImplTest {
 	
 	@Test
 	final void addRoll() {
-		Player test1 = new Player("test1", "pw");
-		Player test2 = new Player("test2", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
+		Player test2 = new Player("test2", "Aa123456!");
 		playerRepository.save(test1);
 		playerRepository.save(test2);
-		Player test = new Player("test","pw");
+		Player test = new Player("test","Aa123456!");
 		playerRepository.save(test);
 		Integer id = test.getPlayerId();
 		
@@ -175,7 +238,7 @@ class PlayerServiceImplTest {
 	
 	@Test
 	final void getAllRolls() {
-		Player test1 = new Player("test1", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
 		Roll roll1 = new Roll();
 		Roll roll2 = new Roll();
 		roll1.playRoll();
@@ -185,7 +248,7 @@ class PlayerServiceImplTest {
 		test1.addRoll(roll1);
 		test1.addRoll(roll2);
 		playerRepository.save(test1);
-		Player test2 = new Player("test2", "pw");
+		Player test2 = new Player("test2", "Aa123456!");
 		playerRepository.save(test2);
 		
 		Integer id = test1.getPlayerId();
@@ -196,7 +259,7 @@ class PlayerServiceImplTest {
 	
 	@Test
 	final void deleteAllRolls() {
-		Player test1 = new Player("test1", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
 		Roll roll1 = new Roll();
 		Roll roll2 = new Roll();
 		roll1.playRoll();
@@ -206,7 +269,7 @@ class PlayerServiceImplTest {
 		test1.addRoll(roll1);
 		test1.addRoll(roll2);
 		playerRepository.save(test1);
-		Player test2 = new Player("test2", "pw");
+		Player test2 = new Player("test2", "Aa123456!");
 		playerRepository.save(test2);
 		Integer id = test1.getPlayerId();
 		int initialSize = test1.getRollList().size();
@@ -219,8 +282,8 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getLoserPlayer_OneLoser() {
-		Player test1 = new Player("test1", "pw");
-		Player test2 = new Player("test2", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
+		Player test2 = new Player("test2", "Aa123456!");
 		test1.setRate(90d);
 		test2.setRate(40d);
 		playerRepository.save(test1);
@@ -232,9 +295,9 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getLoserPlayer_ManyLosers() {
-		Player test1 = new Player("test1", "pw");
-		Player test2 = new Player("test2", "pw");
-		Player test3 = new Player("test3", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
+		Player test2 = new Player("test2", "Aa123456!");
+		Player test3 = new Player("test3", "Aa123456!");
 		test1.setRate(90d);
 		test2.setRate(40d);
 		test3.setRate(40d);
@@ -249,8 +312,8 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getWinnerPlayer_OneWinner() {
-		Player test1 = new Player("test1", "pw");
-		Player test2 = new Player("test2", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
+		Player test2 = new Player("test2", "Aa123456!");
 		test1.setRate(90d);
 		test2.setRate(40d);
 		playerRepository.save(test1);
@@ -262,9 +325,9 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getWinnerPlayer_ManyWinners() {
-		Player test1 = new Player("test1", "pw");
-		Player test2 = new Player("test2", "pw");
-		Player test3 = new Player("test3", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
+		Player test2 = new Player("test2", "Aa123456!");
+		Player test3 = new Player("test3", "Aa123456!");
 		test1.setRate(90d);
 		test2.setRate(90d);
 		test3.setRate(40d);
@@ -280,7 +343,7 @@ class PlayerServiceImplTest {
 	
 	@Test
 	final void getPlayersRanking() {
-		Player test1 = new Player("test1", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
 		Roll roll1 = new Roll();
 		Roll roll2 = new Roll();
 		roll1.playRoll();
@@ -291,7 +354,7 @@ class PlayerServiceImplTest {
 		test1.addRoll(roll2);
 		playerRepository.save(test1);
 		
-		Player test2 = new Player("test2", "pw");
+		Player test2 = new Player("test2", "Aa123456!");
 		Roll roll3 = new Roll();
 		Roll roll4 = new Roll();
 		roll3.playRoll();
@@ -310,9 +373,9 @@ class PlayerServiceImplTest {
 	}
 	@Test
 	final void getAllPlayersSortedByRate() {
-		Player test1 = new Player("test1", "pw");
-		Player test2 = new Player("test2", "pw");
-		Player test3 = new Player("test3", "pw");
+		Player test1 = new Player("test1", "Aa123456!");
+		Player test2 = new Player("test2", "Aa123456!");
+		Player test3 = new Player("test3", "Aa123456!");
 		test1.setRate(10d);
 		test2.setRate(90d);
 		test3.setRate(40d);

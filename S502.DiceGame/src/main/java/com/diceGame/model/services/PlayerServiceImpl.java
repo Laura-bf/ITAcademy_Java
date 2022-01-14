@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,7 @@ public class PlayerServiceImpl implements PlayerService{
 	@Autowired
 	PlayerRepository playerRepository;
 
-	@Override
-	public boolean checkNameExists(String name) {
+	private boolean checkNameExists(String name) {
 		if(name.equals(""))
 			throw new IllegalArgumentException("Es necesario indicar un nombre");
 		if(playerRepository.findByName(name)==null)
@@ -28,11 +29,28 @@ public class PlayerServiceImpl implements PlayerService{
 		else
 			return true;
 	}
+	private void checkPasswordFormat(String password) {
+		final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,15}$";
+	    final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+	    Matcher matcher = pattern.matcher(password);
+	    if(!matcher.matches())   
+	    	throw new IllegalArgumentException("Contraseña requiere:\n-Entre 8 y 15 caracteres con al menos un dígito,una mayúscula,una minúscula y un caracter especial.No admite espacios en blanco");
+	}
 
 	@Override
 	public void addPlayer(Player player) {
-		playerRepository.save(player);
-		
+		playerRepository.save(player);	
+	}
+	@Override
+	public void addRegisteredPlayer(String name, String password) {
+		Player player = null;
+		this.checkPasswordFormat(password);
+		if(checkNameExists(name))
+			throw new IllegalArgumentException("Este nombre ya está registrado");
+		else {
+			player = new Player(name,password);
+			playerRepository.save(player);
+		}
 	}
 
 	@Override
@@ -137,4 +155,5 @@ public class PlayerServiceImpl implements PlayerService{
 		double result = (totalWins/size)*100;
 		player.setRate(result);
 	}
+
 }

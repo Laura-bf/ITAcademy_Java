@@ -5,6 +5,7 @@ package com.diceGame.model.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Entity
 @Table(name="player")
 public class Player implements Comparable<Player> {
@@ -28,7 +32,7 @@ public class Player implements Comparable<Player> {
 	private Integer playerId;
 	@Column(name = "name", length = 15, nullable = false, unique = true)
 	private String name;
-	@Column(name = "password", length = 10, nullable = false)
+	@Column(name = "password", nullable = false)
 	private String password;
 	@Column (name = "registerOn")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -42,15 +46,15 @@ public class Player implements Comparable<Player> {
 	}
 	
 	public Player(String name, String password) {
-//		if(!name.equals(""))
-//			this.name = name;
-//		else
-//			throw new IllegalArgumentException("El nombre es un campo obligatorio para poder registrarse");
-//		if(this.checkPasswordFormat(password))
-//				this.password = password;
-//		else 
-//			throw new IllegalArgumentException("Contraseña requiere:\n-Entre 8 y 15 caracteres con al menos un dígito,una mayúscula,una minúscula y un caracter especial.No admite espacios en blanco");
-		this.name = name;
+		if(!name.equals(""))
+			this.name = name;
+		else
+			throw new IllegalArgumentException("El nombre es un campo obligatorio para poder registrarse");
+		if(this.checkPasswordFormat(password))
+				this.password = password;
+		else 
+			throw new IllegalArgumentException("Contraseña requiere:\n-Entre 8 y 15 caracteres con al menos un dígito,una mayúscula,una minúscula y un caracter especial.No admite espacios en blanco");
+
 		this.password = password;
 		this.registerOn = new Date();
 		this.rollList = new ArrayList<Roll>();
@@ -69,6 +73,13 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void setName(String name) {
+		this.name = name;
+	}
+	public String getVisibleName() {
+		return name;
+	}
+
+	public void setVisibleName(String name) {
 		this.name = name;
 	}
 
@@ -106,7 +117,6 @@ public class Player implements Comparable<Player> {
 
 	public void addRoll(Roll roll) {
 		this.rollList.add(roll);
-		roll.setPlayer(this);
 	}
 	
 	public void deleteAllRollsFromList() {
@@ -140,13 +150,14 @@ public class Player implements Comparable<Player> {
         }
     }
 	
-//	private boolean checkPasswordFormat(String password) {
-//		final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,15}$";
-//
-//	    final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-//	    
-//	    Matcher matcher = pattern.matcher(password);
-//	        
-//	    return matcher.matches();
-//	}
+	private boolean checkPasswordFormat(String password) {
+		final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,15}$";
+
+	    final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+	    
+	    Matcher matcher = pattern.matcher(password);
+	        
+	    return matcher.matches();
+	}
+	
 }

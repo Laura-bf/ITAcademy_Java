@@ -39,7 +39,11 @@ public class PlayerServiceImpl implements PlayerService{
 
 	@Override
 	public void addPlayer(Player player) {
-		playerRepository.save(player);	
+		this.checkPasswordFormat(player.getPassword());
+		if(checkNameExists(player.getName()))
+			throw new IllegalArgumentException("Este nombre ya está registrado");
+		else
+			playerRepository.save(player);
 	}
 	@Override
 	public void addRegisteredPlayer(String name, String password) {
@@ -80,6 +84,21 @@ public class PlayerServiceImpl implements PlayerService{
 	public void setAnonymousPlayer(Integer playerId) {
 		Player player = playerRepository.findById(playerId).get();
 		player.setName("Anonymous");
+		playerRepository.save(player);
+	}
+	@Override
+	public void setAnonymousPlayer(Player player) {
+		player.setName("Anonymous");
+		playerRepository.save(player);
+	}
+	
+	@Override
+	public void playRoll(Integer playerId) {
+		Player player = playerRepository.findById(playerId).get();
+		Roll roll = new Roll(player);
+		roll.playRoll();
+		player.addRoll(roll);
+		this.calculateRate(player);
 		playerRepository.save(player);
 	}
 
@@ -148,11 +167,13 @@ public class PlayerServiceImpl implements PlayerService{
 		List<Roll> rollList = player.getRollList();
 		double totalWins = 0;
 		double size = rollList.size();
+		double result = 0;
 		for (Roll roll : rollList) {
 			if(roll.isWon())
 				totalWins+=1;
 		}
-		double result = (totalWins/size)*100;
+		if(totalWins!=0)
+			result = (totalWins/size)*100;
 		player.setRate(result);
 	}
 

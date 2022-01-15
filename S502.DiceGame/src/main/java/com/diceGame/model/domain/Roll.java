@@ -2,6 +2,7 @@ package com.diceGame.model.domain;
 
 import java.util.Random;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Roll {
 	@Column(name = "rollId")
 	private Integer rollId;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "playerId")
 	private Player player;
 	

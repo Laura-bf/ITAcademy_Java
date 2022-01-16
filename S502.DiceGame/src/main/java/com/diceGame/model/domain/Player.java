@@ -1,11 +1,10 @@
 package com.diceGame.model.domain;
 
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,9 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Entity
 @Table(name="player")
@@ -39,7 +35,8 @@ public class Player implements Comparable<Player> {
 	private Date registerOn;
 	@Column (name = "rate")
 	private Double rate;
-	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
+	@Column (name = "rolls")
 	private List<Roll> rollList;
 	
 	public Player() {
@@ -73,13 +70,6 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void setName(String name) {
-		this.name = name;
-	}
-	public String getVisibleName() {
-		return name;
-	}
-
-	public void setVisibleName(String name) {
 		this.name = name;
 	}
 

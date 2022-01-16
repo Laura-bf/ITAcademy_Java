@@ -95,7 +95,8 @@ public class PlayerServiceImpl implements PlayerService{
 	@Override
 	public void playRoll(Integer playerId) {
 		Player player = playerRepository.findById(playerId).get();
-		Roll roll = new Roll(player);
+//		Roll roll = new Roll(player);
+		Roll roll = new Roll();
 		roll.playRoll();
 		player.addRoll(roll);
 		this.calculateRate(player);

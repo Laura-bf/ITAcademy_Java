@@ -2,7 +2,6 @@ package com.diceGame.model.domain;
 
 import java.util.Random;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,16 +11,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Entity
+@Transactional
 @Table(name = "rolls")
 public class Roll {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "rollId")
 	private Integer rollId;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "playerId")
+	@ManyToOne
+	@JoinColumn(name = "player")
 	private Player player;
 	
 	@Column(name = "dice1")
@@ -30,13 +32,10 @@ public class Roll {
 	@Column(name = "dice2")
 	private Integer valueDice2;
 	
+	@Column(name = "isWon")
 	private boolean isWon;
 
 	public Roll() {
-	}
-	
-	public Roll(Player player) {
-		this.player = player;
 	}
 	
 	public Player getPlayer() {

@@ -29,7 +29,7 @@ public interface PlayerService {
 	List<Roll> getAllRolls(Integer playerId);
 	void deleteAllRolls(Integer playerId);
 	
-	Double getPlayersRanking();
+	double getPlayersRanking();
 	List<Player> getAllPlayersSortedByRate();
 	List<Player> getLoserPlayer();
 	List<Player> getWinnerPlayer();

@@ -365,9 +365,9 @@ class PlayerServiceImplTest {
 		test2.addRoll(roll4);
 		playerRepository.save(test2);
 		
-		Double rankingExpected = (3/4)*100d;
+		double rankingExpected = 75d;
 		
-		Double result = playerService.getPlayersRanking();
+		double result = playerService.getPlayersRanking();
 		
 		assertEquals(rankingExpected, result);
 	}

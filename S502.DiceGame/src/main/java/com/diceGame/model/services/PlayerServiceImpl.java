@@ -155,13 +155,23 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 
 	@Override
-	public Double getPlayersRanking() {
+	public double getPlayersRanking() {
 		List<Player> allPlayers = playerRepository.findAll();
-		long totalWon = allPlayers.stream().map(p -> p.getRollList().stream().filter(r -> r.isWon())).count();
-		long totalLost = allPlayers.stream().map(p -> p.getRollList().stream().filter(r -> !r.isWon())).count();
-		long totalRolls = totalWon+totalLost;
+		List<List<Roll>> allRollLists = allPlayers.stream().map(p -> p.getRollList()).collect(Collectors.toList());
 		
-		return (totalWon/totalRolls)*100d;
+		int winsCounter = 0;
+		int rollsCounter = 0;
+		
+		for(List<Roll> l : allRollLists) {
+			for(Roll r : l) {
+				rollsCounter++;
+				if(r.isWon())
+					winsCounter++;
+			}
+		}
+		double rate = (double) winsCounter/rollsCounter;
+		
+		return rate*100;
 	}
 	
 	private void calculateRate(Player player) {

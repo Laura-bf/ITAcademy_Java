@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,7 +22,6 @@ public class Roll {
 	private Integer rollId;
 	
 	@ManyToOne
-	@JoinColumn(name = "player")
 	private Player player;
 	
 	@Column(name = "dice1")
@@ -32,8 +30,8 @@ public class Roll {
 	@Column(name = "dice2")
 	private Integer valueDice2;
 	
-	@Column(name = "isWon")
-	private boolean isWon;
+	@Column(name = "won")
+	private boolean won;
 
 	public Roll() {
 	}
@@ -63,26 +61,26 @@ public class Roll {
 	}
 
 	public boolean isWon() {
-		return isWon;
+		return won;
 	}
 
-	public void setWon(boolean isWon) {
-		this.isWon = isWon;
+	public void setWon(boolean won) {
+		this.won = won;
 	}
 
 	public void playRoll(){
 		this.valueDice1 = new Random().nextInt(6)+1;
 		this.valueDice2 = new Random().nextInt(6)+1;
 		if(this.valueDice1+this.valueDice2==7) 
-			this.isWon = true;
+			this.won = true;
 		else 
-			this.isWon = false;
+			this.won = false;
 	}
 
 	@Override
 	public String toString() {
 		return "Roll [valueDice1=" + valueDice1 + ", valueDice2="
-				+ valueDice2 + ", isWon=" + isWon + "]";
+				+ valueDice2 + ", isWon=" + won + "]";
 	}
 
 }

@@ -17,12 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Table(name = "rolls")
 public class Roll {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "rollId")
 	private Integer rollId;
 	
-	@ManyToOne
-	private Player player;
+//	@ManyToOne
+//	private Player player;
 	
 	@Column(name = "dice1")
 	private Integer valueDice1;
@@ -36,13 +36,13 @@ public class Roll {
 	public Roll() {
 	}
 	
-	public Player getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
+//	public Player getPlayer() {
+//		return player;
+//	}
+//
+//	public void setPlayer(Player player) {
+//		this.player = player;
+//	}
 
 	public Integer getValueDice1() {
 		return valueDice1;

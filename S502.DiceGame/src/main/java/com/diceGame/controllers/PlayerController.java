@@ -64,7 +64,7 @@ public class PlayerController {
 	}
 	
 	@DeleteMapping("/{id}/rolls") 
-	public ResponseEntity<?> deleteRolls(@PathVariable(name="playerId") Integer playerId) {
+	public ResponseEntity<?> deleteRolls(@PathVariable(name="id") Integer playerId) {
 
 		ResponseEntity<?> result = null;
 		try {
@@ -87,7 +87,7 @@ public class PlayerController {
 		return result;
 	}
 	@GetMapping("/{id}/rolls")
-	public ResponseEntity<?> getAllPlayerRolls(@PathVariable(name="playerId") Integer playerId) {
+	public ResponseEntity<?> getAllPlayerRolls(@PathVariable(name="id") Integer playerId) {
 
 		ResponseEntity<?> result = null;
 		try {

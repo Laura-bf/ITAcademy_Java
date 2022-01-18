@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="player")
-public class Player implements Comparable<Player> {
+public final class Player implements Comparable<Player> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +32,16 @@ public class Player implements Comparable<Player> {
 	private String password;
 	@Column (name = "registerOn")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date registerOn;
+	private final Date registerOn;
 	@Column (name = "rate")
 	private Double rate;
-	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
+//	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@Column (name = "rolls")
 	private List<Roll> rollList;
 	
 	public Player() {
+		this.registerOn = new Date();
 	}
 	
 	public Player(String name, String password) {
@@ -85,9 +87,9 @@ public class Player implements Comparable<Player> {
 		return registerOn;
 	}
 
-	public void setRegisterOn(Date registerOn) {
-		this.registerOn = registerOn;
-	}
+//	public void setRegisterOn(Date registerOn) {
+//		this.registerOn = registerOn;
+//	}
 
 	public Double getRate() {
 		return rate;
@@ -101,9 +103,9 @@ public class Player implements Comparable<Player> {
 		return rollList;
 	}
 
-	public void setRollList(List<Roll> rollList) {
-		this.rollList = rollList;
-	}
+//	public void setRollList(List<Roll> rollList) {
+//		this.rollList = rollList;
+//	}
 
 	public void addRoll(Roll roll) {
 		this.rollList.add(roll);

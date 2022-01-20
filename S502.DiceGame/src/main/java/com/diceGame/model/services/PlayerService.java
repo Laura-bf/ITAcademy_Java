@@ -10,9 +10,6 @@ import com.diceGame.model.domain.Roll;
 @Service
 public interface PlayerService {
 	
-//	boolean checkNameExists(String name);
-//	void checkPasswordFormat(String password);
-	
 	void addPlayer(Player player);
 	void addRegisteredPlayer(String name, String password);
 	
@@ -25,7 +22,6 @@ public interface PlayerService {
 	
 	void playRoll(Integer playerId);
 	
-	void addRoll(Integer playerId, Roll roll);
 	List<Roll> getAllRolls(Integer playerId);
 	void deleteAllRolls(Integer playerId);
 	

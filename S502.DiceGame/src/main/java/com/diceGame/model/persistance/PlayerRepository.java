@@ -1,4 +1,4 @@
-package com.diceGame.model.repositories;
+package com.diceGame.model.persistance;
 
 import java.util.Optional;
 

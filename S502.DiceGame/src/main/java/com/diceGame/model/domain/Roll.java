@@ -2,47 +2,25 @@ package com.diceGame.model.domain;
 
 import java.util.Random;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Transactional
-@Table(name = "rolls")
 public class Roll {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "rollId")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer rollId;
-	
-//	@ManyToOne
-//	private Player player;
-	
-	@Column(name = "dice1")
 	private Integer valueDice1;
-	
-	@Column(name = "dice2")
 	private Integer valueDice2;
-	
-	@Column(name = "won")
 	private boolean won;
 
 	public Roll() {
 	}
-	
-//	public Player getPlayer() {
-//		return player;
-//	}
-//
-//	public void setPlayer(Player player) {
-//		this.player = player;
-//	}
 
 	public Integer getValueDice1() {
 		return valueDice1;
@@ -82,5 +60,4 @@ public class Roll {
 		return "Roll [valueDice1=" + valueDice1 + ", valueDice2="
 				+ valueDice2 + ", isWon=" + won + "]";
 	}
-
 }

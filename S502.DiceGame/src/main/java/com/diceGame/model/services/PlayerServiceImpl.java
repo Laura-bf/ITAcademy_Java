@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.diceGame.model.domain.Player;
 import com.diceGame.model.domain.Roll;
-import com.diceGame.model.repositories.PlayerRepository;
+import com.diceGame.model.persistance.PlayerRepository;
 
 @Service
 public class PlayerServiceImpl implements PlayerService{
@@ -45,6 +45,7 @@ public class PlayerServiceImpl implements PlayerService{
 		else
 			playerRepository.save(player);
 	}
+	
 	@Override
 	public void addRegisteredPlayer(String name, String password) {
 		Player player = null;
@@ -56,7 +57,7 @@ public class PlayerServiceImpl implements PlayerService{
 			playerRepository.save(player);
 		}
 	}
-
+				
 	@Override
 	public Player getPlayerById(Integer id) {
 		Player player = playerRepository.findById(id).get();
@@ -95,19 +96,7 @@ public class PlayerServiceImpl implements PlayerService{
 	@Override
 	public void playRoll(Integer playerId) {
 		Player player = playerRepository.findById(playerId).get();
-//		Roll roll = new Roll(player);
-		Roll roll = new Roll();
-		roll.playRoll();
-		player.addRoll(roll);
-		this.calculateRate(player);
-		playerRepository.save(player);
-	}
-
-	@Override
-	public void addRoll(Integer playerId, Roll roll) {
-		Player player = playerRepository.findById(playerId).get();
-		player.addRoll(roll);
-		this.calculateRate(player);
+		player.addRoll();
 		playerRepository.save(player);
 	}
 
@@ -120,7 +109,6 @@ public class PlayerServiceImpl implements PlayerService{
 	public void deleteAllRolls(Integer playerId) {
 		Player player = playerRepository.findById(playerId).get();
 		player.deleteAllRollsFromList();
-		this.calculateRate(player);
 		playerRepository.save(player);
 		
 	}
@@ -173,19 +161,4 @@ public class PlayerServiceImpl implements PlayerService{
 		
 		return rate*100;
 	}
-	
-	private void calculateRate(Player player) {
-		List<Roll> rollList = player.getRollList();
-		double totalWins = 0;
-		double size = rollList.size();
-		double result = 0;
-		for (Roll roll : rollList) {
-			if(roll.isWon())
-				totalWins+=1;
-		}
-		if(totalWins!=0)
-			result = (totalWins/size)*100;
-		player.setRate(result);
-	}
-
 }

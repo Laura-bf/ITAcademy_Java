@@ -3,59 +3,42 @@ package com.diceGame.model.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="player")
 public final class Player implements Comparable<Player> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "playerId")
 	private Integer playerId;
-	@Column(name = "name", length = 15, nullable = false, unique = true)
 	private String name;
-	@Column(name = "password", nullable = false)
 	private String password;
-	@Column (name = "registerOn")
 	@Temporal(TemporalType.TIMESTAMP)
 	private final Date registerOn;
-	@Column (name = "rate")
 	private Double rate;
-//	@OneToMany(mappedBy = "player", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@Column (name = "rolls")
 	private List<Roll> rollList;
 	
 	public Player() {
 		this.registerOn = new Date();
+		this.rate = 0d;
+		this.rollList = new ArrayList<Roll>();
 	}
 	
 	public Player(String name, String password) {
-		if(!name.equals(""))
-			this.name = name;
-		else
-			throw new IllegalArgumentException("El nombre es un campo obligatorio para poder registrarse");
-		if(this.checkPasswordFormat(password))
-				this.password = password;
-		else 
-			throw new IllegalArgumentException("Contraseña requiere:\n-Entre 8 y 15 caracteres con al menos un dígito,una mayúscula,una minúscula y un caracter especial.No admite espacios en blanco");
-
+		this.name = name;
 		this.password = password;
 		this.registerOn = new Date();
+		this.rate = 0d;
 		this.rollList = new ArrayList<Roll>();
 	}
 
@@ -87,10 +70,6 @@ public final class Player implements Comparable<Player> {
 		return registerOn;
 	}
 
-//	public void setRegisterOn(Date registerOn) {
-//		this.registerOn = registerOn;
-//	}
-
 	public Double getRate() {
 		return rate;
 	}
@@ -103,28 +82,34 @@ public final class Player implements Comparable<Player> {
 		return rollList;
 	}
 
-//	public void setRollList(List<Roll> rollList) {
-//		this.rollList = rollList;
-//	}
+	public void setRollList(List<Roll> rollList) {
+		this.rollList = rollList;
+	}
 
-	public void addRoll(Roll roll) {
-		this.rollList.add(roll);
+	public void addRoll() {
+		Roll roll = new Roll();
+		roll.playRoll();
+		List<Roll> rollList = this.rollList;
+		rollList.add(roll);
+		this.setRollList(rollList);
+		this.calculateRate();
 	}
 	
 	public void deleteAllRollsFromList() {
 		this.rollList.clear();
+		this.rate = 0d;
 	}
 	
-//	public void calculateRate() {
-//		double totalWins = 0;
-//		double size = this.rollList.size();
-//		for (Roll roll : this.rollList) {
-//			if(roll.isWon())
-//				totalWins+=1;
-//		}
-//		double result = (totalWins/size)*100;
-//		this.rate = result;
-//	}
+	public void calculateRate() {
+		double totalWins = 0;
+		double size = this.rollList.size();
+		for (Roll roll : this.rollList) {
+			if(roll.isWon())
+				totalWins+=1;
+		}
+		double result = (totalWins/size)*100;
+		this.rate = result;
+	}
 
 	@Override
 	public String toString() {
@@ -141,15 +126,4 @@ public final class Player implements Comparable<Player> {
             return -1;
         }
     }
-	
-	private boolean checkPasswordFormat(String password) {
-		final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,15}$";
-
-	    final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-	    
-	    Matcher matcher = pattern.matcher(password);
-	        
-	    return matcher.matches();
-	}
-	
 }

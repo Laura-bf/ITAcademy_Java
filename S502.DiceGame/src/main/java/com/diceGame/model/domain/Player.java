@@ -14,11 +14,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
 @Entity
-public final class Player implements Comparable<Player> {
+@Document(collection = "players")
+public class Player implements Comparable<Player> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@MongoId
 	private Integer playerId;
 	private String name;
 	private String password;
@@ -26,6 +34,7 @@ public final class Player implements Comparable<Player> {
 	private final Date registerOn;
 	private Double rate;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@DocumentReference(lazy = true, collection ="rolls")
 	private List<Roll> rollList;
 	
 	public Player() {

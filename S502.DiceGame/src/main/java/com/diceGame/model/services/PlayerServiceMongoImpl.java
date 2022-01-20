@@ -9,18 +9,20 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.model.DTO.PlayerDTO;
 import com.diceGame.model.domain.Player;
 import com.diceGame.model.domain.Roll;
-import com.diceGame.model.persistance.PlayerRepository;
+import com.diceGame.model.persistance.PlayerMongoRepository;
 
 @Service
-public class PlayerServiceImpl implements PlayerService{
+@Profile("mongodb")
+public class PlayerServiceMongoImpl implements PlayerService {
 	
 	@Autowired
-	PlayerRepository playerRepository;
+	PlayerMongoRepository playerMongoRepository;
 
 	@Override
 	public void addPlayer(PlayerDTO playerDTO) {
@@ -28,12 +30,12 @@ public class PlayerServiceImpl implements PlayerService{
 		if(checkNameExists(playerDTO.getName()))
 			throw new IllegalArgumentException("Este nombre ya está registrado");
 		else
-			playerRepository.save(mapDtoToEntity(playerDTO));
+			playerMongoRepository.save(mapDtoToEntity(playerDTO));
 	}
 				
 	@Override
 	public PlayerDTO getPlayerById(Integer id) {
-		Optional<Player> player = playerRepository.findById(id);
+		Optional<Player> player = playerMongoRepository.findById(id);
 		if(!player.isPresent())
 			throw new NoSuchElementException("No existe ningún jugador con este id");
 		else
@@ -44,7 +46,7 @@ public class PlayerServiceImpl implements PlayerService{
 	public PlayerDTO getPlayerByName(String name) {
 		Player player = null;
 		if(checkNameExists(name))
-			player = playerRepository.findByName(name);
+			player = playerMongoRepository.findByName(name);
 		if(player==null)
 				throw new NoSuchElementException("No existe ningún jugador con este nombre");
 		else
@@ -53,33 +55,33 @@ public class PlayerServiceImpl implements PlayerService{
 
 	@Override
 	public List<PlayerDTO> getAllPlayers() {
-		List<PlayerDTO> dtos = playerRepository.findAll().stream().map(p -> mapEntityToDto(p)).collect(Collectors.toList());
+		List<PlayerDTO> dtos = playerMongoRepository.findAll().stream().map(p -> mapEntityToDto(p)).collect(Collectors.toList());
 		return dtos;
 	}
 
 	@Override
 	public void setAnonymousPlayer(PlayerDTO playerDTO) {
 		playerDTO.setName("Anonymous");
-		playerRepository.save(mapDtoToEntity(playerDTO));
+		playerMongoRepository.save(mapDtoToEntity(playerDTO));
 	}
 	
 	@Override
 	public void playRoll(Integer playerId) {
-		Player player = playerRepository.findById(playerId).get();
+		Player player = playerMongoRepository.findById(playerId).get();
 		player.addRoll();
-		playerRepository.save(player);
+		playerMongoRepository.save(player);
 	}
 
 	@Override
 	public List<Roll> getAllRolls(Integer playerId) {
-		return playerRepository.findById(playerId).get().getRollList();
+		return playerMongoRepository.findById(playerId).get().getRollList();
 	}
 
 	@Override
 	public void deleteAllRolls(Integer playerId) {
-		Player player = playerRepository.findById(playerId).get();
+		Player player = playerMongoRepository.findById(playerId).get();
 		player.deleteAllRollsFromList();
-		playerRepository.save(player);
+		playerMongoRepository.save(player);
 	}
 
 	@Override
@@ -102,14 +104,14 @@ public class PlayerServiceImpl implements PlayerService{
 	
 	@Override
 	public List<PlayerDTO> getAllPlayersSortedByRate() {
-		List<Player> allPlayers = playerRepository.findAll();
+		List<Player> allPlayers = playerMongoRepository.findAll();
 		Collections.sort(allPlayers);
 		return allPlayers.stream().map(p -> mapEntityToDto(p)).collect(Collectors.toList());
 	}
 
 	@Override
 	public double getPlayersRanking() {
-		List<Player> allPlayers = playerRepository.findAll();
+		List<Player> allPlayers = playerMongoRepository.findAll();
 		List<List<Roll>> allRollLists = allPlayers.stream().map(p -> p.getRollList()).collect(Collectors.toList());
 		
 		int winsCounter = 0;
@@ -151,7 +153,7 @@ public class PlayerServiceImpl implements PlayerService{
 	private boolean checkNameExists(String name) {
 		if(name.equals(""))
 			throw new IllegalArgumentException("Es necesario indicar un nombre");
-		if(playerRepository.findByName(name)==null)
+		if(playerMongoRepository.findByName(name)==null)
 			return false;
 		else
 			return true;

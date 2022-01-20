@@ -21,7 +21,7 @@ public class PlayerController {
 	
 	//si inyecto la interface playerService y en lugar de hacerlo como en la línea 23, entonces no guarda las rolls en la rollList del player ????
 	private final PlayerService playerService;
-	
+
 	@Autowired
 	public PlayerController(PlayerService playerService) {
 		this.playerService = playerService;

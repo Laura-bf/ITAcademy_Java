@@ -7,13 +7,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
+@Document(collection = "rolls")
 @Transactional
 public class Roll {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@MongoId
 	private Integer rollId;
 	private Integer valueDice1;
 	private Integer valueDice2;

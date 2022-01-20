@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.diceGame.model.domain.Player;
+import com.diceGame.model.DTO.PlayerDTO;
 import com.diceGame.model.services.PlayerService;
 
 @RestController
@@ -26,15 +26,13 @@ public class PlayerController {
 	public PlayerController(PlayerService playerService) {
 		this.playerService = playerService;
 	}
-	
-	@PostMapping
-	public ResponseEntity<?> addPlayer(@RequestParam("name") String name,@RequestParam("password") String password) {
 
+	@PostMapping
+	public ResponseEntity<?> addPlayer(@RequestBody PlayerDTO dto){
 		ResponseEntity<?> result = null;
-		Player player = new Player(name,password);
 		try {
-			playerService.addPlayer(player);
-			result = ResponseEntity.status(HttpStatus.CREATED).body(player);
+			playerService.addPlayer(dto);
+			result = ResponseEntity.status(HttpStatus.CREATED).build();
 		} catch (Exception ex) {
 			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 		}
@@ -42,21 +40,20 @@ public class PlayerController {
 	}
 
 	@PutMapping
-	public ResponseEntity<?> changeName(@RequestParam("playerId") Integer playerId) {
+	public ResponseEntity<?> changeName(@RequestBody PlayerDTO dto) {
 
 		ResponseEntity<?> result = null;
-		Player player = playerService.getPlayerById(playerId);
 		try {
-			playerService.setAnonymousPlayer(player);
-			result = ResponseEntity.status(HttpStatus.OK).body(player);
+			playerService.setAnonymousPlayer(dto);
+			result = ResponseEntity.status(HttpStatus.OK).build();
 		} catch (Exception ex) {
 			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 		}
 		return result;
 	}
+	
 	@PostMapping("/{id}/rolls")  
 //	el enunciado pone games pero he estado usando roll para referirme a las tiradas de dados así que dejo rolls aquí
-//	no funciona: object references an unsaved transient instance **** creo que se arregla haciendo un repository de rolls pq con cascadeType.all no se arregló***!!!***
 	public ResponseEntity<?> playGame(@PathVariable("id") Integer playerId) {
 
 		ResponseEntity<?> result = null;

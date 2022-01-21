@@ -2,14 +2,12 @@ package com.diceGame.model.services;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.model.DTO.PlayerDTO;
 import com.diceGame.model.domain.Roll;
 
 @Service
-@Profile({"mysql", "test","mongodb"})
 public interface PlayerService {
 	
 	void addPlayer(PlayerDTO playerDTO);

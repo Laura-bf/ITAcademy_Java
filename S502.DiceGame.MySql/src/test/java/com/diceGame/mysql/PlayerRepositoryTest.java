@@ -1,4 +1,4 @@
-package com.diceGame.mysql.model.repositories;
+package com.diceGame.mysql;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,6 +29,7 @@ class PlayerRepositoryTest {
 	@Test
 	final void savePlayerAndFindById() {
 		playerRepository.save(player);
+		
 		assertThat(playerRepository.findById(player.getPlayerId()).get().equals(player));
 	}
 

@@ -12,5 +12,5 @@ public interface PlayerMysqlRepository extends JpaRepository<Player,Integer> {
 	
 	public Player findByName(String name);
 	public Optional<Player> findById(Integer id);
-	
+	public void deleteByName(String userName);
 }

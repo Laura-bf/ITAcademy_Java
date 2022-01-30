@@ -1,5 +1,6 @@
 package com.diceGame.mysql.model.services;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,6 +10,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.mysql.model.DTO.PlayerDTO;
@@ -17,10 +23,21 @@ import com.diceGame.mysql.model.domain.Roll;
 import com.diceGame.mysql.model.persistance.PlayerMysqlRepository;
 
 @Service
-public class PlayerMysqlServiceImpl implements PlayerService{
+@Primary
+public class PlayerMysqlServiceImpl implements PlayerService, UserDetailsService{
 	
 	@Autowired
 	PlayerMysqlRepository playerRepository;
+	
+	@Override
+	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+		if(!checkNameExists(name))
+			throw new UsernameNotFoundException("User with username - " + name + " not found");
+		
+		Player player = playerRepository.findByName(name);
+		
+		return new User(player.getName(),player.getPassword(),new ArrayList<>());
+	}
 
 	@Override
 	public void addPlayer(PlayerDTO playerDTO) {
@@ -59,10 +76,11 @@ public class PlayerMysqlServiceImpl implements PlayerService{
 
 	@Override
 	public void setAnonymousPlayer(PlayerDTO playerDTO) {
+		playerDTO.setVisibleName("Anonymous");
 		Player player = playerRepository.findByName(playerDTO.getName());
 		if(player!=null) {
-			player.setName("Anonymous");
-			playerRepository.save(mapDtoToEntity(playerDTO));
+			player.setVisibleName("Anonymous");
+			playerRepository.save(player);
 		} else
 			throw new NoSuchElementException("Jugador no encontrado");
 	}
@@ -112,29 +130,16 @@ public class PlayerMysqlServiceImpl implements PlayerService{
 	}
 
 	@Override
-	public double getPlayersRanking() {
-		List<Player> allPlayers = playerRepository.findAll();
-		List<List<Roll>> allRollLists = allPlayers.stream().map(p -> p.getRollList()).collect(Collectors.toList());
-		
-		int winsCounter = 0;
-		int rollsCounter = 0;
-		
-		for(List<Roll> l : allRollLists) {
-			for(Roll r : l) {
-				rollsCounter++;
-				if(r.isWon())
-					winsCounter++;
-			}
-		}
-		double rate = (double) winsCounter/rollsCounter;
-		
-		return rate*100;
+	public double getPlayersRanking() {	
+		double rate = playerRepository.findAll().stream().mapToDouble(p -> p.getRate()).sum();
+		return rate/playerRepository.findAll().size();
 	}
 	
-	private PlayerDTO mapEntityToDto(Player player) {
+	protected PlayerDTO mapEntityToDto(Player player) {
 		PlayerDTO dto = new PlayerDTO();
 		dto.setPlayerId(player.getPlayerId());
 		dto.setName(player.getName());
+		dto.setVisibleName(player.getVisibleName());
 		dto.setPassword(player.getPassword());
 		dto.setRate(player.getRate());
 		dto.setRollList(player.getRollList());
@@ -146,6 +151,7 @@ public class PlayerMysqlServiceImpl implements PlayerService{
 		if(dto.getPlayerId()!=null)
 			player.setPlayerId(dto.getPlayerId());
 		player.setName(dto.getName());
+		player.setVisibleName(dto.getName());
 		player.setPassword(dto.getPassword());
 		player.setRate(dto.getRate());
 		player.setRollList(dto.getRollList());

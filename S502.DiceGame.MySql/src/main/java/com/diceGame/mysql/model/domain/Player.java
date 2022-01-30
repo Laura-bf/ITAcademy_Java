@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,12 +22,16 @@ public class Player implements Comparable<Player> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer playerId;
 	private String name;
+	private String visibleName;
 	private String password;
 	@Temporal(TemporalType.TIMESTAMP)
 	private final Date registerOn;
 	private Double rate;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Roll> rollList;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+    List<Role> roles;
 	
 	public Player() {
 		this.registerOn = new Date();
@@ -36,6 +41,7 @@ public class Player implements Comparable<Player> {
 	
 	public Player(String name, String password) {
 		this.name = name;
+		this.visibleName = name;
 		this.password = password;
 		this.registerOn = new Date();
 		this.rate = 0d;
@@ -56,6 +62,14 @@ public class Player implements Comparable<Player> {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getVisibleName() {
+		return visibleName;
+	}
+
+	public void setVisibleName(String visibleName) {
+		this.visibleName = visibleName;
 	}
 
 	public String getPassword() {
@@ -85,6 +99,14 @@ public class Player implements Comparable<Player> {
 	public void setRollList(List<Roll> rollList) {
 		this.rollList = rollList;
 	}
+	
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 
 	public void addRoll() {
 		Roll roll = new Roll();
@@ -111,11 +133,6 @@ public class Player implements Comparable<Player> {
 		this.rate = result;
 	}
 
-	@Override
-	public String toString() {
-		return playerId + "\t" + name + "\t" + rate + "%success";
-	}
-	//para ordenar los jugadores según su rate de mayor a menor
 	@Override
     public int compareTo(Player player){
         if(player.getRate()>this.rate){

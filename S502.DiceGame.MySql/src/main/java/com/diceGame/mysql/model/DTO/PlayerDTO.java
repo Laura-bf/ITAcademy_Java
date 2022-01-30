@@ -13,22 +13,28 @@ public class PlayerDTO {
 	
 	private Integer playerId;
 	private String name;
+	private String visibleName;
 	private String password;
-	@Temporal(TemporalType.TIMESTAMP)
-	private final Date registerOn;
+//	@Temporal(TemporalType.TIMESTAMP)
+//	private final Date registerOn;
 	private Double rate;
 	private List<Roll> rollList;
+//	private String token;
+	
+//	private Boolean authenticated;
 	
 	public PlayerDTO() {
-		this.registerOn = new Date();
+//		this.registerOn = new Date();
 		this.rate = 0d;
 		this.rollList = new ArrayList<Roll>();
+//		this.authenticated = false;
 	}
 	
 	public PlayerDTO(String name, String password) {
 		this.name = name;
+		this.visibleName = name;
 		this.password = password;
-		this.registerOn = new Date();
+//		this.registerOn = new Date();
 		this.rate = 0d;
 		this.rollList = new ArrayList<Roll>();
 	}
@@ -49,6 +55,14 @@ public class PlayerDTO {
 		this.name = name;
 	}
 
+	public String getVisibleName() {
+		return visibleName;
+	}
+
+	public void setVisibleName(String visibleName) {
+		this.visibleName = visibleName;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -57,9 +71,9 @@ public class PlayerDTO {
 		this.password = password;
 	}
 
-	public Date getRegisterOn() {
-		return registerOn;
-	}
+//	public Date getRegisterOn() {
+//		return registerOn;
+//	}
 
 	public Double getRate() {
 		return rate;
@@ -101,4 +115,20 @@ public class PlayerDTO {
 		double result = (totalWins/size)*100;
 		this.rate = result;
 	}
+
+//	public Boolean getAuthenticated() {
+//		return authenticated;
+//	}
+//
+//	public void setAuthenticated(Boolean authenticated) {
+//		this.authenticated = authenticated;
+//	}
+
+//	public String getToken() {
+//		return token;
+//	}
+//
+//	public void setToken(String token) {
+//		this.token = token;
+//	}
 }

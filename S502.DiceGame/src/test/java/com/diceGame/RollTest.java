@@ -1,8 +1,10 @@
-package com.diceGame.model.domain;
+package com.diceGame;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import com.diceGame.model.domain.Roll;
 
 class RollTest {
 
@@ -27,5 +29,4 @@ class RollTest {
 		else
 			assertTrue(!roll.isWon());
 	}
-	
 }

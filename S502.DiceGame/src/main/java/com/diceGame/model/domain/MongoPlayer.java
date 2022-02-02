@@ -1,32 +1,35 @@
-package com.diceGame.model.DTO;
-
+package com.diceGame.model.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import com.diceGame.model.domain.Roll;
-
-public class PlayerDTO {
+@Document(collection = "players")
+@Profile({"mongodb"})
+public class MongoPlayer implements Comparable<MongoPlayer>{
 	
+	@MongoId(FieldType.OBJECT_ID)
 	private String playerId;
+	@Indexed//para crear un index de este campo y que se filtren los players por esta propiedad
 	private String name;
 	private String visibleName;
 	private String password;
-	@Temporal(TemporalType.TIMESTAMP)
-	private final Date registerOn;
+	private Date registerOn;
 	private Double rate;
 	private List<Roll> rollList;
 	
-	public PlayerDTO() {
+	public MongoPlayer() {
 		this.registerOn = new Date();
 		this.rate = 0d;
 		this.rollList = new ArrayList<Roll>();
 	}
 	
-	public PlayerDTO(String name, String password) {
+	public MongoPlayer(String name, String password) {
 		this.name = name;
 		this.visibleName = name;
 		this.password = password;
@@ -34,15 +37,15 @@ public class PlayerDTO {
 		this.rate = 0d;
 		this.rollList = new ArrayList<Roll>();
 	}
-
+	
 	public String getPlayerId() {
 		return playerId;
 	}
-	
+
 	public void setPlayerId(String id) {
 		this.playerId = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -69,6 +72,9 @@ public class PlayerDTO {
 
 	public Date getRegisterOn() {
 		return registerOn;
+	}
+	public void setRegisterOn(Date registerOn) {
+		this.registerOn = registerOn;
 	}
 
 	public Double getRate() {
@@ -111,4 +117,16 @@ public class PlayerDTO {
 		double result = (totalWins/size)*100;
 		this.rate = result;
 	}
+	
+	//para ordenar los jugadores según su rate de mayor a menor
+	@Override
+    public int compareTo(MongoPlayer player){
+        if(player.getRate()>this.rate){
+            return 1;
+        }else if(player.getRate()==this.rate){
+            return 0;
+        }else{
+            return -1;
+        }
+    }
 }

@@ -13,13 +13,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.model.DTO.PlayerDTO;
-import com.diceGame.model.domain.Player;
+import com.diceGame.model.domain.MongoPlayer;
 import com.diceGame.model.domain.Roll;
 import com.diceGame.model.persistance.PlayerMongoRepository;
 
 @Service
 @Profile("mongodb")
-public class PlayerServiceMongoImpl implements PlayerService {
+public class PlayerMongoServiceImpl implements PlayerService {
 	
 	@Autowired
 	PlayerMongoRepository playerMongoRepository;
@@ -34,8 +34,8 @@ public class PlayerServiceMongoImpl implements PlayerService {
 	}
 				
 	@Override
-	public PlayerDTO getPlayerById(Integer id) {
-		Optional<Player> player = playerMongoRepository.findById(id);
+	public PlayerDTO getPlayerById(String id) {
+		Optional<MongoPlayer> player = playerMongoRepository.findById(id);
 		if(!player.isPresent())
 			throw new NoSuchElementException("No existe ningún jugador con este id");
 		else
@@ -44,7 +44,7 @@ public class PlayerServiceMongoImpl implements PlayerService {
 
 	@Override
 	public PlayerDTO getPlayerByName(String name) {
-		Player player = null;
+		MongoPlayer player = null;
 		if(checkNameExists(name))
 			player = playerMongoRepository.findByName(name);
 		if(player==null)
@@ -61,25 +61,30 @@ public class PlayerServiceMongoImpl implements PlayerService {
 
 	@Override
 	public void setAnonymousPlayer(PlayerDTO playerDTO) {
-		playerDTO.setName("Anonymous");
-		playerMongoRepository.save(mapDtoToEntity(playerDTO));
+		playerDTO.setVisibleName("Anonymous");
+		MongoPlayer player = playerMongoRepository.findByName(playerDTO.getName());
+		if(player!=null) {
+			player.setVisibleName("Anonymous");
+			playerMongoRepository.save(player);
+		} else
+			throw new NoSuchElementException("Jugador no encontrado");
 	}
 	
 	@Override
-	public void playRoll(Integer playerId) {
-		Player player = playerMongoRepository.findById(playerId).get();
+	public void playRoll(String playerId) {
+		MongoPlayer player = playerMongoRepository.findById(playerId).get();
 		player.addRoll();
 		playerMongoRepository.save(player);
 	}
 
 	@Override
-	public List<Roll> getAllRolls(Integer playerId) {
+	public List<Roll> getAllRolls(String playerId) {
 		return playerMongoRepository.findById(playerId).get().getRollList();
 	}
 
 	@Override
-	public void deleteAllRolls(Integer playerId) {
-		Player player = playerMongoRepository.findById(playerId).get();
+	public void deleteAllRolls(String playerId) {
+		MongoPlayer player = playerMongoRepository.findById(playerId).get();
 		player.deleteAllRollsFromList();
 		playerMongoRepository.save(player);
 	}
@@ -104,46 +109,34 @@ public class PlayerServiceMongoImpl implements PlayerService {
 	
 	@Override
 	public List<PlayerDTO> getAllPlayersSortedByRate() {
-		List<Player> allPlayers = playerMongoRepository.findAll();
+		List<MongoPlayer> allPlayers = playerMongoRepository.findAll();
 		Collections.sort(allPlayers);
 		return allPlayers.stream().map(p -> mapEntityToDto(p)).collect(Collectors.toList());
 	}
 
 	@Override
 	public double getPlayersRanking() {
-		List<Player> allPlayers = playerMongoRepository.findAll();
-		List<List<Roll>> allRollLists = allPlayers.stream().map(p -> p.getRollList()).collect(Collectors.toList());
-		
-		int winsCounter = 0;
-		int rollsCounter = 0;
-		
-		for(List<Roll> l : allRollLists) {
-			for(Roll r : l) {
-				rollsCounter++;
-				if(r.isWon())
-					winsCounter++;
-			}
-		}
-		double rate = (double) winsCounter/rollsCounter;
-		
-		return rate*100;
+		double rate = playerMongoRepository.findAll().stream().mapToDouble(p -> p.getRate()).sum();
+		return rate/playerMongoRepository.findAll().size();
 	}
 	
-	private PlayerDTO mapEntityToDto(Player player) {
+	private PlayerDTO mapEntityToDto(MongoPlayer player) {
 		PlayerDTO dto = new PlayerDTO();
 		dto.setPlayerId(player.getPlayerId());
 		dto.setName(player.getName());
+		dto.setVisibleName(player.getVisibleName());
 		dto.setPassword(player.getPassword());
 		dto.setRate(player.getRate());
 		dto.setRollList(player.getRollList());
 		return dto;
 	}
 	
-	private Player mapDtoToEntity(PlayerDTO dto) {
-		Player player = new Player();
+	private MongoPlayer mapDtoToEntity(PlayerDTO dto) {
+		MongoPlayer player = new MongoPlayer();
 		if(dto.getPlayerId()!=null)
 			player.setPlayerId(dto.getPlayerId());
 		player.setName(dto.getName());
+		player.setVisibleName(dto.getName());
 		player.setPassword(dto.getPassword());
 		player.setRate(dto.getRate());
 		player.setRollList(dto.getRollList());

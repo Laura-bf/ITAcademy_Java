@@ -10,9 +10,9 @@ import com.diceGame.model.domain.Player;
 
 @Repository
 @Profile({"mysql","test"})
-public interface PlayerMysqlRepository extends JpaRepository<Player,Integer> {
+public interface PlayerMysqlRepository extends JpaRepository<Player,String> {
 	
 	public Player findByName(String name);
-	public Optional<Player> findById(Integer id);
+	public Optional<Player> findById(String id);
 	
 }

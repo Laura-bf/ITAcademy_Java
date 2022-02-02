@@ -12,16 +12,16 @@ public interface PlayerService {
 	
 	void addPlayer(PlayerDTO playerDTO);
 	
-	PlayerDTO getPlayerById(Integer id);
+	PlayerDTO getPlayerById(String playerId);
 	PlayerDTO getPlayerByName(String name);
 	List<PlayerDTO> getAllPlayers();
 	
 	void setAnonymousPlayer(PlayerDTO playerDTO);
 	
-	void playRoll(Integer playerId);
+	void playRoll(String playerId);
 	
-	List<Roll> getAllRolls(Integer playerId);
-	void deleteAllRolls(Integer playerId);
+	List<Roll> getAllRolls(String playerId);
+	void deleteAllRolls(String playerId);
 	
 	double getPlayersRanking();
 	List<PlayerDTO> getAllPlayersSortedByRate();

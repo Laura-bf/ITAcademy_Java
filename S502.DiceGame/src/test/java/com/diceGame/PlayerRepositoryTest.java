@@ -1,4 +1,4 @@
-package com.diceGame.model.repositories;
+package com.diceGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,13 +10,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.diceGame.model.domain.Player;
+import com.diceGame.model.persistance.PlayerMysqlRepository;
 
 @DataJpaTest
 @ActiveProfiles("test")
 class PlayerRepositoryTest {
 
 	@Autowired
-	private PlayerRepository playerRepository;
+	private PlayerMysqlRepository playerRepository;
 	
 	private static Player player;
 	
@@ -28,6 +29,7 @@ class PlayerRepositoryTest {
 	@Test
 	final void savePlayerAndFindById() {
 		playerRepository.save(player);
+		
 		assertThat(playerRepository.findById(player.getPlayerId()).get().equals(player));
 	}
 

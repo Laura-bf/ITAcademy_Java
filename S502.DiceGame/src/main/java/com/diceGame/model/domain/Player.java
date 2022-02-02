@@ -8,31 +8,31 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Profile;
 
+@Table(name="players")
 @Entity
-@Document(collection = "players")
+@Profile({"mysql","test"})
 public class Player implements Comparable<Player> {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@MongoId
-	private Integer playerId;
+	@GeneratedValue(generator = "idGenerator") 
+	@GenericGenerator(name = "idGenerator", strategy = "uuid")
+	private String playerId;
 	private String name;
+	private String visibleName;
 	private String password;
 	@Temporal(TemporalType.TIMESTAMP)
 	private final Date registerOn;
 	private Double rate;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@DocumentReference(lazy = true, collection ="rolls")
 	private List<Roll> rollList;
 	
 	public Player() {
@@ -43,18 +43,19 @@ public class Player implements Comparable<Player> {
 	
 	public Player(String name, String password) {
 		this.name = name;
+		this.visibleName = name;
 		this.password = password;
 		this.registerOn = new Date();
 		this.rate = 0d;
 		this.rollList = new ArrayList<Roll>();
 	}
-
-	public Integer getPlayerId() {
+	
+	public String getPlayerId() {
 		return playerId;
 	}
 
-	public void setPlayerId(Integer playerId) {
-		this.playerId = playerId;
+	public void setPlayerId(String id) {
+		this.playerId = id;
 	}
 
 	public String getName() {
@@ -65,6 +66,14 @@ public class Player implements Comparable<Player> {
 		this.name = name;
 	}
 
+	public String getVisibleName() {
+		return visibleName;
+	}
+
+	public void setVisibleName(String visibleName) {
+		this.visibleName = visibleName;
+	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -118,10 +127,6 @@ public class Player implements Comparable<Player> {
 		this.rate = result;
 	}
 
-	@Override
-	public String toString() {
-		return playerId + "\t" + name + "\t" + rate + "%success";
-	}
 	//para ordenar los jugadores según su rate de mayor a menor
 	@Override
     public int compareTo(Player player){

@@ -19,7 +19,6 @@ import com.diceGame.model.services.PlayerService;
 @RequestMapping("/players")
 public class PlayerController {
 	
-	//si inyecto la interface playerService y en lugar de hacerlo como en la línea 23, entonces no guarda las rolls en la rollList del player ????
 	private final PlayerService playerService;
 
 	@Autowired
@@ -54,7 +53,7 @@ public class PlayerController {
 	
 	@PostMapping("/{id}/rolls")  
 //	el enunciado pone games pero he estado usando roll para referirme a las tiradas de dados así que dejo rolls aquí
-	public ResponseEntity<?> playGame(@PathVariable("id") Integer playerId) {
+	public ResponseEntity<?> playGame(@PathVariable("id") String playerId) {	
 
 		ResponseEntity<?> result = null;
 		try {
@@ -67,8 +66,7 @@ public class PlayerController {
 	}
 	
 	@DeleteMapping("/{id}/rolls") 
-	public ResponseEntity<?> deleteRolls(@PathVariable("id") Integer playerId) {
-
+	public ResponseEntity<?> deleteRolls(@PathVariable("id") String playerId) {
 		ResponseEntity<?> result = null;
 		try {
 			playerService.deleteAllRolls(playerId);
@@ -90,8 +88,7 @@ public class PlayerController {
 		return result;
 	}
 	@GetMapping("/{id}/rolls")
-	public ResponseEntity<?> getAllPlayerRolls(@PathVariable("id") Integer playerId) {
-
+	public ResponseEntity<?> getAllPlayerRolls(@PathVariable("id") String playerId) {
 		ResponseEntity<?> result = null;
 		try {
 			result = ResponseEntity.status(HttpStatus.OK).body(playerService.getAllRolls(playerId));

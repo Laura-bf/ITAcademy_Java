@@ -19,7 +19,7 @@ import com.diceGame.model.persistance.PlayerMysqlRepository;
 
 @Service
 @Profile({"mysql","test"})
-public class PlayerServiceMysqlImpl implements PlayerService{
+public class PlayerMysqlServiceImpl implements PlayerService{
 	
 	@Autowired
 	PlayerMysqlRepository playerRepository;
@@ -29,12 +29,12 @@ public class PlayerServiceMysqlImpl implements PlayerService{
 		checkPasswordFormat(playerDTO.getPassword());
 		if(checkNameExists(playerDTO.getName()))
 			throw new IllegalArgumentException("Este nombre ya está registrado");
-		else
+		else 
 			playerRepository.save(mapDtoToEntity(playerDTO));
 	}
 				
 	@Override
-	public PlayerDTO getPlayerById(Integer id) {
+	public PlayerDTO getPlayerById(String id) {
 		Optional<Player> player = playerRepository.findById(id);
 		if(!player.isPresent())
 			throw new NoSuchElementException("No existe ningún jugador con este id");
@@ -61,24 +61,29 @@ public class PlayerServiceMysqlImpl implements PlayerService{
 
 	@Override
 	public void setAnonymousPlayer(PlayerDTO playerDTO) {
-		playerDTO.setName("Anonymous");
-		playerRepository.save(mapDtoToEntity(playerDTO));
+		playerDTO.setVisibleName("Anonymous");
+		Player player = playerRepository.findByName(playerDTO.getName());
+		if(player!=null) {
+			player.setVisibleName("Anonymous");
+			playerRepository.save(player);
+		} else
+			throw new NoSuchElementException("Jugador no encontrado");
 	}
 	
 	@Override
-	public void playRoll(Integer playerId) {
-		Player player = playerRepository.findById(playerId).get();
+	public void playRoll(String id) {
+		Player player = playerRepository.findById(id).get();
 		player.addRoll();
 		playerRepository.save(player);
 	}
 
 	@Override
-	public List<Roll> getAllRolls(Integer playerId) {
+	public List<Roll> getAllRolls(String playerId) {
 		return playerRepository.findById(playerId).get().getRollList();
 	}
 
 	@Override
-	public void deleteAllRolls(Integer playerId) {
+	public void deleteAllRolls(String playerId) {	
 		Player player = playerRepository.findById(playerId).get();
 		player.deleteAllRollsFromList();
 		playerRepository.save(player);
@@ -111,28 +116,15 @@ public class PlayerServiceMysqlImpl implements PlayerService{
 
 	@Override
 	public double getPlayersRanking() {
-		List<Player> allPlayers = playerRepository.findAll();
-		List<List<Roll>> allRollLists = allPlayers.stream().map(p -> p.getRollList()).collect(Collectors.toList());
-		
-		int winsCounter = 0;
-		int rollsCounter = 0;
-		
-		for(List<Roll> l : allRollLists) {
-			for(Roll r : l) {
-				rollsCounter++;
-				if(r.isWon())
-					winsCounter++;
-			}
-		}
-		double rate = (double) winsCounter/rollsCounter;
-		
-		return rate*100;
+		double rate = playerRepository.findAll().stream().mapToDouble(p -> p.getRate()).sum();
+		return rate/playerRepository.findAll().size();
 	}
 	
 	private PlayerDTO mapEntityToDto(Player player) {
 		PlayerDTO dto = new PlayerDTO();
 		dto.setPlayerId(player.getPlayerId());
 		dto.setName(player.getName());
+		dto.setVisibleName(player.getVisibleName());
 		dto.setPassword(player.getPassword());
 		dto.setRate(player.getRate());
 		dto.setRollList(player.getRollList());
@@ -144,6 +136,7 @@ public class PlayerServiceMysqlImpl implements PlayerService{
 		if(dto.getPlayerId()!=null)
 			player.setPlayerId(dto.getPlayerId());
 		player.setName(dto.getName());
+		player.setVisibleName(dto.getName());
 		player.setPassword(dto.getPassword());
 		player.setRate(dto.getRate());
 		player.setRollList(dto.getRollList());

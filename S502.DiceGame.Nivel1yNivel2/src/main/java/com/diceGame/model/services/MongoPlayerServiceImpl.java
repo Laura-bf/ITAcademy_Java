@@ -126,6 +126,7 @@ public class MongoPlayerServiceImpl implements PlayerService {
 		dto.setName(player.getName());
 		dto.setVisibleName(player.getVisibleName());
 		dto.setPassword(player.getPassword());
+		dto.setRole(player.getRole());
 		dto.setRate(player.getRate());
 		dto.setRollList(player.getRollList());
 		return dto;
@@ -138,6 +139,7 @@ public class MongoPlayerServiceImpl implements PlayerService {
 		player.setName(dto.getName());
 		player.setVisibleName(dto.getName());
 		player.setPassword(dto.getPassword());
+		player.setRole(dto.getRole());
 		player.setRate(dto.getRate());
 		player.setRollList(dto.getRollList());
 		return player;

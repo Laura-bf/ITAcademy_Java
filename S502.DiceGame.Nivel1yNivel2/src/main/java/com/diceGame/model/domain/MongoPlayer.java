@@ -19,6 +19,7 @@ public class MongoPlayer implements Comparable<MongoPlayer>{
 	private String name;
 	private String visibleName;
 	private String password;
+	private String role;
 	private Date registerOn;
 	private Double rate;
 	private List<Roll> rollList;
@@ -68,6 +69,14 @@ public class MongoPlayer implements Comparable<MongoPlayer>{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public Date getRegisterOn() {

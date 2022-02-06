@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,17 @@ import com.diceGame.model.domain.Roll;
 import com.diceGame.model.persistance.PlayerRepository;
 
 @Service
+@Primary
 @Profile({"mysql","test"})
 public class PlayerServiceImpl implements PlayerService{
 	
+	
+	private final PlayerRepository playerRepository;
+	
 	@Autowired
-	PlayerRepository playerRepository;
+	public PlayerServiceImpl(PlayerRepository playerRepository) {
+		this.playerRepository = playerRepository;
+	}
 
 	@Override
 	public void addPlayer(PlayerDTO playerDTO) {
@@ -128,6 +135,7 @@ public class PlayerServiceImpl implements PlayerService{
 		dto.setName(player.getName());
 		dto.setVisibleName(player.getVisibleName());
 		dto.setPassword(player.getPassword());
+		dto.setRole(player.getRole());
 		dto.setRate(player.getRate());
 		dto.setRollList(player.getRollList());
 		return dto;
@@ -140,12 +148,13 @@ public class PlayerServiceImpl implements PlayerService{
 		player.setName(dto.getName());
 		player.setVisibleName(dto.getName());
 		player.setPassword(dto.getPassword());
+		player.setRole(dto.getRole());
 		player.setRate(dto.getRate());
 		player.setRollList(dto.getRollList());
 		return player;
 	}
 	
-	private boolean checkNameExists(String name) {
+	protected boolean checkNameExists(String name) {
 		if(name.equals(""))
 			throw new IllegalArgumentException("Es necesario indicar un nombre");
 		if(playerRepository.findByName(name)==null)
@@ -154,7 +163,7 @@ public class PlayerServiceImpl implements PlayerService{
 			return true;
 	}
 	
-	private void checkPasswordFormat(String password) {
+	protected void checkPasswordFormat(String password) {
 		final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,15}$";
 	    final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
 	    Matcher matcher = pattern.matcher(password);

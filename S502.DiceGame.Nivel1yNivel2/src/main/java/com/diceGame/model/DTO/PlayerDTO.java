@@ -20,6 +20,8 @@ public class PlayerDTO {
 	private Double rate;
 	private List<Roll> rollList;
 	
+	private String role;
+	
 	public PlayerDTO() {
 		this.registerOn = new Date();
 		this.rate = 0d;
@@ -65,6 +67,14 @@ public class PlayerDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public Date getRegisterOn() {

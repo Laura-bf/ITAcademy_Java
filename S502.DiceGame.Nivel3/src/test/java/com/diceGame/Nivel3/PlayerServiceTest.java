@@ -23,7 +23,6 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -54,7 +53,6 @@ class PlayerServiceTest {
 	private Player player;
 	private PlayerDTO playerDto;
 	private List<RollDTO> rollDtos;
-//	private List<Roll> rolls;
 	
 	
 	@BeforeAll
@@ -63,7 +61,6 @@ class PlayerServiceTest {
 		this.playerDto = new PlayerDTO();
 		BeanUtils.copyProperties(player, playerDto);
 		this.rollDtos = new ArrayList<RollDTO>();
-//		this.rolls = new ArrayList<Roll>();
 		Roll roll1 = new Roll();
 		Roll roll2 = new Roll();
 		roll1.playRoll();
@@ -77,7 +74,6 @@ class PlayerServiceTest {
 		rollDtos.add(rollDto1);
 		rollDtos.add(rollDto2);
 		playerDto.setRollList(rollDtos);
-//		BeanUtils.copyProperties(rollDtos, rolls);
 	}
 
     @Test
@@ -201,8 +197,7 @@ class PlayerServiceTest {
 	@Test
 	@Transactional
 	final void deleteAllRolls_ByPlayerId() {
-		when(playerRepoMock.findById(1)).thenReturn(Optional.of(player));
-		
+		when(playerRepoMock.findById(1)).thenReturn(Optional.of(player));	
 		playerServiceMock.deletePlayerRolls(1);
 		
 		assertTrue(rollDtos.size()==0);

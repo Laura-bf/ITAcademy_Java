@@ -22,7 +22,7 @@ import com.diceGame.nivel3.persistance.repositories.PlayerRepository;
 import com.diceGame.nivel3.persistance.repositories.RollRepository;
 
 @Service
-public class PlayerService {
+public class PlayerService{
 
 	@Autowired
 	RollRepository rollRepository;

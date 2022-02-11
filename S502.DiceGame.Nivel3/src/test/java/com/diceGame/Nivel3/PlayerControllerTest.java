@@ -24,7 +24,6 @@ import static org.assertj.core.api.Assertions.fail;
 @SpringBootTest(classes = {Application.class})
 @AutoConfigureMockMvc
 class PlayerControllerTest {
-//
 	@Autowired
 	private MockMvc mockMvc;
 

@@ -29,14 +29,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/players/1/rolls",
+					"raw": "localhost:8080/players/ff8081817eda09ae017eda09dc5e0000/rolls",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"players",
-						"1",
+						"ff8081817eda09ae017eda09dc5e0000",
 						"rolls"
 					]
 				}
@@ -49,14 +49,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/players/1/rolls",
+					"raw": "localhost:8080/players/ff8081817eda09ae017eda09dc5e0000/rolls",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"players",
-						"1",
+						"ff8081817eda09ae017eda09dc5e0000",
 						"rolls"
 					]
 				}
@@ -70,7 +70,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n     \"name\": \"fdfas\",\n        \"password\": \"As12345678*\"\n}",
+					"raw": "{\n     \"name\": \"nombre\",\n        \"password\": \"As12345678*\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -155,14 +155,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/players/1/rolls",
+					"raw": "localhost:8080/players/ff8081817eda09ae017eda09dc5e0000/rolls",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"players",
-						"1",
+						"ff8081817eda09ae017eda09dc5e0000",
 						"rolls"
 					]
 				}

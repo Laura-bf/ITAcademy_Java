@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.diceGame.nivel3.Application;
 import com.diceGame.nivel3.domain.entities.Player;
 
-@DataJpaTest
+//@DataJpaTest
 @SpringBootTest(classes = {Application.class})
 class PlayerTest {
 

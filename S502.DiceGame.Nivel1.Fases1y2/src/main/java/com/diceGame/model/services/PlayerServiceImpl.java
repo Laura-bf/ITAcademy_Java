@@ -20,7 +20,7 @@ import com.diceGame.model.persistance.PlayerRepository;
 
 @Service
 @Primary
-@Profile({"mysql","h2"})
+@Profile({"mysql","test"})
 public class PlayerServiceImpl implements PlayerService{
 
 	private PlayerRepository playerRepository;

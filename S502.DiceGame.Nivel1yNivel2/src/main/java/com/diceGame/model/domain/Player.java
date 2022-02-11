@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Profile;
 
 @Table(name="players")
 @Entity
-@Profile({"mysql","h2"})
+@Profile({"mysql","test"})
 public class Player implements Comparable<Player>{
 
 	@Id

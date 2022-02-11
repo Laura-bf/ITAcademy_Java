@@ -52,9 +52,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException{
 		try {
 			Player credenciales = new ObjectMapper().readValue(request.getInputStream(), Player.class);
+			
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credenciales.getName(), 
-																							credenciales.getPassword(), 
-																							new ArrayList<>())); //como en la aplicación no hay roles definidos la lista de authorities está vacía.
+																								credenciales.getPassword(), 
+																								new ArrayList<>())); //como en la aplicación no hay roles definidos la lista de authorities está vacía.
 		}catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -73,7 +74,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 							.setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_EXPIRATION_TIME))
 							.signWith(SignatureAlgorithm.HS512, SecurityConstants.SUPER_SECRET_KEY)
 							.compact();
-		
 		response.addHeader(SecurityConstants.HEADER_AUTHORIZACION_KEY, SecurityConstants.TOKEN_BEARER_PREFIX +" "+ token);
 	}
 }

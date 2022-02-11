@@ -24,7 +24,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.diceGame.model.DTO.PlayerDTO;
@@ -34,7 +33,6 @@ import com.diceGame.model.persistance.PlayerRepository;
 import com.diceGame.model.services.PlayerServiceImpl;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @TestInstance(Lifecycle.PER_CLASS) //para que el init() pueda no ser estático
 @Transactional //para que no de error de failed to laizily inititalize (The problem is caused by accessing an attribute with the hibernate session closed)
 class PlayerServiceImplTest {

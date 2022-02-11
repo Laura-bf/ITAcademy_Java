@@ -65,6 +65,8 @@ public class PlayerController {
 		try {
 			playerService.playRoll(playerId);
 			result = ResponseEntity.status(HttpStatus.OK).body(playerService.getPlayerById(playerId));
+		}catch(NoSuchElementException e) {
+			result = ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		} catch (Exception ex) {
 			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 		}
@@ -77,6 +79,8 @@ public class PlayerController {
 		try {
 			playerService.deleteAllRolls(playerId);
 			result = ResponseEntity.status(HttpStatus.OK).body(playerService.getPlayerById(playerId));
+		}catch(NoSuchElementException e) {
+			result = ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		} catch (Exception ex) {
 			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 		}
@@ -98,6 +102,8 @@ public class PlayerController {
 		ResponseEntity<?> result = null;
 		try {
 			result = ResponseEntity.status(HttpStatus.OK).body(playerService.getAllRolls(playerId));
+		}catch(NoSuchElementException e) {
+			result = ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		} catch (Exception ex) {
 			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 		}

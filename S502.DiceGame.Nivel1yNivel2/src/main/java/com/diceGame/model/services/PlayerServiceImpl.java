@@ -2,6 +2,7 @@ package com.diceGame.model.services;
 
 import java.util.Collections;
 import java.util.List;
+import static java.util.Collections.emptyList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -11,6 +12,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.model.DTO.PlayerDTO;
@@ -20,11 +24,10 @@ import com.diceGame.model.persistance.PlayerRepository;
 
 @Service
 @Primary
-@Profile({"mysql","test"})
+@Profile({"mysql","h2"})
 public class PlayerServiceImpl implements PlayerService{
-	
-	
-	private final PlayerRepository playerRepository;
+
+	private PlayerRepository playerRepository;
 	
 	@Autowired
 	public PlayerServiceImpl(PlayerRepository playerRepository) {
@@ -32,12 +35,25 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 
 	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Player player = playerRepository.findByName(username);
+		if (player == null) {
+			throw new UsernameNotFoundException(username);
+		}
+		String password = player.getPassword();
+		
+		return new User(player.getName(), "{noop}"+password, emptyList());
+		
+	}
+	
+	@Override
 	public void addPlayer(PlayerDTO playerDTO) {
 		checkPasswordFormat(playerDTO.getPassword());
 		if(checkNameExists(playerDTO.getName()))
 			throw new IllegalArgumentException("Este nombre ya está registrado");
-		else 
+		else {
 			playerRepository.save(mapDtoToEntity(playerDTO));
+		}
 	}
 	
 	@Override
@@ -77,25 +93,33 @@ public class PlayerServiceImpl implements PlayerService{
 			throw new NoSuchElementException("Jugador no encontrado");
 	}
 	
-	
-	//falta excepción si no existe el id!!!!!
 	@Override
 	public void playRoll(String id) {
 		Player player = playerRepository.findById(id).get();
-		player.addRoll();
-		playerRepository.save(player);
+		if(player != null) {
+			player.addRoll();
+			playerRepository.save(player);
+		} else
+			throw new NoSuchElementException("No existe ningún jugador con este id");
 	}
-	//falta excepción si no existe el id!!!!!
+	
 	@Override
 	public List<Roll> getAllRolls(String playerId) {
-		return playerRepository.findById(playerId).get().getRollList();
+		Player player = playerRepository.findById(playerId).get();
+		if(player != null) 
+			return player.getRollList();
+		else
+			throw new NoSuchElementException("No existe ningún jugador con este id");
 	}
-	//falta excepción si no existe el id!!!!!
+	
 	@Override
 	public void deleteAllRolls(String playerId) {	
 		Player player = playerRepository.findById(playerId).get();
-		player.deleteAllRollsFromList();
-		playerRepository.save(player);
+		if(player != null) {
+			player.deleteAllRollsFromList();
+			playerRepository.save(player);
+		}else
+			throw new NoSuchElementException("No existe ningún jugador con este id");
 	}
 
 	@Override
@@ -135,7 +159,6 @@ public class PlayerServiceImpl implements PlayerService{
 		dto.setName(player.getName());
 		dto.setVisibleName(player.getVisibleName());
 		dto.setPassword(player.getPassword());
-		dto.setRole(player.getRole());
 		dto.setRate(player.getRate());
 		dto.setRollList(player.getRollList());
 		return dto;
@@ -148,7 +171,6 @@ public class PlayerServiceImpl implements PlayerService{
 		player.setName(dto.getName());
 		player.setVisibleName(dto.getName());
 		player.setPassword(dto.getPassword());
-		player.setRole(dto.getRole());
 		player.setRate(dto.getRate());
 		player.setRollList(dto.getRollList());
 		return player;
@@ -170,4 +192,5 @@ public class PlayerServiceImpl implements PlayerService{
 	    if(!matcher.matches())   
 	    	throw new IllegalArgumentException("Contraseña requiere:\n-Entre 8 y 15 caracteres con al menos un dígito,una mayúscula,una minúscula y un caracter especial.No admite espacios en blanco");
 	}
+	
 }

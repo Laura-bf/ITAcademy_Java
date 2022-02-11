@@ -2,13 +2,14 @@ package com.diceGame.model.services;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.model.DTO.PlayerDTO;
 import com.diceGame.model.domain.Roll;
 
 @Service
-public interface PlayerService {
+public interface PlayerService extends UserDetailsService{
 	
 	void addPlayer(PlayerDTO playerDTO);
 	

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.diceGame.model.domain.Player;
 
 @Repository
-@Profile({"mysql","test"})
+@Profile({"mysql","h2"})
 public interface PlayerRepository extends JpaRepository<Player,String> {
 	
 	public Player findByName(String name);

@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Profile;
 
 @Table(name="players")
 @Entity
-@Profile({"mysql","test"})
+@Profile({"mysql","h2"})
 public class Player implements Comparable<Player>{
 
 	@Id
@@ -34,8 +34,6 @@ public class Player implements Comparable<Player>{
 	private Double rate;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Roll> rollList;
-	
-	private String role;
 	
 	public Player() {
 		this.registerOn = new Date();
@@ -82,14 +80,6 @@ public class Player implements Comparable<Player>{
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 	public Date getRegisterOn() {

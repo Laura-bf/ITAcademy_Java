@@ -1,5 +1,7 @@
 package com.diceGame.model.services;
 
+import static java.util.Collections.emptyList;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,6 +12,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.model.DTO.PlayerDTO;
@@ -23,6 +28,15 @@ public class MongoPlayerServiceImpl implements PlayerService {
 	
 	@Autowired
 	MongoPlayerRepository playerMongoRepository;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		MongoPlayer player = playerMongoRepository.findByName(username);
+		if (player == null) {
+			throw new UsernameNotFoundException(username);
+		}
+		return new User(player.getName(), player.getPassword(), emptyList());
+	}
 
 	@Override
 	public void addPlayer(PlayerDTO playerDTO) {
@@ -73,20 +87,30 @@ public class MongoPlayerServiceImpl implements PlayerService {
 	@Override
 	public void playRoll(String playerId) {
 		MongoPlayer player = playerMongoRepository.findById(playerId).get();
-		player.addRoll();
-		playerMongoRepository.save(player);
+		if(player != null) {
+			player.addRoll();
+			playerMongoRepository.save(player);
+		} else
+			throw new NoSuchElementException("No existe ningún jugador con este id");
 	}
 
 	@Override
 	public List<Roll> getAllRolls(String playerId) {
-		return playerMongoRepository.findById(playerId).get().getRollList();
+		MongoPlayer player = playerMongoRepository.findById(playerId).get();
+		if(player != null)
+			return player.getRollList();
+		else
+			throw new NoSuchElementException("No existe ningún jugador con este id");
 	}
 
 	@Override
 	public void deleteAllRolls(String playerId) {
 		MongoPlayer player = playerMongoRepository.findById(playerId).get();
-		player.deleteAllRollsFromList();
-		playerMongoRepository.save(player);
+		if(player != null) {
+			player.deleteAllRollsFromList();
+			playerMongoRepository.save(player);
+		}else
+			throw new NoSuchElementException("No existe ningún jugador con este id");
 	}
 
 	@Override
@@ -126,7 +150,6 @@ public class MongoPlayerServiceImpl implements PlayerService {
 		dto.setName(player.getName());
 		dto.setVisibleName(player.getVisibleName());
 		dto.setPassword(player.getPassword());
-		dto.setRole(player.getRole());
 		dto.setRate(player.getRate());
 		dto.setRollList(player.getRollList());
 		return dto;
@@ -139,7 +162,6 @@ public class MongoPlayerServiceImpl implements PlayerService {
 		player.setName(dto.getName());
 		player.setVisibleName(dto.getName());
 		player.setPassword(dto.getPassword());
-		player.setRole(dto.getRole());
 		player.setRate(dto.getRate());
 		player.setRollList(dto.getRollList());
 		return player;

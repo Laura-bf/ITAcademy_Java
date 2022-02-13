@@ -1,5 +1,7 @@
 package com.diceGame.nivel3.model.services;
 
+import static java.util.Collections.emptyList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +14,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.diceGame.nivel3.domain.documents.Roll;
@@ -22,13 +28,32 @@ import com.diceGame.nivel3.persistance.repositories.PlayerRepository;
 import com.diceGame.nivel3.persistance.repositories.RollRepository;
 
 @Service
-public class PlayerService{
+public class PlayerService implements UserDetailsService{
 
 	@Autowired
 	RollRepository rollRepository;
 	
 	@Autowired
 	PlayerRepository playerRepository;
+	
+	public PlayerService() {
+		
+	}
+	@Autowired
+	public PlayerService(PlayerRepository playerRepository) {
+		this.playerRepository = playerRepository;
+	}
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Player player = playerRepository.findByName(username).get(0);
+		if (player == null) {
+			throw new UsernameNotFoundException(username);
+		}
+		String password = player.getPassword();
+		
+		return new User(player.getName(), "{noop}"+password, emptyList());
+		
+	}
 	
 	public String createPlayer(PlayerDTO playerDto) {
 		if(!playerRepository.findByName(playerDto.getName()).isEmpty()) {
@@ -40,6 +65,18 @@ public class PlayerService{
 			
 			return "Jugador registrado correctamente";
 		}
+	}
+
+//este método se utiliza en acciones de seguridad de los recursos
+	public Integer getPlayerIdByName(String username) {
+		if(!playerRepository.findByName(username).isEmpty())
+			return playerRepository.findByName(username).get(0).getPlayerId();
+		else 
+			return null;
+	}
+//este método se utiliza en acciones de seguridad de los recursos	
+	public String getPlayerNameById(Integer id) {
+		return playerRepository.findById(id).get().getName();
 	}
 	
 	public List<PlayerDTO> getAllPlayers(){

@@ -2,7 +2,6 @@ package com.diceGame.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -13,29 +12,26 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.diceGame.model.domain.Player;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
 /**
+ * Es el LOGIN FILTER: se encargará de interceptar las peticiones que provengan de /login y obtener el username y password que vienen en el body de la petición.
  * Authentication Filter se usa junto con un Authorization Filter (esto se establece en una WebSecurityConfig class)
  * 	-Authentication para saber si el usuario es realment quien dice ser
  * 	-Authorization verifica la existencia y validez del access token del Authorization header
  */
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTAuthenticationLoginFilter extends UsernamePasswordAuthenticationFilter {
 
 	private AuthenticationManager authenticationManager;
-
-	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+	
+	public JWTAuthenticationLoginFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 		/**
          *  SetFilterProcessesUrl("uri") es un método que establece la ruta de la url para el login,
-         *  si se comenta la linea 32, spring security crea el endpoint /login por defecto 
+         *  si se comenta la linea 42 y no se especifica una ruta distinta, spring security crea el endpoint /login por defecto 
          *  (es por esto que no se define un endpoint para el login de forma explícita en el controller)
          */
 //        setFilterProcessesUrl("/login"); 
@@ -56,6 +52,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(credenciales.getName(), 
 																								credenciales.getPassword(), 
 																								new ArrayList<>())); //como en la aplicación no hay roles definidos la lista de authorities está vacía.
+			
 		}catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -68,12 +65,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      */
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) throws IOException, ServletException{
-		String token = Jwts.builder()
-							.setIssuedAt(new Date())
-							.setSubject(((User)auth.getPrincipal()).getUsername())
-							.setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_EXPIRATION_TIME))
-							.signWith(SignatureAlgorithm.HS512, SecurityConstants.SUPER_SECRET_KEY)
-							.compact();
-		response.addHeader(SecurityConstants.HEADER_AUTHORIZACION_KEY, SecurityConstants.TOKEN_BEARER_PREFIX +" "+ token);
+//		String token = Jwts.builder()
+//							.setIssuedAt(new Date())
+//							.setSubject(((User)auth.getPrincipal()).getUsername())
+//							.setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_EXPIRATION_TIME))
+//							.signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET_KEY)
+//							.compact();
+//		response.addHeader(SecurityConstants.HEADER_AUTHORIZACION_KEY, SecurityConstants.TOKEN_BEARER_PREFIX +" "+ token);
+		
+		// Si la autenticacion fue exitosa, agregamos el token a la respuesta
+        JwtUtil.addAuthentication(response, auth.getName());
 	}
+
 }

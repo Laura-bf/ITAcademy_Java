@@ -1,7 +1,6 @@
 package com.diceGame.security;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -9,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import io.jsonwebtoken.Jwts;
-
+/**
+ * Las peticiones que no sean /login pasarán por este filtro
+ * el cuál se encarga de pasar el "request" a nuestra clase de utilidad JwtUtil
+ * para que valide el token.
+ */
 /**
  * Authorization Filter se usa junto con un Authentication Filter (esto se establece en una WebSecurityConfig class)
  * 	-Authentication para saber si el usuario es realment quien dice ser
@@ -39,32 +41,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
 			chain.doFilter(req, res);
 			return;
 		}
-		//si el header ok, se llama a getAuthentication()
-		UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
+		//si el header ok, se llama a getAuthentication() del jwtUtil
+		Authentication authentication = JwtUtil.getAuthentication((HttpServletRequest)req);
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		chain.doFilter(req, res);
-	}
-	
-	/**
-	 * Este método verifica el JWT, si el token es válido, devuelve un access token que Spring usa internamente.
-	 */
-	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-		String token = request.getHeader(SecurityConstants.HEADER_AUTHORIZACION_KEY);
-		if(token != null) {
-			//Se procesa el token y se recupera el usuario
-			String user = Jwts.parser()
-								.setSigningKey(SecurityConstants.SUPER_SECRET_KEY)
-								.parseClaimsJws(token.replace(SecurityConstants.TOKEN_BEARER_PREFIX, ""))
-								.getBody()
-								.getSubject();
-		
-			if(user != null) {
-				return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
-			}
-			
-			return null;
-		}
-		return null;
 	}
 }

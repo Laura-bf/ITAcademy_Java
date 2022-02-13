@@ -97,6 +97,7 @@ public class PlayerController {
 		}
 		return result;
 	}
+
 	@GetMapping("/{id}/rolls")
 	public ResponseEntity<?> getAllPlayerRolls(@PathVariable("id") String playerId) {
 		ResponseEntity<?> result = null;

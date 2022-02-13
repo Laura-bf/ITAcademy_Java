@@ -93,6 +93,9 @@ public class PlayerServiceImpl implements PlayerService{
 			throw new NoSuchElementException("Jugador no encontrado");
 	}
 	
+//	private boolean playerOwnsResource(String id) {
+//		String token = SecurityContextHolder.getContext().getAuthentication().toString();
+//	}
 	@Override
 	public void playRoll(String id) {
 		Player player = playerRepository.findById(id).get();

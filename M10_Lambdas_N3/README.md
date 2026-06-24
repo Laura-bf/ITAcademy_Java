@@ -1,6 +1,6 @@
 # M10 — Lambdas N3
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -14,7 +14,7 @@ Student data processing using the Stream API. A list of `Student` objects (name,
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Stream API
 - Lambda expressions
 

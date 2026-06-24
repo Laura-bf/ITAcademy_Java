@@ -1,6 +1,6 @@
 # M9 — Cohetes N2 (Console + Threads)
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -8,7 +8,7 @@ Rocket simulation with a more detailed domain model. Each rocket has a code, a c
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - `javax.swing.JOptionPane` (lightweight GUI dialogs)
 - Multithreading (`Runnable`, `Thread`)
 

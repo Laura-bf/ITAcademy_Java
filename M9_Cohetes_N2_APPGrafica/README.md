@@ -1,6 +1,6 @@
 # M9 — Cohetes N2 (Swing GUI)
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk) ![Swing](https://img.shields.io/badge/UI-Swing-007396?logo=java)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk) ![Swing](https://img.shields.io/badge/UI-Swing-007396?logo=java)
 
 ## Description
 
@@ -8,7 +8,7 @@ Rocket simulation with a full graphical interface built with Swing. After settin
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Swing (`JFrame`, `JPanel`, `JButton`, `JLabel`)
 - Multithreading (`Runnable`, `Thread`)
 

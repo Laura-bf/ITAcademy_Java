@@ -1,6 +1,6 @@
 # M8 — Video Management App (N1)
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 ![Swing](https://img.shields.io/badge/Swing-GUI-008080?logo=java)
 
 ## Description
@@ -9,7 +9,7 @@ A video management application with a full **MVC architecture** and Swing-based 
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Swing (`JOptionPane`)
 
 ## Key Concepts

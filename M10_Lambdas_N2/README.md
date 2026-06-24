@@ -1,6 +1,6 @@
 # M10 — Lambdas N2
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -11,7 +11,7 @@ Lambda and Stream API exercises focused on text string processing and a function
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Stream API
 - Functional interfaces (`@FunctionalInterface`)
 - `Comparator` with lambdas

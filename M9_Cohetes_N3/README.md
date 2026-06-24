@@ -1,6 +1,6 @@
 # M9 — Cohetes N3 (Swing GUI + Gear Selector)
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk) ![Swing](https://img.shields.io/badge/UI-Swing-007396?logo=java)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk) ![Swing](https://img.shields.io/badge/UI-Swing-007396?logo=java)
 
 ## Description
 
@@ -8,7 +8,7 @@ Enhanced rocket simulation with a Swing graphical interface. Builds on N2 by add
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Swing (`JFrame`, `JPanel`, `JButton`, `JLabel`, `JList`)
 - Multithreading (`Runnable`, `Thread`)
 - Event listeners (`ActionListener`, `ListSelectionListener`)

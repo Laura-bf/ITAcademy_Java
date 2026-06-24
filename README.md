@@ -1,6 +1,6 @@
 # IT Academy — Backend Java Bootcamp
 
-![Java](https://img.shields.io/badge/Java-8%2B-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2F17-ED8B00?logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.5–2.6-6DB33F?logo=springboot)
 ![Maven](https://img.shields.io/badge/Maven-3-C71A36?logo=apachemaven)
 ![Gradle](https://img.shields.io/badge/Gradle-7-02303A?logo=gradle)
@@ -112,7 +112,7 @@ _S4–S5: RESTful services, JPA, H2, MongoDB, Swagger, JWT security, testing_
 
 | Category | Technologies |
 |----------|-------------|
-| **Languages** | Java 8–11, SQL, JavaScript (MongoDB) |
+| **Languages** | Java 11/17, SQL, JavaScript (MongoDB) |
 | **Frameworks** | Spring Boot 2.5–2.6, JPA/Hibernate, Thymeleaf |
 | **Databases** | MySQL, H2 (in-memory), MongoDB |
 | **Build Tools** | Maven, Gradle |

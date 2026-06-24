@@ -1,6 +1,6 @@
 # M4 Restaurante
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -8,7 +8,7 @@ A restaurant menu simulation with a graphical interface (JOptionPane) for browsi
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Swing (JOptionPane)
 
 ## Key Concepts
@@ -53,4 +53,4 @@ The most complete versions are `N2.Excepciones_Restaurante` (generic exceptions)
 
 ## Built With
 
-- Java 8 — Eclipse IDE
+- Java 11+ — Eclipse IDE

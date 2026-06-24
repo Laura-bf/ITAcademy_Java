@@ -1,6 +1,6 @@
 # M9 — Cohetes N1 (Console)
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -8,7 +8,7 @@ Console-based rocket simulation (Level 1). Creates two `Rocket` objects identifi
 
 ## Technologies
 
-- Java 8
+- Java 11+
 
 ## Key Concepts
 

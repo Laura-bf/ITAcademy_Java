@@ -1,6 +1,6 @@
 # M11 — Florist Shop Management (N1)
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 ![Swing](https://img.shields.io/badge/Swing-GUI-008080?logo=java)
 ![Pair Programming](https://img.shields.io/badge/Pair%20Programming-6A0DAD?logo=people&amp;logoColor=white)
 
@@ -10,7 +10,7 @@ A florist shop management application developed as a **pair programming** exerci
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Swing (`JOptionPane`)
 
 ## Key Concepts

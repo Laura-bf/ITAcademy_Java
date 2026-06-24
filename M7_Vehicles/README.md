@@ -1,6 +1,6 @@
 # M7 — Vehicle Workshop Registration App
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 ![Swing](https://img.shields.io/badge/Swing-GUI-008080?logo=java)
 
 ## Description
@@ -13,7 +13,7 @@ A vehicle workshop registration application that manages cars, bikes, trucks, wh
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Swing (`JOptionPane` dialogs in N1)
 - Console-based I/O (N2, N3)
 

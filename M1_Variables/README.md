@@ -1,6 +1,6 @@
 # M1 Variables
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -8,7 +8,7 @@ A console application demonstrating variable declaration, type casting, and arra
 
 ## Technologies
 
-- Java 8
+- Java 11+
 
 ## Key Concepts
 
@@ -48,4 +48,4 @@ Replace `N1.Fase1` with another class (e.g. `N2.N2`, `N3.N3`) to run a different
 
 ## Built With
 
-- Java 8 — Eclipse IDE
+- Java 11+ — Eclipse IDE

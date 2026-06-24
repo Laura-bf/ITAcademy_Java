@@ -1,6 +1,6 @@
 # M6 — Payroll Management System
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -12,7 +12,7 @@ A payroll calculation system built with Java that models a hierarchy of employee
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Console-based I/O
 
 ## Key Concepts

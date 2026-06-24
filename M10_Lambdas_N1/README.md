@@ -1,6 +1,6 @@
 # M10 — Lambdas N1
 
-![Java](https://img.shields.io/badge/Java-8-ED8B00?logo=openjdk)
+![Java](https://img.shields.io/badge/Java-11%2B-ED8B00?logo=openjdk)
 
 ## Description
 
@@ -12,7 +12,7 @@ Introductory exercises with lambdas and the Stream API across three phases:
 
 ## Technologies
 
-- Java 8
+- Java 11+
 - Stream API
 - Functional interfaces (`@FunctionalInterface`)
 
